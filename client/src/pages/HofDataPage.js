@@ -12,7 +12,7 @@ const HOFdataContainer = () => {
 const [rankData, setRankData] = React.useState([]);
 
 const callWeeklyApi = async()=>{
-  const response = await fetch('/RankingWeekly');
+  const response = await fetch('/ranking/:poemId');
   const body = await response.json();
   return body;
 }

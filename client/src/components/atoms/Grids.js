@@ -55,7 +55,7 @@ const [open, setOpen] = React.useState(false);
 const [hofDatas, setHofData] = React.useState([]);
 
 const callApi = async()=>{
-  const response = await fetch('/HOfPage');
+  const response = await fetch('/ranking');
   const body = await response.json();
   return body;
 }
@@ -74,7 +74,7 @@ return (
       <Grid item key={hofData.subject} xs={12} sm={6} md={4}>
         <Card className={classes.card}>
           <Button className={classes.button} 
-          onClick={() => window.location.href="/HofDataPage"}>
+          onClick={() => window.location.href="/ranking/:poemId"}>
               <CardContent className={classes.cardContent}>
               <Hidden xsDown>
                   <CardMedia className={classes.cardMedia} image={hofData.img_url} title="Image title"/>

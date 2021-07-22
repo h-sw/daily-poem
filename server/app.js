@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
-app.get('/NoticePage', async (req, res, next) => {
+app.get('/notice', async (req, res, next) => {
   try {
     const result = await pool.query('SELECT * FROM notice;')
     console.log(result[0])
@@ -29,7 +29,7 @@ app.get('/NoticePage', async (req, res, next) => {
     res.json({ code: 500, result: "error", message: e.message });
   }
 });
-app.get('/HOfPage', async (req, res, next) => {
+app.get('/ranking', async (req, res, next) => {
   try {
     const sqlHof = `
       SELECT * 
@@ -47,7 +47,7 @@ app.get('/HOfPage', async (req, res, next) => {
   }
 });
 
-app.get('/RankingWeekly', async (req, res, next) => {
+app.get('/ranking/:poemId', async (req, res, next) => {
   try {
     const sqlPoem = `
       SELECT * 
