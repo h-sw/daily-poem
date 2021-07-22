@@ -17,3 +17,7 @@ export const FlexWrapper = styled.div`
 export const RootWrapper = styled(Wrapper)`
   padding-top: 60px;
 `
+
+export const NoPaddingButton = styled(IconButton)`
+   padding:0;
+`

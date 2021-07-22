@@ -19,7 +19,7 @@ import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import DeleteIcon from '@material-ui/icons/Delete';
 //import DeleteForm from './DeleteForm';
 //import Report from './Report';
-import HistoryRow from './historyRow.js'
+import HistoryComment from './HistoryComment.js'
 import {
   FacebookShareButton,
   InstapaperShareButton,
@@ -29,6 +29,37 @@ import {
   TwitterIcon,
 } from "react-share";
 
+const TableWrapper = styled(Paper)`
+  display: flex;
+  flex-direction: column;
+`
+const PostPreviewRow= styled(TableRow)`
+  display: flex; 
+  flex-grow: 5;
+  flex-basis: 0;
+  border-bottom: unset;
+`
+const PostThemeText = styled(Typography)`
+  flex-grow: 2;
+  flex-basis: 0;
+`
+const PostCreatedDate = styled(Typography)`
+  font-size: 12px;
+  color: #888;
+`
+const PostWrapper = styled.div`
+  display: flex;
+  flex-grow: 1;
+  flex-basis: 0;
+`
+const PoemDetailWrapper = styled(Paper)`
+  padding: 0.75rem;
+`
+const CommentWrapper = styled.div`
+  margin: 5;
+  display: flex;
+  flex-direction: row;
+`
 function Row({ row, onReply = true, onLike = true}) {
   let on = onReply;
   let onLikes = onLike;
@@ -67,62 +98,30 @@ function Row({ row, onReply = true, onLike = true}) {
     .catch(error => { console.log('error : ',error.response) }); */
   }
 
-	const TableStyle = styled(Paper)`
-		display: flex;
-		flex-direction: column;
-	`
-	const PoemPreview= styled(TableRow)`
-		display: flex; 
-		flex-grow: 5;
-		flex-basis: 0;
-		border-bottom: unset;
-	`
-	const PoemTheme = styled(Typography)`
-		flex-grow: 2;
-		flex-basis: 0;
-	`
-	const PoemCreatedDate = styled(Typography)`
-		font-size: 12;
-		color: #888;
-	`
-	const PostComponent = styled.div`
-		display: flex;
-		flex-grow: 1;
-		flex-basis: 0;
-	`
-	const PoemDetail = styled(Paper)`
-		padding: 0.75rem;
-	`
-  
-	const CommentComponent = styled.div`
-		margin: 5;
-		display: flex;
-		flex-direction: row;
-	`
   return (
   <React.Fragment>
-    <TableStyle variant="outlined" square > 
-      <PoemPreview onClick={() => setOpen(!open)}>
-        <PoemTheme >{row.word}</PoemTheme >
-        <PoemCreatedDate>{dayjs(row.created).format("MM.DD HH:mm")}</PoemCreatedDate>
-        <PostComponent>
+    <TableWrapper variant="outlined" square > 
+      <PostPreviewRow onClick={() => setOpen(!open)}>
+        <PostThemeText >{row.word}</PostThemeText >
+        <PostCreatedDate>{dayjs(row.created).format("MM.DD HH:mm")}</PostCreatedDate>
+        <PostWrapper>
           <PersonIcon />
           <Typography >{row.name}</Typography>
-        </PostComponent>
-        <PostComponent>
+        </PostWrapper>
+        <PostWrapper>
           <ThumbUpAltIcon />
           <Typography>{row.likes}</Typography>
-        </PostComponent>
-        <PostComponent>
+        </PostWrapper>
+        <PostWrapper>
           <CommentIcon />
           <Typography>{row.comment}</Typography>
-        </PostComponent>
-      </PoemPreview>
+        </PostWrapper>
+      </PostPreviewRow>
 
       <TableRow>
         <Collapse in={open} timeout="auto" unmountOnExit>
           <Box margin={3}>
-            <PoemDetail variant="outlined" square>
+            <PoemDetailWrapper variant="outlined" square>
               <Typography variant="caption" gutterBottom component="div">
                 {row.word.split('')[0]}{row.poem_1}
               </Typography>
@@ -176,30 +175,30 @@ function Row({ row, onReply = true, onLike = true}) {
                   </Button>
                 </form>
               </div>}
-            </PoemDetail>
+            </PoemDetailWrapper>
 
             <Table size="small" aria-label="comments">
               <TableBody>
-                {row.replyList && row.replyList.map((historyRow, idx) => (
-                  <HistoryRow key={idx} historyRow={historyRow}/>
+                {row.replyList && row.replyList.map((historyComment, idx) => (
+                  <HistoryComment key={idx} historyComment={historyComment}/>
                 ))}
                 {Boolean(on) && 
                 <div>
-                  <PostComponent >
+                  <PostWrapper >
                     <Button onClick={() => setOpen_reply(!openReply)}>
                       댓글쓰기
                     </Button>
-                  </PostComponent >
+                  </PostWrapper >
                   <Collapse in={openReply} timeout="auto" unmountOnExit>
                     <form onSubmit ={handleSubmit} noValidate autoComplete="off">
-                      <CommentComponent>
+                      <CommentWrapper>
                         <TextField id="outlined-basic" label="닉네임" name="id" variant="outlined" size="small" value={values.id} onChange={handleChange}/>
                         <TextField id="outlined-basic" label="비밀번호" name="password" variant="outlined" size="small" value={values.password} onChange={handleChange}  />
                         <TextField id="outlined-basic" label="내용" name="reply" variant="outlined" size="small" value={values.reply} onChange={handleChange}  />
                         <button type="submit" >
                           등록
                         </button>
-                      </CommentComponent>
+                      </CommentWrapper>
                     </form>
                   </Collapse>
                 </div>
@@ -209,7 +208,7 @@ function Row({ row, onReply = true, onLike = true}) {
           </Box>
         </Collapse>
       </TableRow>
-    </TableStyle>
+    </TableWrapper>
   </React.Fragment>
     );
   }
