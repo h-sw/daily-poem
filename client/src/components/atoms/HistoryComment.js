@@ -4,7 +4,7 @@ import Collapse from '@material-ui/core/Collapse';
 import dayjs from 'dayjs';
 import DeleteIcon from '@material-ui/icons/Delete';
 import styled from "styled-components";
-import NoPaddingButton from '../../styles/NoPaddingButton'
+import {NoPaddingButton} from '../../styles/common';
 //import DeleteForm from './DeleteForm'
 
 const Padding = styled.div`
