@@ -12,75 +12,75 @@ import {
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 
 const TitleWrapper = styled.div`
-  margin: 50px;
+  margin  : 50px;
 `
 
 const Title = styled(Typography)`
-  color : #222222;
-  font-weight: 600;
-  text-align: center;
-  font-size : 28px;
+  color       : #222222;
+  font-weight : 600;
+  text-align  : center;
+  font-size   : 28px;
 `
 
 const Subtitle = styled(Typography)`
-  color : #222222;
-  font-weight: 500;
-  text-align: center;
-  font-size : 14px;
+  color       : #222222;
+  font-weight : 500;
+  text-align  : center;
+  font-size   : 14px;
 `
 
 const Card = styled(CardActionArea)`
-  position: relative;
-  border-radius: 10px;
-  height : ${props => props.height / 1.8}px;
-  overflow: hidden;
-  box-shadow : 10px 10px 30px #d9d9d9, -10px -10px 30px #ffffff;
+  position      : relative;
+  border-radius : 10px;
+  height        : ${props => props.height / 1.8}px;
+  overflow      : hidden;
+  box-shadow    : 10px 10px 30px #d9d9d9, -10px -10px 30px #ffffff;
 `
 
 const CardContentWrapper = styled.div`
-  position: absolute;
-  padding: 20px;
-  background : rgba(0,0,0, 0.15);
-  width : 100%;
-  height: 100%;
-  top : 0;
-  left: 0;
+  position    : absolute;
+  padding     : 20px;
+  background  : rgba(0,0,0, 0.15);
+  width       : 100%;
+  height      : 100%;
+  top         : 0;
+  left        : 0;
 `
 
 const CardImg = styled.img`
-  width: 100%;
-  display: block;
+  width   : 100%;
+  display : block;
 `
 
 const CardTitle = styled(Typography)`
-  font-weight: 600;
-  font-size: 28px;
-  color: #000;
+  font-weight : 600;
+  font-size   : 28px;
+  color       : #000;
 `
 
 const ThumbIcon = styled(ThumbUpAltIcon)`
-  height: 20px;
-  width: 20px;
-  margin-right: 5px;
-  align-self: center;
-  color : #FFFFFF;
+  height        : 20px;
+  width         : 20px;
+  margin-right  : 5px;
+  align-self    : center;
+  color         : #FFFFFF;
 `
 
 const CardText = styled(Typography)`
-  font-size: 14px;
-  align-self: center;
-  color : #FFFFFF;
+  font-size   : 14px;
+  align-self  : center;
+  color       : #FFFFFF;
 `
 
 const CardSubContentWrapper = styled.div`
-  position: absolute;
-  margin: 20px;
-  padding: 5px 15px;
-  border-radius: 5px;
-  background-color: #4caf50;
-  bottom : 0;
-  right: 0;
-  z-index: 2;
+  position          : absolute;
+  margin            : 20px;
+  padding           : 5px 15px;
+  border-radius     : 5px;
+  background-color  : #4caf50;
+  bottom            : 0;
+  right             : 0;
+  z-index           : 2;
 `
 
 const KeywordCard = ({ data }) => {
