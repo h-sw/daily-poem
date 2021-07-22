@@ -8,9 +8,11 @@ import Header from '../components/atoms/Header';
 import {
   RootWrapper
 } from '../styles/common';
+import { useParams } from 'react-router-dom';
 
 const HOFdataContainer = () => {
   const [rankData, setRankData] = React.useState([]);
+  const { keyword } = useParams()
 
   const callWeeklyApi = async()=>{
     const response = await fetch('/RankingWeekly');
@@ -28,18 +30,18 @@ const HOFdataContainer = () => {
 
   return (
     <RootWrapper>
-      <Header name={'바나나'}></Header>
+      <Header name={keyword}></Header>
       <div>
         {rankData && <div> 
-        <TableContainer component={Paper}>
-          <Table aria-label="Ranking table">
-            <TableBody>
-              {rankData.map((row, idx) => (
-                <Row key={idx} row={row} onReply={false} onLike={false}/>
-              ))}
-            </TableBody>
-          </Table>
-        </TableContainer>
+          <TableContainer component={Paper}>
+            <Table aria-label="Ranking table">
+              <TableBody>
+                {rankData.map((row, idx) => (
+                  <Row key={idx} row={row} onReply={false} onLike={false}/>
+                ))}
+              </TableBody>
+            </Table>
+          </TableContainer>
         </div>
         }
       </div>
