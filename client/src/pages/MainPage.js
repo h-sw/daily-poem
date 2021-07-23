@@ -1,5 +1,5 @@
 import React from 'react';
-//import KeywordContainer from '../components/organisms/KeywordContainer';
+import Keyword from '../components/atoms/Keyword';
 import PoemList from '../components/atoms/PoemList';
 import Container from '@material-ui/core/Container';
 //import AllPoemList from '../components/organisms/AllPoemList';
@@ -7,12 +7,17 @@ import CheckIcon from '@material-ui/icons/Check';
 import { makeStyles } from '@material-ui/core/styles';
 import Header from '../components/atoms/Header';
 import MenuSelector from '../components/atoms/MenuSelector';
-const useStyles = makeStyles((theme)=>({
+import styled from "styled-components";
 
+const useStyles = makeStyles((theme)=>({
   heroContent: {
     padding: theme.spacing(8, 0, 6),
   },
 }));
+
+const MenuWrapper = styled.div`
+  paddingTop: 15;
+`
 
 const MainPage = () => {
   const classes = useStyles();
@@ -54,6 +59,7 @@ const MainPage = () => {
       setSorting(category);
     }
   };
+
   const CheckedButton = ({check}) => {
     if(check === '실시간 좋아요순'&&likeList){
       //setDisplayData(likeList)
@@ -85,13 +91,13 @@ const MainPage = () => {
           {/* <AllPoemList displayData={displayData}/> */}
         </div> :
         <Container maxWidth="sm">
-          {/* <KeywordContainer/> */}
+          <Keyword />
           <MenuSelector 
                 handleSortingClick={handleSortingClick} 
                 CheckedButton={CheckedButton} 
                 sorting={sorting} 
                 plus={plus}/>
-          <div style={{paddingTop:15}}/>
+          <MenuWrapper />
           
           <PoemList displayData={displayData}/>
         </Container>
