@@ -8,7 +8,11 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 var app = express();
-var pool = require("./lib/pool")
+var pool = require("./lib/pool");
+
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -109,6 +113,28 @@ app.get('/ranking/:poemId', async (req, res, next) => {
     res.json({ code: 500, result: "error", message: e.message });
   }
 });
+
+app.post('/postPoem', async (req, res, next) => {
+  let {id, pwd, word, poem_1, poem_2, poem_3}=req.body;
+  
+  try {
+    const sql=`INSERT INTO POEM 
+      SET name=?, password=?, word=?, poem_1=?, poem_2=?, poem_3=?, likes=0, comment=0;
+    `
+
+    const post = await pool.query(sql, [
+      id, pwd, word, poem_1, poem_2, poem_3
+    ])
+
+    console.log(post);
+    res.json({ code: 200, result: "success", data : post });
+  }
+  catch(e) {
+    console.log(e)
+    res.json({ code: 500, result: "error", message: e.message });
+  }
+});
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
