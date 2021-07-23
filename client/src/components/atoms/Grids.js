@@ -73,8 +73,10 @@ return (
   {hofDatas.map((hofData) => (
       <Grid item key={hofData.subject} xs={12} sm={6} md={4}>
         <Card className={classes.card}>
-          <Button className={classes.button} 
-          onClick={() => window.location.href="/ranking/:poemId"}>
+          <Button 
+            className={classes.button} 
+            onClick={() => window.location.href="/ranking/"+hofData.subject}
+          >
               <CardContent className={classes.cardContent}>
               <Hidden xsDown>
                   <CardMedia className={classes.cardMedia} image={hofData.img_url} title="Image title"/>

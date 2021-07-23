@@ -10,6 +10,23 @@ var usersRouter = require('./routes/users');
 var app = express();
 var pool = require("./lib/pool")
 
+// view engine setup
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'pug');
+
+const subject_dit = {
+  '바나나' : 0,
+  '복숭아' : 1,
+  '청포도' : 2,
+  '산딸기' : 3,
+  '코코넛' : 4,
+  '두리안' : 5,
+  '무화과' : 6,
+  '오렌지' : 7,
+  '토마토' : 8,
+  '한라봉' : 9,
+};
+
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,7 +46,7 @@ app.get('/notice', async (req, res, next) => {
     res.json({ code: 500, result: "error", message: e.message });
   }
 });
-app.get('/ranking', async (req, res, next) => {
+app.get('/HOfPage', async (req, res, next) => {
   try {
     const sqlHof = `
       SELECT * 
@@ -48,14 +65,22 @@ app.get('/ranking', async (req, res, next) => {
 });
 
 app.get('/ranking/:poemId', async (req, res, next) => {
+  const { poemId } = req.params;
+  const subjectId = /* 0; */subject_dit[ poemId ];
+ 
+  console.log("req.params", req.params);
+  console.log("subjectId : ", subjectId);
   try {
     const sqlPoem = `
       SELECT * 
-      FROM POEM 
-      WHERE YEARWEEK(created) = YEARWEEK(now())
+      FROM POEM
+      WHERE subjectId = ? 
       ORDER BY likes desc
     `  
-    const resultPoem = await pool.query(sqlPoem);
+    /* AND YEARWEEK(created) = YEARWEEK(now())/ */
+    const resultPoem = await pool.query(sqlPoem, [
+      subjectId
+    ]);
     
     let poems = resultPoem[0];
     let idx = 0;
@@ -66,7 +91,6 @@ app.get('/ranking/:poemId', async (req, res, next) => {
         FROM REPLY
         WHERE REPLY.poemId = ?
       `
-
       const resultReply2 = await pool.query(sqlReply, [
         poem.poemId
       ])

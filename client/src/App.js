@@ -3,7 +3,7 @@ import React from 'react';
 import MainPage from './pages/MainPage';
 import NoticePage from './pages/NoticePage';
 import RankingPage from './pages/RankingPage';
-import HofDataPage from './pages/HofDataPage';
+import RankingKeywordPage from './pages/RankingKeywordPage';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 function App() {
@@ -12,8 +12,8 @@ function App() {
       <Switch>
         <Route exact path="/" component={MainPage} />
         <Route exact path="/notice" component={NoticePage} />
-        <Route exact path="/ranking" component={RankingPage} />
-        <Route exact path="/ranking/:poemId" component={HofDataPage} />
+        <Route exact path="/HofPage" component={RankingPage} />
+        <Route exact path="/ranking/:keyword" component={RankingKeywordPage} />
       </Switch>
     </BrowserRouter>
   );
