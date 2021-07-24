@@ -327,6 +327,52 @@ app.post('/postPoem', async (req, res, next) => {
   }
 });
 
+app.post('/postReply', async (req, res, next) => {
+  
+  let {poemId, id, pwd, reply}=req.body;
+  try {
+    /* 삼행시 업로드 부분 */
+    const sql=`INSERT INTO project1.REPLY 
+    SET poemId=?, name=?, password=?, reply=?;
+    `
+
+    const post = await pool.query(sql, [
+      poemId, id, pwd, reply
+    ])
+    //console.log(post)
+
+    res.json({ code: 200, result: "success", data : post });
+  }
+  catch(e) {
+    //console.log(e)
+    res.json({ code: 500, result: "error", message: e.message });
+  }
+  try{
+    /* 댓글 몇 개인지 세고 업데이트 하는 부분 */
+    const sql_poemId = `
+      SELECT COUNT(poemId) FROM project1.REPLY 
+      WHERE REPLY.poemId = ? AND REPLY.name = ? AND REPLY.password = ?
+    `
+    const post_comment = await pool.query(sql_poemId, [
+      poemId, id, pwd
+    ])
+
+    const count_comment = parseInt(Object.values(post_comment[0][0]))
+
+    const sql_set_comment = `
+      UPDATE project1.POEM SET comment = ? WHERE poemId = ?
+    `
+    const post_com_n_pi = await pool.query(sql_set_comment, [
+      (count_comment), poemId
+    ])
+    res.json({ code: 200, result: "success_post_comment", data : post_com_n_pi });
+  }
+  catch(e){
+    console.log(e)
+    res.json({ code: 500, result: "error", message: e.message });
+  }
+});
+
 app.post('/deletePoem', async (req, res, next) => {
 
   let {id, name, pwd}=req.body;
