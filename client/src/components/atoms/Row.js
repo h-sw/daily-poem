@@ -1,4 +1,4 @@
-import React ,{useEffect}from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
 import PersonIcon from '@material-ui/icons/Person';
@@ -11,7 +11,7 @@ import Paper from '@material-ui/core/Paper';
 import CommentIcon from '@material-ui/icons/Comment';
 import Button from '@material-ui/core/Button'
 import TextField from '@material-ui/core/TextField'
-//import axios from 'axios';
+import axios from 'axios';
 import dayjs from 'dayjs';
 import styled from "styled-components";
 import IconButton from '@material-ui/core/IconButton';
@@ -93,9 +93,9 @@ function Row({ row, onReply = true, onLike = true}) {
   } 
 
   const likeSubmit = (e) => {
-  /*axios.post('/postLike',{likes : parseInt(row.likes) + 1, poemId: row.poemId}) 
-    .then(function (response) { console.log(response); }) 
-    .catch(error => { console.log('error : ',error.response) }); */
+    axios.post('/postLike',{likes : parseInt(row.likes) + 1, poemId: row.poemId}) 
+      .then(function (response) { console.log(response); }) 
+      .catch(error => { console.log('error : ',error.response) });
   }
 
   return (

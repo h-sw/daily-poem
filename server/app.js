@@ -394,6 +394,26 @@ app.post('/deleteReply', async (req, res, next) => {
   }
 });
 
+app.post('/postLike', async (req, res, next) => {
+  
+  let {likes, poemId}=req.body;
+  try {
+    const sql=`UPDATE project1.POEM 
+    SET likes=? WHERE poemId = ?;
+    `
+    const post = await pool.query(sql, [
+      likes, poemId
+    ])
+    //console.log(post)
+
+    res.json({ code: 200, result: "success", data : post });
+  }
+  catch(e) {
+    //console.log(e)
+    res.json({ code: 500, result: "error", message: e.message });
+  }
+});
+
 app.post('/Report', async (req, res, next) => {
   
   let {replyId, poemId, reason} = req.body;
