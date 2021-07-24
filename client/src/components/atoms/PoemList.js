@@ -8,7 +8,6 @@ import Row from './Row';
 const PoemListContainer = ({displayData}) => {
     return (
       <div>
-          {console.log(displayData)}
         <div style={{paddingTop:15}}/>
         <TableContainer component={Paper}>
           <Table aria-label="Ranking table">
