@@ -54,7 +54,7 @@ const NavigationBar = () => {
 							</MenuText>
 						</Button>
 						<Button
-							//onClick={() => window.location.href="/RankingPage"}
+							onClick={() => window.location.href="/rank"}
 						>
 							<MenuText>
 								주간/월간/연간 랭킹

@@ -13,15 +13,15 @@ import {
 } from '../styles/common';
 
 const TitleWrapper = styled.div`
-  margin  		: 50px;
+  margin  		  : 50px;
 `
 
 const MenuWrapper = styled.div`
-  paddingTop	: 15;
+  paddingTop	  : 15;
 `
 
 const boldWrapper = styled.div`
-	font-weight: bolder;
+	font-weight   : bolder;
 `
 const MainPage = () => {
   const [likeList, setLikeList] = React.useState([]);
