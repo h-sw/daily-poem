@@ -5,53 +5,35 @@ import Button from '@material-ui/core/Button';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
+import styled from "styled-components"
 
 import Typography from '@material-ui/core/Typography';
-import { makeStyles } from '@material-ui/core/styles';
 
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 
-const useStyles = makeStyles((theme) => ({
-  icon: {
-    marginRight: theme.spacing(2),
-  },
-  heroContent: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(8, 0, 6),
-  },
-  heroButtons: {
-    marginTop: theme.spacing(4),
-  },
-  cardGrid: {
-    paddingTop: theme.spacing(8),
-    paddingBottom: theme.spacing(8),
-  },
-  card: {
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-  },
-  cardMedia: {
-    paddingTop: '56.25%', // 16:9
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  button: {
-    display:'flex',
-    justifyContent:'space-between',
-    backgroundColor:'#f2f4f7',
-    borderColor:'1px solid black'
-  },
-  footer: {
-    backgroundColor: theme.palette.background.paper,
-    padding: theme.spacing(6),
-  },
-}));
+
+const GridCard = styled(Card)`
+height: '100%';
+display: 'flex;
+flex-Direction: 'column';
+`
+
+const GridButton = styled(Button)`
+  display:'flex';
+  justify-Content:'space-between';
+  background-Color:'#f2f4f7';
+  border-Color:'1px solid black;
+`
+
+const GridCardContent = styled(CardContent)`
+  flex-Grow: 1;
+`
+
+const GridCardMedia = styled(CardMedia)`
+  padding-Top: '56.25%'; 
+` // 16:9
 
 const Grids = (props) => {
-const classes = useStyles();
-const [open, setOpen] = React.useState(false);
 const [hofDatas, setHofData] = React.useState([]);
 
 const callApi = async()=>{
@@ -72,19 +54,18 @@ return (
   <Grid container spacing={5}>
   {hofDatas.map((hofData) => (
       <Grid item key={hofData.subject} xs={12} sm={6} md={4}>
-        <Card className={classes.card}>
-          <Button 
-            className={classes.button} 
+        <GridCard>
+          <GridButton 
             onClick={() => window.location.href="/ranking/"+hofData.subject}
           >
-              <CardContent className={classes.cardContent}>
+              <GridCardContent>
               <Hidden xsDown>
-                  <CardMedia className={classes.cardMedia} image={hofData.img_url} title="Image title"/>
+                  <GridCardMedia image={hofData.img_url} title="Image title"/>
               </Hidden>
               <Typography gutterBottom variant="h4" component="h2"> {hofData.subject} <ThumbUpAltIcon /> {hofData.likes} </Typography>
-              </CardContent>
-          </Button>
-        </Card>        
+              </GridCardContent>
+          </GridButton>
+        </GridCard>        
       </Grid>
   ))}
   </Grid>
