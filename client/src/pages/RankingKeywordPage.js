@@ -15,7 +15,7 @@ const HOFdataContainer = () => {
   const { keyword } = useParams()
 
   const callWeeklyApi = async()=>{
-    const response = await fetch('/RankingWeekly');
+    const response = await fetch('/ranking/'+ keyword);
     const body = await response.json();
     return body;
   }
@@ -23,6 +23,7 @@ const HOFdataContainer = () => {
   useEffect(()=>{
       callWeeklyApi()
       .then(res=>{
+        console.log(res.data)
         setRankData(res.data)
       })
       .catch(err=>console.log(err));

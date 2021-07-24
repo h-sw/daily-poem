@@ -1,37 +1,18 @@
-import React ,{useEffect}from 'react';
+import React from 'react';
 import Typography from '@material-ui/core/Typography';
-import Box from '@material-ui/core/Box';
-import PersonIcon from '@material-ui/icons/Person';
-import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-import Collapse from '@material-ui/core/Collapse';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
+import { Grid } from '@material-ui/core';
 import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
-import CommentIcon from '@material-ui/icons/Comment';
 import Button from '@material-ui/core/Button'
-import TextField from '@material-ui/core/TextField'
+import InputBase from '@material-ui/core/InputBase'
 //import axios from 'axios';
 import dayjs from 'dayjs';
 import styled from "styled-components";
-import IconButton from '@material-ui/core/IconButton';
-import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
-import DeleteIcon from '@material-ui/icons/Delete';
 import {
   Spacer,
   FlexWrapper,
 } from '../../styles/common'
 //import DeleteForm from './DeleteForm';
-//import Report from './Report';
 import HistoryComment from './HistoryComment.js'
-import {
-  FacebookShareButton,
-  InstapaperShareButton,
-  TwitterShareButton,
-  FacebookIcon,
-  InstapaperIcon,
-  TwitterIcon,
-} from "react-share";
 
 const TableWrapper = styled.div`
   display: flex;
@@ -51,18 +32,22 @@ const PostPreviewRow= styled(TableRow)`
   align-items: center;
 `
 
+const Card = styled.div`
+  margin: 15px;
+  padding: 15px;
+  border-radius: 15px;
+  background-color: #8EB695;
+`
+
 const PostThemeText = styled(Typography)`
-  color : #4caf50;
+  color : #676A59;
   font-size: 20px;
   font-weight: 600;
-  flex-basis: 20%;
 `
 
 const PostCreatedDate = styled(Typography)`
-  margin-right: 5px;
   font-size: 12px;
-  color: #888;
-  flex-basis: 20%;
+  color: #333333;
 `
 
 const PostWrapper = styled.div`
@@ -82,26 +67,72 @@ const CommentWrapper = styled.div`
 
 const PoemText = styled(Typography)`
   font-size: 16px;
-  margin-bottom: 10px;
-  color: #565656;
+  font-weight: 600;
+  color: #FFFFFF;
 `
 
 const PoemWord = styled.span`
-  font-size: 28px;
+  font-size: 16px;
   font-weight: 600;
-  padding: 5px;
   border-radius: 100%;
-  color : #4caf50;
+  color : #676A59;
 `
 
+const Icon = styled.i`
+  font-size: 14px;
+  height: 14px;
+  color: #333333;
+  margin-right: 5px;
+`
+
+const IconText = styled(Typography)`
+  font-size: 14px;
+  color: #333333;
+`
+
+const IconWrapper = styled(FlexWrapper)`
+  margin-right: 10px;
+`
+
+const ContentWrapper = styled.div`
+  margin-top: 10px;
+  margin-bottom: 40px;
+`
+
+const CommentContainer = styled.div`
+  margin: 20px;
+`
+
+const Input = styled(InputBase)`
+  border : 1px solid #EEE;
+  font-size: 14px;
+  padding-left: 10px;
+  color: #333333;
+`
+
+const CommentSubmitButton = styled(Button)`
+  position: absolute;
+  bottom: 0px;
+  right: 0px;
+  font-size: 14px;
+  color: #333333;
+  border: 1px solid #EEE
+`
+
+const CommentFormWrapper = styled.div`
+  position: relative;
+  margin-top: 20px;
+`
+
+const EmptyText = styled(Typography)`
+  padding: 20px 0px;
+  text-align: center;
+  font-size: 14px;
+  color: #888888;
+
+`
 
 function Row({ row, onReply = true, onLike = true}) {
-  let on = onReply;
-  let onLikes = onLike;
-  const [open, setOpen] = React.useState(false);
-  const [openDelete, setOpenDelete] = React.useState(false);    
-  const [openReport, setOpenReport] = React.useState(false);
-  const [openReply, setOpen_reply] = React.useState(false);
   const [values, setValues] = React.useState({ poemId:"", id: "", password: "", reply:"" });
 
   const  handleChange = (e) => {
@@ -121,131 +152,108 @@ function Row({ row, onReply = true, onLike = true}) {
   
     }else{
       alert('댓글이 등록되었습니다!');
-/*    axios.post('/postReply',{poemId:values.poemId,id:values.id, pwd:values.password, reply: values.reply}) 
-      .then(function (response) { console.log(response); }) 
-      .catch(error => { console.log('error : ',error.response) }); */
+      /*    
+        axios.post('/postReply',{poemId:values.poemId,id:values.id, pwd:values.password, reply: values.reply}) 
+        .then(function (response) { console.log(response); }) 
+        .catch(error => { console.log('error : ',error.response) }); 
+      */
     }
   } 
 
   const likeSubmit = (e) => {
-  /*axios.post('/postLike',{likes : parseInt(row.likes) + 1, poemId: row.poemId}) 
-    .then(function (response) { console.log(response); }) 
-    .catch(error => { console.log('error : ',error.response) }); */
+    /*
+      axios.post('/postLike',{likes : parseInt(row.likes) + 1, poemId: row.poemId}) 
+      .then(function (response) { console.log(response); }) 
+      .catch(error => { console.log('error : ',error.response) }); 
+    */
   }
 
   return (
     <div>
-      <TableWrapper> 
-        <PostPreviewRow onClick={() => setOpen(!open)}>
-          <PostCreatedDate>{dayjs(row.created).format("M월DD일 H시mm분")}</PostCreatedDate>
+      <Card>
+        <FlexWrapper>
           <PostThemeText >{row.word}</PostThemeText >
-          <PostWrapper>
-            <PersonIcon />
-            <Typography >{row.name}</Typography>
-          </PostWrapper>
           <Spacer />
+          <PostCreatedDate>{dayjs(row.created).format("M.DD H:mm")}</PostCreatedDate>
+        </FlexWrapper>
+        <ContentWrapper>
+          <PoemText>
+            <PoemWord>{row.word.split('')[0]}</PoemWord>{row.poem_1.slice(1)}
+          </PoemText>
+          <PoemText>
+            <PoemWord>{row.word.split('')[1]}</PoemWord>{row.poem_2.slice(1)}
+          </PoemText>
+          <PoemText>
+            <PoemWord>{row.word.split('')[2]}</PoemWord>{row.poem_3.slice(1)}
+          </PoemText>
+        </ContentWrapper>
+        <div>
           <FlexWrapper>
-            <ThumbUpAltIcon />
-            <Typography>{row.likes}</Typography>
+            <IconWrapper>
+              <Icon className="fi-sr-user" />
+              <IconText>{row.name}</IconText>
+            </IconWrapper>
+            <Spacer />
+            <IconWrapper>
+              <Icon className="fi-sr-thumbs-up" />
+              <IconText>{row.likes}</IconText>
+            </IconWrapper>
+            <IconWrapper>
+              <Icon className="fi-sr-comment" />
+              <IconText>{row.comment}</IconText>
+            </IconWrapper>
           </FlexWrapper>
-          <FlexWrapper>
-            <CommentIcon />
-            <Typography>{row.comment}</Typography>
-          </FlexWrapper>
-        </PostPreviewRow>
-        <TableRow>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <div>
-              <PoemDetailWrapper>
-                <PoemText>
-                  <PoemWord>{row.word.split('')[0]}</PoemWord>{row.poem_1.slice(1)}
-                </PoemText>
-                <PoemText>
-                  <PoemWord>{row.word.split('')[1]}</PoemWord>{row.poem_2.slice(1)}
-                </PoemText>
-                <PoemText>
-                  <PoemWord>{row.word.split('')[2]}</PoemWord>{row.poem_3.slice(1)}
-                </PoemText>
-                <div style={{display:'flex',justifyContent:'center'}}>
-                  <Typography variant="caption" gutterBottom component="div">공유하기</Typography>
-                    {/* 공유하기 버튼 들 */}
-                  <FacebookShareButton url={"https://localhost:3000"} title={"facebook"}>
-                    <FacebookIcon size={26} round={true}/>
-                  </FacebookShareButton>
-                  <TwitterShareButton url={"https://localhost:3000"} title={"facebook"}>
-                    <TwitterIcon size={26} round={true}/>
-                  </TwitterShareButton>
-                  <InstapaperShareButton url={"https://localhost:3000"} title={"facebook"}>
-                    <InstapaperIcon size={26} round={true}/>
-                  </InstapaperShareButton>
-                    {/*  삭제 기능 */}
-                  <IconButton aria-label="delete" onClick={() => setOpenDelete(!openDelete)}>
-                    <DeleteIcon fontSize="small" />
-                  </IconButton>
-                  <Collapse in={openDelete} timeout="auto" unmountOnExit>
-                    냥?
-                    {/* <DeleteForm row={row} isReply={false}/> */}
-                  </Collapse>
-                    {/* 신고 부분 */}
-                  <IconButton aria-label="delete" onClick={() => setOpenReport(!openReport)}>
-                    <RemoveCircleIcon color="error" fontSize="small"></RemoveCircleIcon>
-                  </IconButton>
-                  <Collapse in={openReport} timeout="auto" unmountOnExit>
-                    냥?
-                    {/* <Report row={row}/> */}
-                  </Collapse>
-                </div>
-                {/* 좋아요 */}
-                {Boolean(onLikes) && 
-                <div>
-                  <form onSubmit ={likeSubmit} noValidate autoComplete="off">
-                    <Button
-                      variant="contained"
-                      color="primary"
-                      size="small"
-                      type="submit"
-                      startIcon={<ThumbUpAltIcon />}
-                    >
-                      Like
-                    </Button>
-                  </form>
-                </div>}
-              </PoemDetailWrapper>
-
-              <Table size="small" aria-label="comments">
-                <TableBody>
-                  {row.replyList && row.replyList.map((historyComment, idx) => (
-                    <HistoryComment key={idx} historyComment={historyComment}/>
-                  ))}
-                  {Boolean(on) && 
-                  <div>
-                    <PostWrapper >
-                      <Button onClick={() => setOpen_reply(!openReply)}>
-                        댓글쓰기
-                      </Button>
-                    </PostWrapper >
-                    <Collapse in={openReply} timeout="auto" unmountOnExit>
-                      <form onSubmit ={handleSubmit} noValidate autoComplete="off">
-                        <CommentWrapper>
-                          <TextField id="outlined-basic" label="닉네임" name="id" variant="outlined" size="small" value={values.id} onChange={handleChange}/>
-                          <TextField id="outlined-basic" label="비밀번호" name="password" variant="outlined" size="small" value={values.password} onChange={handleChange}  />
-                          <TextField id="outlined-basic" label="내용" name="reply" variant="outlined" size="small" value={values.reply} onChange={handleChange}  />
-                          <button type="submit" >
-                            등록
-                          </button>
-                        </CommentWrapper>
-                      </form>
-                    </Collapse>
-                  </div>
-                  }
-                </TableBody>
-              </Table>
-            </div>
-          </Collapse>
-        </TableRow>
-      </TableWrapper>
+        </div>
+      </Card>
+      <CommentContainer>
+        {row.replyList && row.replyList.map((historyComment, idx) => {
+          return(
+            <HistoryComment key={idx} historyComment={historyComment}/>
+          )
+        })}
+        {row.replyList && row.replyList.length === 0 &&
+          <EmptyText>아직 댓글이 없습니다.</EmptyText>
+        }
+        <CommentFormWrapper>
+          <Grid container>
+            <Grid xs={6} md={6}>
+              <Input 
+                fullWidth
+                name="id" 
+                value={values.id} 
+                onChange={handleChange}
+                placeholder="닉네임"
+              />
+            </Grid>
+            <Grid xs={6} md={6}>
+              <Input 
+                fullWidth
+                name="password" 
+                type="password"
+                value={values.password} 
+                onChange={handleChange}  
+                placeholder="비밀번호"
+              />
+            </Grid>
+            <Grid item xs={12} md={12}>
+              <Input 
+                fullWidth
+                multiline
+                rows={5}
+                name="reply"
+                value={values.reply} 
+                onChange={handleChange} 
+                placeholder="이 곳에 댓글을 작성해주세요."
+              />
+            </Grid>
+          </Grid>
+          <CommentSubmitButton onClick={handleSubmit}>
+            등록
+          </CommentSubmitButton>
+        </CommentFormWrapper>
+      </CommentContainer>
     </div>
-    );
-  }
+  );
+}
 
   export default Row;

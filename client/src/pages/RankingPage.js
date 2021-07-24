@@ -83,6 +83,19 @@ const CardSubContentWrapper = styled.div`
   z-index           : 2;
 `
 
+const subject_dit = {
+  '바나나' : 0,
+  '복숭아' : 1,
+  '청포도' : 2,
+  '산딸기' : 3,
+  '코코넛' : 4,
+  '두리안' : 5,
+  '무화과' : 6,
+  '오렌지' : 7,
+  '토마토' : 8,
+  '한라봉' : 9,
+}
+
 const KeywordCard = ({ data }) => {
   const [cardWidth, setCardWidth] = React.useState(0);
   const cardRef = React.useRef()
@@ -121,7 +134,7 @@ const RankingPage = () => {
   const [rankingList, setRankingList] = React.useState([]);
   
   const initRankingList = async () => {
-    const res = await fetch('HOfPage');
+    const res = await fetch('/HOfPage');
     return await res.json();
   }
 

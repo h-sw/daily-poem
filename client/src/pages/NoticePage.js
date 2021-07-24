@@ -129,7 +129,7 @@ export default function NoticePage() {
   const [notice, setNotice]=React.useState([]);
 
   const callApi = async()=>{
-    const response = await fetch('/NoticePage');
+    const response = await fetch('/notice');
     const body = await response.json();
     return body;
   }
