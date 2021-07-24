@@ -32,17 +32,12 @@ const HOFdataContainer = () => {
     <RootWrapper>
       <Header name={keyword}></Header>
       <div>
-        {rankData && <div> 
-          <TableContainer component={Paper}>
-            <Table aria-label="Ranking table">
-              <TableBody>
-                {rankData.map((row, idx) => (
-                  <Row key={idx} row={row} onReply={false} onLike={false}/>
-                ))}
-              </TableBody>
-            </Table>
-          </TableContainer>
-        </div>
+        {rankData && 
+          <div> 
+            {rankData.map((row, idx) => (
+              <Row key={idx} row={row} onReply={false} onLike={false}/>
+            ))}
+          </div>
         }
       </div>
     </RootWrapper>

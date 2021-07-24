@@ -77,20 +77,20 @@ const MainPage = () => {
             <Header name="실시간 3행시" description=" "/>
           </div>
             <MenuSelector 
-                handleSortingClick={handleSortingClick} 
-                CheckedButton={CheckedButton} 
-                sorting={sorting} 
-                plus={plus}/>
+              handleSortingClick={handleSortingClick} 
+              CheckedButton={CheckedButton} 
+              sorting={sorting} 
+              plus={plus}/>
           </Container>
           {/* <AllPoemList displayData={displayData}/> */}
         </div> :
         <Container maxWidth="sm">
           {/* <KeywordContainer/> */}
           <MenuSelector 
-                handleSortingClick={handleSortingClick} 
-                CheckedButton={CheckedButton} 
-                sorting={sorting} 
-                plus={plus}/>
+            handleSortingClick={handleSortingClick} 
+            CheckedButton={CheckedButton} 
+            sorting={sorting} 
+            plus={plus}/>
           <div style={{paddingTop:15}}/>
           
           <PoemList displayData={displayData}/>
