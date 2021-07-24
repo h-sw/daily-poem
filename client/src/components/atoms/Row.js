@@ -18,7 +18,7 @@ import IconButton from '@material-ui/core/IconButton';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import DeleteIcon from '@material-ui/icons/Delete';
 //import DeleteForm from './DeleteForm';
-//import Report from './Report';
+import Report from './Report';
 import HistoryComment from './HistoryComment.js'
 import {
   FacebookShareButton,
@@ -157,7 +157,7 @@ function Row({ row, onReply = true, onLike = true}) {
                 </IconButton>
                 <Collapse in={openReport} timeout="auto" unmountOnExit>
                   냥?
-                  {/* <Report row={row}/> */}
+                  <Report row={row}/> 
                 </Collapse>
               </div>
               {/* 좋아요 */}

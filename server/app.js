@@ -327,6 +327,23 @@ app.post('/postPoem', async (req, res, next) => {
   }
 });
 
+app.post('/Report', async (req, res, next) => {
+  
+  let {replyId, poemId, reason} = req.body;
+  try {
+    const sql=`INSERT INTO project1.manage 
+    SET replyId=?, poemId=?, reason=?;
+    `
+    const post = await pool.query(sql, [
+      replyId, poemId, reason
+    ])
+    res.json({ code: 200, result: "success", data : post });
+  }
+  catch(e) {
+    console.log(e)
+    res.json({ code: 500, result: "error", message: e.message });
+  }
+});
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
