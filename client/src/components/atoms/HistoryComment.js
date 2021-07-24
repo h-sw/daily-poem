@@ -5,7 +5,7 @@ import dayjs from 'dayjs';
 import DeleteIcon from '@material-ui/icons/Delete';
 import styled from "styled-components";
 import {NoPaddingButton} from '../../styles/common';
-//import DeleteForm from './DeleteForm'
+import Delete from './Delete'
 
 const Padding = styled.div`
    padding-top: 0.75rem;
@@ -36,7 +36,7 @@ function HistoryComment({historyComment} ) {
     	</CommentWrapper>
       <WriterText>{historyComment.reply}</WriterText>
       <Collapse in={openDeleteRpy} timeout="auto" unmountOnExit>
-        {/* <DeleteForm row={historyComment} isReply={true}/> */}
+        <Delete row={historyComment} isReply={true}/>
       </Collapse>
     </Padding>
   )
