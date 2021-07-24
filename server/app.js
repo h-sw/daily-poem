@@ -390,7 +390,7 @@ app.post('/deletePoem', async (req, res, next) => {
     const post = await pool.query(sql, [
       id, name, pwd
     ])
-
+    
     res.json({ code: 200, result: "success", data : post });
   }
   catch(e) {
@@ -418,7 +418,7 @@ app.post('/deleteReply', async (req, res, next) => {
   try {
      //댓글 수 감소
      const sql_poemId = `
-     SELECT COUNT(poemId) FROM project1.REPLY WHERE REPLY.poemId = ?
+     SELECT COUNT(poemId) FROM REPLY WHERE poemId = ?
      `
      const post_comment = await pool.query(sql_poemId, [
        id
@@ -427,7 +427,7 @@ app.post('/deleteReply', async (req, res, next) => {
      const count_comment = parseInt(Object.values(post_comment[0][0]))
  
      const sql_set_comment = `
-       UPDATE project1.POEM SET comment = ? WHERE poemId = ?
+       UPDATE POEM SET comment = ? WHERE poemId = ?
      `
      const post_com_n_pi = await pool.query(sql_set_comment, [
        count_comment, id
@@ -445,7 +445,7 @@ app.post('/postLike', async (req, res, next) => {
   
   let {likes, poemId}=req.body;
   try {
-    const sql=`UPDATE project1.POEM 
+    const sql=`UPDATE POEM 
     SET likes=? WHERE poemId = ?;
     `
     const post = await pool.query(sql, [
@@ -465,7 +465,7 @@ app.post('/Report', async (req, res, next) => {
   
   let {replyId, poemId, reason} = req.body;
   try {
-    const sql=`INSERT INTO project1.manage 
+    const sql=`INSERT INTO manage 
     SET replyId=?, poemId=?, reason=?;
     `
     const post = await pool.query(sql, [

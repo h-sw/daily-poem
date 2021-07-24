@@ -108,6 +108,10 @@ const NoticeTable = styled(Table)`
 const NoticeTableCell = styled(TableCell)`
   width: 160;
 `
+const NoticeTableContainer = styled(TableContainer)`
+  width: 55%;
+  margin: 30px auto;
+`
 
 export default function NoticePage() {
   const [page, setPage] = React.useState(0);
@@ -147,7 +151,7 @@ export default function NoticePage() {
     {/* 페이지 제목 나타내는 부분 */}
     <Header name={"공지사항"}></Header>
     {/* 공지사항 테이블 */}
-    <TableContainer component={ Paper }>
+    <NoticeTableContainer component={ Paper }>
       <NoticeTable aria-label="custom pagination table">
         <TableHead>
           <TableRow>
@@ -201,7 +205,7 @@ export default function NoticePage() {
           </TableRow>
         </TableFooter>
       </NoticeTable>
-    </TableContainer>
+    </NoticeTableContainer>
   </React.Fragment>
   );
 }
