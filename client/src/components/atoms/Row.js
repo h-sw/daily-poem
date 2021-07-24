@@ -152,7 +152,7 @@ function Row({ row, onReply = true, onLike = true}) {
   
     }else{
       alert('댓글이 등록되었습니다!');
-      axios.post('/postReply',{poemId:values.poemId,id:values.id, pwd:values.password, reply: values.reply}) 
+      axios.post('/postReply',{poemId:values.poemId, id:values.id, pwd:values.password, reply: values.reply}) 
       .then(function (response) { console.log(response); }) 
       .catch(error => { console.log('error : ',error.response) }); 
     }

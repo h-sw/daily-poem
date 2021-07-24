@@ -351,7 +351,7 @@ app.post('/postReply', async (req, res, next) => {
     /* 댓글 몇 개인지 세고 업데이트 하는 부분 */
     const sql_poemId = `
       SELECT COUNT(poemId) FROM project1.REPLY 
-      WHERE REPLY.poemId = ? AND REPLY.name = ? AND REPLY.password = ?
+      WHERE REPLY.poemId = ?
     `
     const post_comment = await pool.query(sql_poemId, [
       poemId, id, pwd
