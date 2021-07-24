@@ -8,7 +8,7 @@ import {
 
 const NavigationWrapper = styled.div`
 	height			: 60px;
-	background	: linear-gradient(315deg, #20bf55 0%, #01baef 74%);
+	background-color	: #8EB695;
 `
 
 const NavigationSubWrapper = styled.div`
@@ -50,14 +50,14 @@ const NavigationBar = () => {
 							onClick={() => window.location.href="/ranking"}
 						>
 							<MenuText>
-								명예의 전당
+								키워드
 							</MenuText>
 						</Button>
 						<Button
 							onClick={() => window.location.href="/rank"}
 						>
 							<MenuText>
-								주간/월간/연간 랭킹
+								랭킹
 							</MenuText>
 						</Button>
           </div>

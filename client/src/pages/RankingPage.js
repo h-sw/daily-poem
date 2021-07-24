@@ -117,7 +117,6 @@ const KeywordCard = ({ data }) => {
         <CardTitle>
           {data.subject}
         </CardTitle>
-        
       </CardContentWrapper>
       <CardSubContentWrapper>
         <FlexWrapper>
@@ -134,7 +133,6 @@ const KeywordCard = ({ data }) => {
 const RankingPage = () => {
   const [rankingList, setRankingList] = React.useState([]);
   
-
   const initRankingList = async () => {
     const res = await fetch('/HOfPage');
     return await res.json();
