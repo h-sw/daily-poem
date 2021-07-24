@@ -17,7 +17,7 @@ import styled from "styled-components";
 import IconButton from '@material-ui/core/IconButton';
 import RemoveCircleIcon from '@material-ui/icons/RemoveCircle';
 import DeleteIcon from '@material-ui/icons/Delete';
-//import DeleteForm from './DeleteForm';
+import Delete from './Delete';
 import Report from './Report';
 import HistoryComment from './HistoryComment.js'
 import {
@@ -148,15 +148,13 @@ function Row({ row, onReply = true, onLike = true}) {
                   <DeleteIcon fontSize="small" />
                 </IconButton>
                 <Collapse in={openDelete} timeout="auto" unmountOnExit>
-                  냥?
-                  {/* <DeleteForm row={row} isReply={false}/> */}
+                  <Delete row={row} isReply={false}/>
                 </Collapse>
                   {/* 신고 부분 */}
                 <IconButton aria-label="delete" onClick={() => setOpenReport(!openReport)}>
                   <RemoveCircleIcon color="error" fontSize="small"></RemoveCircleIcon>
                 </IconButton>
                 <Collapse in={openReport} timeout="auto" unmountOnExit>
-                  냥?
                   <Report row={row}/> 
                 </Collapse>
               </div>

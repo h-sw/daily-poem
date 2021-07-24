@@ -327,6 +327,73 @@ app.post('/postPoem', async (req, res, next) => {
   }
 });
 
+app.post('/deletePoem', async (req, res, next) => {
+
+  let {id, name, pwd}=req.body;
+  try {
+    //댓글도 삭제
+    const rpySql = `DELETE FROM REPLY WHERE poemId=?;`
+
+    const rpyPost = await pool.query(rpySql, [id]);
+
+    //시 삭제
+    const sql=`DELETE FROM POEM 
+      WHERE poemId = ? AND name=? AND password=?;
+    `
+    const post = await pool.query(sql, [
+      id, name, pwd
+    ])
+
+    res.json({ code: 200, result: "success", data : post });
+  }
+  catch(e) {
+    console.log(e)
+    res.json({ code: 500, result: "error", message: e.message });
+  }
+});
+
+app.post('/deleteReply', async (req, res, next) => {
+
+  let {id, rpyId, name, pwd}=req.body;
+  try { 
+    const sql=`DELETE FROM REPLY 
+      WHERE replyId = ? AND name=? AND password=?;
+    `
+    const post = await pool.query(sql, [
+      rpyId, name, pwd
+    ])
+    res.json({ code: 200, result: "success", data : post });
+  }
+  catch(e) {
+    console.log(e)
+    res.json({ code: 500, result: "error", message: e.message });
+  }
+  try {
+     //댓글 수 감소
+     const sql_poemId = `
+     SELECT COUNT(poemId) FROM project1.REPLY WHERE REPLY.poemId = ?
+     `
+     const post_comment = await pool.query(sql_poemId, [
+       id
+      ])
+ 
+     const count_comment = parseInt(Object.values(post_comment[0][0]))
+ 
+     const sql_set_comment = `
+       UPDATE project1.POEM SET comment = ? WHERE poemId = ?
+     `
+     const post_com_n_pi = await pool.query(sql_set_comment, [
+       count_comment, id
+     ])
+     
+     res.json({ code: 200, result: "success_post_comment", data : post_com_n_pi });
+  }
+  catch(e) {
+    console.log(e)
+    res.json({ code: 500, result: "error", message: e.message });
+  }
+});
+
 app.post('/Report', async (req, res, next) => {
   
   let {replyId, poemId, reason} = req.body;
