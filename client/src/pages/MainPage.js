@@ -2,6 +2,7 @@ import React from 'react';
 import PoemList from '../components/atoms/PoemList';
 import { RootWrapper } from '../styles/common';
 //import AllPoemList from '../components/organisms/AllPoemList';
+import Keyword from '../components/atoms/Keyword';
 
 const MainPage = () => {
   const [displayData, setDisplayData]=React.useState([]);
@@ -22,6 +23,7 @@ const MainPage = () => {
 
   return (
     <RootWrapper>
+      <Keyword />
       <PoemList displayData={displayData}/>
     </RootWrapper>
   )

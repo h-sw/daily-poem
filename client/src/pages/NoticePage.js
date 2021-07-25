@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { useTheme } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -19,12 +19,10 @@ import styled from "styled-components"
 import Header from "../components/atoms/Header"
 import dayjs from 'dayjs'
 
-const useStyles1 = makeStyles((theme) => ({
-  root: {
-    flexShrink: 0,
-    marginLeft: theme.spacing(2.5),
-  },
-}));
+const NoticeWrapper = styled.div`
+  flex-Shrink: 0;
+  margin-Left: theme.spacing(2.5);
+`
 
 const columns = [
   { id: 'name', 
@@ -40,7 +38,6 @@ const columns = [
 ];
 
 function TablePaginationActions(props) {
-  const classes = useStyles1();
   const theme = useTheme();
   const { count, page, rowsPerPage, onPageChange } = props;
 
@@ -61,7 +58,7 @@ function TablePaginationActions(props) {
   };
 
   return (
-    <div className={classes.root}>
+    <NoticeWrapper>
       {/* 맨 처음 페이지 이동 부분 */}
       <IconButton
         onClick={handleFirstPageButtonClick}
@@ -90,7 +87,7 @@ function TablePaginationActions(props) {
       >
         {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
-    </div>
+    </NoticeWrapper>
   );
 }
 
@@ -101,29 +98,22 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-const useStyles2 = makeStyles({
-  table: {
-    minWidth: 500,
-    flex: 1,
-    flexDirection:'row',
-    alignItems:'flex-start',
-    // 테이블 가운데로 놓고 싶어서 이 짓했는데 안되네..
-    /* flex: 1,
-    justifyContent: "center",
-    alignItems: "center", */
-  },
-  title: {
-  },
-  subtitle: {
+const NoticeTable = styled(Table)`
+  min-Width: 500;
+  flex: 1;
+  flex-Direction:'row';
+  align-Items:'flex-start';
+`
 
-  },
-  table_cell: {
-    width: 160
-  },
-});
+const NoticeTableCell = styled(TableCell)`
+  width: 160;
+`
+const NoticeTableContainer = styled(TableContainer)`
+  width: 55%;
+  margin: 30px auto;
+`
 
 export default function NoticePage() {
-  const classes = useStyles2();
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [notice, setNotice]=React.useState([]);
@@ -161,18 +151,17 @@ export default function NoticePage() {
     {/* 페이지 제목 나타내는 부분 */}
     <Header name={"공지사항"}></Header>
     {/* 공지사항 테이블 */}
-    <TableContainer component={ Paper }>
-      <Table className={classes.table} aria-label="custom pagination table">
+    <NoticeTableContainer component={ Paper }>
+      <NoticeTable aria-label="custom pagination table">
         <TableHead>
           <TableRow>
             {columns.map((column) => (
-              <TableCell
+              <NoticeTableCell
                 key={column.id}
                 align={column.align}
-                style={{ minWidth: column.minWidth }}
               >
                 {column.label}
-              </TableCell>
+              </NoticeTableCell>
             ))}
           </TableRow>
         </TableHead>
@@ -185,8 +174,8 @@ export default function NoticePage() {
               <TableCell component="th" scope="row">
                 {row.title}
               </TableCell>
-              <TableCell className={classes.table_cell} align="right">
-                <div>{dayjs(notice.date).format("YYYY년 MM월 DD일 HH:mm:ss")}</div>
+              <TableCell align="right">
+                <div>{dayjs(notice.date).format("YYYY년 MM월 DD일 HH:mm")}</div>
               </TableCell>
             </TableRow>
           ))}
@@ -215,8 +204,8 @@ export default function NoticePage() {
             />
           </TableRow>
         </TableFooter>
-      </Table>
-    </TableContainer>
+      </NoticeTable>
+    </NoticeTableContainer>
   </React.Fragment>
   );
 }

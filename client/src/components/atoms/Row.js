@@ -4,7 +4,7 @@ import { Grid } from '@material-ui/core';
 import TableRow from '@material-ui/core/TableRow';
 import Button from '@material-ui/core/Button'
 import InputBase from '@material-ui/core/InputBase'
-//import axios from 'axios';
+import axios from 'axios';
 import dayjs from 'dayjs';
 import styled from "styled-components";
 import {
@@ -148,24 +148,22 @@ function Row({ row, onReply = true, onLike = true}) {
       else{
         alert('모두 입력해주세요!');
       }
-      e.preventDefault();
+      /* e.preventDefault(); */
   
     }else{
       alert('댓글이 등록되었습니다!');
-      /*    
-        axios.post('/postReply',{poemId:values.poemId,id:values.id, pwd:values.password, reply: values.reply}) 
-        .then(function (response) { console.log(response); }) 
-        .catch(error => { console.log('error : ',error.response) }); 
-      */
+      axios.post('/postReply',{poemId:values.poemId, id:values.id, pwd:values.password, reply: values.reply}) 
+      .then(function (response) { console.log(response); }) 
+      .catch(error => { console.log('error : ',error.response) }); 
     }
   } 
 
   const likeSubmit = (e) => {
-    /*
-      axios.post('/postLike',{likes : parseInt(row.likes) + 1, poemId: row.poemId}) 
-      .then(function (response) { console.log(response); }) 
-      .catch(error => { console.log('error : ',error.response) }); 
-    */
+    console.log("눈눈");
+    axios.post('/postLike',{likes : parseInt(row.likes) + 1, poemId: row.poemId}) 
+    .then(function (response) { console.log(response); }) 
+    .catch(error => { console.log('error : ',error.response) }); 
+    
   }
 
   return (
@@ -194,7 +192,7 @@ function Row({ row, onReply = true, onLike = true}) {
               <IconText>{row.name}</IconText>
             </IconWrapper>
             <Spacer />
-            <IconWrapper>
+            <IconWrapper onClick={likeSubmit}>
               <Icon className="fi-sr-thumbs-up" />
               <IconText>{row.likes}</IconText>
             </IconWrapper>
