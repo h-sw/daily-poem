@@ -8,12 +8,9 @@ import styled from 'styled-components';
 import {
   RootWrapper,
   FlexWrapper,
+  TitleWrapper,
 } from '../styles/common';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
-
-const TitleWrapper = styled.div`
-  margin  : 50px;
-`
 
 const Title = styled(Typography)`
   color       : #222222;

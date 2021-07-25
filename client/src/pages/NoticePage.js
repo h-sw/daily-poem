@@ -18,13 +18,17 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 import styled from "styled-components"
 import Header from "../components/atoms/Header"
 import dayjs from 'dayjs'
+import {
+  RootWrapper,
+  TitleWrapper
+} from '../styles/common';
 
 const NoticeWrapper = styled.div`
   flex-Shrink: 0;
   margin-Left: theme.spacing(2.5);
 `
 
-const columns = [
+/* const columns = [
   { id: 'name', 
     label: '내용', 
     minWidth: 470 
@@ -35,7 +39,7 @@ const columns = [
     minWidth: 170,
     align: 'right',
   },
-];
+]; */
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -98,7 +102,7 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-const NoticeTable = styled(Table)`
+const NoticeTable = styled.div`
   min-Width: 500;
   flex: 1;
   flex-Direction:'row';
@@ -147,65 +151,72 @@ export default function NoticePage() {
   };
 
   return (
-  <React.Fragment>
-    {/* 페이지 제목 나타내는 부분 */}
-    <Header name={"공지사항"}></Header>
-    {/* 공지사항 테이블 */}
-    <NoticeTableContainer component={ Paper }>
-      <NoticeTable aria-label="custom pagination table">
-        <TableHead>
-          <TableRow>
-            {columns.map((column) => (
-              <NoticeTableCell
-                key={column.id}
-                align={column.align}
-              >
-                {column.label}
-              </NoticeTableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {(rowsPerPage > 0
-            ? notice.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-            : notice
-          ).map((row) => (
-            <TableRow key={row.name}>
-              <TableCell component="th" scope="row">
-                {row.title}
-              </TableCell>
-              <TableCell align="right">
-                <div>{dayjs(notice.date).format("YYYY년 MM월 DD일 HH:mm")}</div>
-              </TableCell>
-            </TableRow>
-          ))}
+    <RootWrapper>
+      <React.Fragment>
+    		<TitleWrapper>
+    			<Header name={"공지사항"}></Header>
+    		</TitleWrapper>
 
-          {emptyRows > 0 && (
-            <TableRow style={{ height: 53 * emptyRows }}>
-              <TableCell colSpan={6} />
-            </TableRow>
-          )}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-              colSpan={3}
-              count={notice.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              SelectProps={{
-                inputProps: { 'aria-label': 'notice per page' },
-                native: true,
-              }}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-            />
-          </TableRow>
-        </TableFooter>
-      </NoticeTable>
-    </NoticeTableContainer>
-  </React.Fragment>
+
+    		<div component={ Paper }>
+      		<NoticeTable aria-label="custom pagination table">
+{/*         		<TableHead>
+          		<TableRow>
+            	{columns.map((column) => (
+              	<NoticeTableCell
+									key={column.id}
+									align={column.align}
+								>
+									{column.label}
+								</NoticeTableCell>
+            		))}
+          		</TableRow>
+        		</TableHead> */}
+        		<TableBody>
+						{(rowsPerPage > 0
+							? notice.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+							: notice
+						).map((row) => (
+							<TableRow key={row.name}>
+								<TableCell component="th" scope="row">
+									{row.title}
+								</TableCell>
+								<TableCell align="right">
+									<div>{dayjs(notice.date).format("YYYY년 MM월 DD일 HH:mm")}</div>
+								</TableCell>
+							</TableRow>
+						))}
+
+          	{emptyRows > 0 && (
+							<TableRow style={{ height: 53 * emptyRows }}>
+								<TableCell colSpan={6} />
+							</TableRow>
+						)}
+        		</TableBody>
+        		<TableFooter>
+          		<TableRow>
+            		<TablePagination
+									rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+									colSpan={3}
+									count={notice.length}
+									rowsPerPage={rowsPerPage}
+									page={page}
+									SelectProps={{
+										inputProps: { 'aria-label': 'notice per page' },
+										native: true,
+									}}
+									onPageChange={handleChangePage}
+									onRowsPerPageChange={handleChangeRowsPerPage}
+									ActionsComponent={TablePaginationActions}
+								/>
+          		</TableRow>
+        		</TableFooter>
+      		</NoticeTable>
+    		</div>
+
+
+
+  		</React.Fragment>
+  	</RootWrapper>
   );
 }

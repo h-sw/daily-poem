@@ -18,6 +18,10 @@ export const RootWrapper = styled(Wrapper)`
   padding-top: 60px;
 `
 
+export const TitleWrapper = styled.div`
+  margin  : 50px;
+`
+
 export const NoPaddingButton = styled(IconButton)`
    padding:0;
 `
