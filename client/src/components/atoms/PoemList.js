@@ -3,13 +3,17 @@ import React from 'react';
 import Slider from "react-slick";
 import styled from 'styled-components'
 import Row from './Row';
+import Button from '@material-ui/core/Button';
 
 const TextHint = styled(Typography)`
-  text-align: center;
-  color: #888888;
-  font-size: 14px;
+  text-align    : center;
+  color         : #888888;
+  font-size     : 14px;
 `
-
+const KeywordButton = styled(Button)`
+  padding       : 5px;
+  border-radius : 15px;
+`
 const PoemListContainer = ({ displayData }) => {
   var settings = {
     dots: false,
@@ -44,6 +48,7 @@ const PoemListContainer = ({ displayData }) => {
 
   return (
     <div>
+      <KeywordButton onClick={() => window.location.href="/ranking/키워드"} >3행시 더보기</KeywordButton>
       <div>
         <TextHint>양 옆으로 슬라이드 해 보세요.</TextHint>
       </div>
@@ -52,7 +57,6 @@ const PoemListContainer = ({ displayData }) => {
           <Row key={idx} row={row} />
         ))}
       </Slider>
-      
     </div>
   )
 }

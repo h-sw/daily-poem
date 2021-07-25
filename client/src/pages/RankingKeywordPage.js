@@ -1,8 +1,4 @@
 import React,{ useEffect } from 'react';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableContainer from '@material-ui/core/TableContainer';
-import Paper from '@material-ui/core/Paper';
 import Row from '../components/atoms/Row';
 import Header from '../components/atoms/Header';
 import {
@@ -15,7 +11,7 @@ const HOFdataContainer = () => {
   const { keyword } = useParams()
 
   const callWeeklyApi = async()=>{
-    const response = await fetch('/ranking/'+ keyword);
+    const response = await fetch('/all/'+ keyword);
     const body = await response.json();
     return body;
   }

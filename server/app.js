@@ -252,7 +252,7 @@ app.get('/HOfPage', async (req, res, next) => {
     
     let hofs = resultHof[0];
     let idx = 0;
-    console.log("hofs: ", hofs);
+    //console.log("hofs: ", hofs);
     res.json({ code: 200, result: "success", data : hofs });
   }
   catch(e) {
@@ -260,9 +260,9 @@ app.get('/HOfPage', async (req, res, next) => {
   }
 });
 
-app.get('/ranking/:poemId', async (req, res, next) => {
+/* app.get('/ranking/:poemId', async (req, res, next) => {
   const { poemId } = req.params;
-  const subjectId = /* 0; */subject_dit[ poemId ];
+  const subjectId = subject_dit[ poemId ];
  
   console.log("req.params", req.params);
   console.log("subjectId : ", subjectId);
@@ -273,7 +273,6 @@ app.get('/ranking/:poemId', async (req, res, next) => {
       WHERE subjectId = ? 
       ORDER BY likes desc
     `  
-    /* AND YEARWEEK(created) = YEARWEEK(now())/ */
     const resultPoem = await pool.query(sqlPoem, [
       subjectId
     ]);
@@ -292,16 +291,48 @@ app.get('/ranking/:poemId', async (req, res, next) => {
       ])
       
       poems[idx]["replyList"] = resultReply2[0]
-
       idx += 1;
     }
-
-    //console.log(poems)
-
     res.json({ code: 200, result: "success", data : poems });
   }
   catch(e) {
-    //console.log(e)
+    res.json({ code: 500, result: "error", message: e.message });
+  }
+}); */
+
+app.get('/all/:keyword', async (req, res, next) => {
+  const { keyword } = req.params;
+
+  try {
+    const sqlPoem = `
+      SELECT * 
+      FROM POEM
+      WHERE word = ? 
+      ORDER BY likes desc
+    `  
+    const resultPoem = await pool.query(sqlPoem, [
+      keyword
+    ]);
+    let poems = resultPoem[0];
+
+    let idx = 0;
+
+    for(const poem of resultPoem[0]){
+      const sqlReply = `
+        SELECT * 
+        FROM REPLY
+        WHERE REPLY.poemId = ?
+      `
+      const resultReply2 = await pool.query(sqlReply, [
+        poem.poemId
+      ])
+      
+      poems[idx]["replyList"] = resultReply2[0]
+      idx += 1;
+    }
+    res.json({ code: 200, result: "success", data : poems });
+  }
+  catch(e) {
     res.json({ code: 500, result: "error", message: e.message });
   }
 });
