@@ -8,12 +8,25 @@ import styled from "styled-components";
 
 const KewordWrapper = styled.div`
   text-align: center;
+  margin-bottom: 40px;
 `
 
 const KeywordText = styled(Typography)`
-  margin: 20;
   disply: flex;
-  flex-Direction: cloumn;
+  font-size: 48px;
+  font-weight: 700;
+  flex-direction: column;
+  line-height: 1.1;
+`
+
+const Subtitle = styled(Typography)`
+  line-height: 1.1;
+  font-size: 16px;
+`
+
+const KeywordButton = styled(Button)`
+  padding: 5px 30px;
+  border-radius: 15px;
 `
 
 const Keyword = () => {
@@ -45,10 +58,6 @@ const Keyword = () => {
 
   return (
     <KewordWrapper>
-      <Typography variant="caption">
-        오늘은
-      </Typography>
-
       <Schedule
         jobs={jobs}
         timeZone='Asia/Seoul'
@@ -58,12 +67,19 @@ const Keyword = () => {
           // if true, dashboard is hidden
         }}
       />
-      <Button onClick={() => setOpen_content(!open_content)}>
-        <KeywordText variant="h1">
-          {keyword}
-        </KeywordText>
-      </Button>
- 
+      <KeywordButton onClick={() => setOpen_content(!open_content)}>
+        <div>
+          <Subtitle>
+            오늘의 단어
+          </Subtitle>
+          <KeywordText>
+            {keyword}
+          </KeywordText>
+          <Subtitle>
+            나도 쓸래!
+          </Subtitle>
+        </div>
+      </KeywordButton>
       <Collapse in={open_content} timeout="auto" unmountOnExit>
         <PoemPostForm keyword={keyword} />
       </Collapse>

@@ -12,7 +12,7 @@ const NavigationWrapper = styled.div`
 `
 
 const NavigationSubWrapper = styled.div`
-	max-width 	: 1080px;
+	max-width 	: 1280px;
 	margin	  	: 0px auto;
 	height			: 100%;
 	padding			: 0px 20px;
