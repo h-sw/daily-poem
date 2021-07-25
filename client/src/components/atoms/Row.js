@@ -159,7 +159,6 @@ function Row({ row, onReply = true, onLike = true}) {
   } 
 
   const likeSubmit = (e) => {
-    console.log("눈눈");
     axios.post('/postLike',{likes : parseInt(row.likes) + 1, poemId: row.poemId}) 
     .then(function (response) { console.log(response); }) 
     .catch(error => { console.log('error : ',error.response) }); 
