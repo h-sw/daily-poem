@@ -7,14 +7,13 @@ const TitleText = styled(Typography)`
 	font-weight	: 700;
 	cursor			: pointer;
 	color				: #FFF;
+  align-self  : center;
 `
 
 const Title = () => {
 
   return (  
     <TitleText
-      variant="caption" 
-      gutterBottom 
       onClick={()=>window.location.href="/"}
     >
       오늘의 3행시
