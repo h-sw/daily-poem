@@ -176,13 +176,13 @@ function Row({ row, onReply = true, onLike = true}) {
         </FlexWrapper>
         <ContentWrapper>
           <PoemText>
-            <PoemWord>{row.word.split('')[0]}</PoemWord>{row.poem_1.slice(1)}
+            <PoemWord>{row.word.split('')[0]}</PoemWord>{row.poem_1}
           </PoemText>
           <PoemText>
-            <PoemWord>{row.word.split('')[1]}</PoemWord>{row.poem_2.slice(1)}
+            <PoemWord>{row.word.split('')[1]}</PoemWord>{row.poem_2}
           </PoemText>
           <PoemText>
-            <PoemWord>{row.word.split('')[2]}</PoemWord>{row.poem_3.slice(1)}
+            <PoemWord>{row.word.split('')[2]}</PoemWord>{row.poem_3}
           </PoemText>
         </ContentWrapper>
         <div>
