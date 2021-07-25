@@ -7,14 +7,13 @@ import Schedule from 'react-schedule-job';
 import styled from "styled-components";
 
 const KewordWrapper = styled.div`
-  margin: 20;
-  disply: flex;
-  justify-Content: center;
-  flex-Direction: cloumn;
+  text-align: center;
 `
 
 const KeywordText = styled(Typography)`
-  textAlign: center;
+  margin: 20;
+  disply: flex;
+  flex-Direction: cloumn;
 `
 
 const Keyword = () => {

@@ -16,6 +16,10 @@ const useStyles = makeStyles((theme) => ({
 
 const FormWrapper = styled.div`
   backgroundColor: #cfe8fc;
+  max-width 	: 800px;
+	margin	  	: 0px auto;
+	height			: 100%;
+	padding			: 0px 20px;
 `
 
 const ButtonWrapper = styled.div`
