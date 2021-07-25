@@ -23,13 +23,18 @@ const PaginationWrapper = styled.div`
 `
 
 const NoticeWrapper = styled.div`
-	background-color: #c1e6c7;
 	border					: 1px solid #8EB695;
 	border-radius		: 5px;
+  padding         : 15px;
+`
+
+const NoticeTitle = styled(Typography)`
+  font-size: 20px;
 `
 
 const ContentWrapper = styled.div`
-	height					: 80px;
+	height  : 80px;
+  color   : #565656;
 `
 
 const CreatedDateWrapper = styled.div`
@@ -37,6 +42,7 @@ const CreatedDateWrapper = styled.div`
 	justify-content	: flex-end;
 	font-size 			: 14px;
 	align-items			: flex-end;
+  color           : #888888;
 `
 
 const PaginationSelector = styled(TablePagination)`
@@ -126,7 +132,6 @@ export default function NoticePage() {
   useEffect(()=>{
       callApi()
       .then(res => {
-        console.log("resdata:", res.data)
         setNotice(res.data)
       })
       .catch(err=>{
@@ -160,14 +165,14 @@ export default function NoticePage() {
 							<div>
 								<Padding/>
 								<NoticeWrapper key={index}>
-									<Typography>
+									<NoticeTitle>
 										{row.title}
-									</Typography>
+									</NoticeTitle>
 									<ContentWrapper>
 										{row.content}
 									</ContentWrapper>
 									<CreatedDateWrapper>
-										{dayjs(notice.date).format("YYYY년 MM월 DD일 HH:mm")}
+										{dayjs(notice.date).format("YYYY.MM.DD HH:mm")}
 									</CreatedDateWrapper>
 								</NoticeWrapper>
 							</div>
