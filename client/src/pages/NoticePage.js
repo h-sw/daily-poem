@@ -1,15 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useTheme } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
-import TableBody from '@material-ui/core/TableBody';
-import TableCell from '@material-ui/core/TableCell';
-import TableContainer from '@material-ui/core/TableContainer';
-import TableHead from '@material-ui/core/TableHead';
-import TableFooter from '@material-ui/core/TableFooter';
 import TablePagination from '@material-ui/core/TablePagination';
-import TableRow from '@material-ui/core/TableRow';
-import Paper from '@material-ui/core/Paper';
 import IconButton from '@material-ui/core/IconButton';
 import FirstPageIcon from '@material-ui/icons/FirstPage';
 import KeyboardArrowLeft from '@material-ui/icons/KeyboardArrowLeft';
@@ -18,28 +10,39 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 import styled from "styled-components"
 import Header from "../components/atoms/Header"
 import dayjs from 'dayjs'
+import Typography from '@material-ui/core/Typography';
 import {
   RootWrapper,
-  TitleWrapper
+  TitleWrapper,
+	Padding
 } from '../styles/common';
 
-const NoticeWrapper = styled.div`
-  flex-Shrink: 0;
-  margin-Left: theme.spacing(2.5);
+const PaginationWrapper = styled.div`
+  flex-Shrink			: 0;
+  margin-Left			: theme.spacing(2.5);
 `
 
-/* const columns = [
-  { id: 'name', 
-    label: '내용', 
-    minWidth: 470 
-  },
-  {
-    id: 'size',
-    label: '등록일',
-    minWidth: 170,
-    align: 'right',
-  },
-]; */
+const NoticeWrapper = styled.div`
+	background-color: #c1e6c7;
+	border					: 1px solid #8EB695;
+	border-radius		: 5px;
+`
+
+const ContentWrapper = styled.div`
+	height					: 80px;
+`
+
+const CreatedDateWrapper = styled.div`
+	display					: flex;
+	justify-content	: flex-end;
+	font-size 			: 14px;
+	align-items			: flex-end;
+`
+
+const PaginationSelector = styled(TablePagination)`
+	min-width				: 100%;
+	border-bottom		: none;
+`
 
 function TablePaginationActions(props) {
   const theme = useTheme();
@@ -62,7 +65,7 @@ function TablePaginationActions(props) {
   };
 
   return (
-    <NoticeWrapper>
+    <PaginationWrapper>
       {/* 맨 처음 페이지 이동 부분 */}
       <IconButton
         onClick={handleFirstPageButtonClick}
@@ -91,7 +94,7 @@ function TablePaginationActions(props) {
       >
         {theme.direction === 'rtl' ? <FirstPageIcon /> : <LastPageIcon />}
       </IconButton>
-    </NoticeWrapper>
+    </PaginationWrapper>
   );
 }
 
@@ -107,14 +110,6 @@ const NoticeTable = styled.div`
   flex: 1;
   flex-Direction:'row';
   align-Items:'flex-start';
-`
-
-const NoticeTableCell = styled(TableCell)`
-  width: 160;
-`
-const NoticeTableContainer = styled(TableContainer)`
-  width: 55%;
-  margin: 30px auto;
 `
 
 export default function NoticePage() {
@@ -156,66 +151,46 @@ export default function NoticePage() {
     		<TitleWrapper>
     			<Header name={"공지사항"}></Header>
     		</TitleWrapper>
-
-
-    		<div component={ Paper }>
+    		<div >
       		<NoticeTable aria-label="custom pagination table">
-{/*         		<TableHead>
-          		<TableRow>
-            	{columns.map((column) => (
-              	<NoticeTableCell
-									key={column.id}
-									align={column.align}
-								>
-									{column.label}
-								</NoticeTableCell>
-            		))}
-          		</TableRow>
-        		</TableHead> */}
-        		<TableBody>
 						{(rowsPerPage > 0
 							? notice.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
 							: notice
-						).map((row) => (
-							<TableRow key={row.name}>
-								<TableCell component="th" scope="row">
-									{row.title}
-								</TableCell>
-								<TableCell align="right">
-									<div>{dayjs(notice.date).format("YYYY년 MM월 DD일 HH:mm")}</div>
-								</TableCell>
-							</TableRow>
+						).map((row,index) => (
+							<div>
+								<Padding/>
+								<NoticeWrapper key={index}>
+									<Typography>
+										{row.title}
+									</Typography>
+									<ContentWrapper>
+										{row.content}
+									</ContentWrapper>
+									<CreatedDateWrapper>
+										{dayjs(notice.date).format("YYYY년 MM월 DD일 HH:mm")}
+									</CreatedDateWrapper>
+								</NoticeWrapper>
+							</div>
 						))}
-
           	{emptyRows > 0 && (
-							<TableRow style={{ height: 53 * emptyRows }}>
-								<TableCell colSpan={6} />
-							</TableRow>
+							<Padding/>
 						)}
-        		</TableBody>
-        		<TableFooter>
-          		<TableRow>
-            		<TablePagination
-									rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-									colSpan={3}
-									count={notice.length}
-									rowsPerPage={rowsPerPage}
-									page={page}
-									SelectProps={{
-										inputProps: { 'aria-label': 'notice per page' },
-										native: true,
-									}}
-									onPageChange={handleChangePage}
-									onRowsPerPageChange={handleChangeRowsPerPage}
-									ActionsComponent={TablePaginationActions}
-								/>
-          		</TableRow>
-        		</TableFooter>
+            <PaginationSelector
+							rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+							colSpan={5}
+							count={notice.length}
+							rowsPerPage={rowsPerPage}
+							page={page}
+							SelectProps={{
+								inputProps: { 'aria-label': 'notice per page' },
+								native: true,
+							}}
+							onPageChange={handleChangePage}
+							onRowsPerPageChange={handleChangeRowsPerPage}
+							ActionsComponent={TablePaginationActions}
+						/>
       		</NoticeTable>
     		</div>
-
-
-
   		</React.Fragment>
   	</RootWrapper>
   );

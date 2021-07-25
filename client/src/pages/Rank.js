@@ -11,14 +11,11 @@ import CheckIcon from '@material-ui/icons/Check';
 import TableContainer from '@material-ui/core/TableContainer';
 import {
   RootWrapper,
+  Padding
 } from '../styles/common';
 
 const TitleWrapper = styled.div`
   margin  		: 50px;
-`
-
-const Padding = styled.div`
-	padding-top : 15px;
 `
 
 const boldWrapper = styled.div`

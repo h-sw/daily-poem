@@ -25,3 +25,7 @@ export const TitleWrapper = styled.div`
 export const NoPaddingButton = styled(IconButton)`
    padding:0;
 `
+
+export const Padding = styled.div`
+	padding-top : 15px;
+`
