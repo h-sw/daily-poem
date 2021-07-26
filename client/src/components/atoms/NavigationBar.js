@@ -47,7 +47,7 @@ const NavigationBar = () => {
 							</MenuText>
 						</Button>
 						<Button
-							onClick={() => window.location.href="/ranking"}
+							onClick={() => window.location.href="/all"}
 						>
 							<MenuText>
 								키워드

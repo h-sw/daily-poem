@@ -5,6 +5,7 @@ import NoticePage from './pages/NoticePage';
 import RankingPage from './pages/RankingPage';
 import RankingKeywordPage from './pages/RankingKeywordPage';
 import Rank from './pages/Rank';
+import All from './pages/All';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import NavigationBar from './components/atoms/NavigationBar';
 
@@ -19,6 +20,7 @@ function App() {
           <Route exact path="/ranking" component={RankingPage} />
           <Route exact path="/ranking/:keyword" component={RankingKeywordPage} />
           <Route exact path="/rank" component={Rank}/>
+          <Route exact path="/all" component={All}/>
         </Switch>
       </BrowserRouter>
     </div>
