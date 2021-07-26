@@ -40,6 +40,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 
+app.get('/all', async (req, res, next) => {
+  try {
+    const sqlAll = `
+      SELECT distinct word
+      FROM project1.POEM;
+    `
+    const resultAll = await pool.query(sqlAll);
+    
+    let all = resultAll[0];
+    console.log("all:",all)
+    res.json({ code: 200, result: "success", data : all });
+  }
+  catch(e) {
+    //console.log(e)
+    res.json({ code: 500, result: "error", message: e.message });
+  }
+});
+
 app.get('/MainLike', async (req, res, next) => {
   try {
     const sqlPoem = `
