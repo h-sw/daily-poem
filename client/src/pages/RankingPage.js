@@ -11,6 +11,7 @@ import {
   TitleWrapper,
 } from '../styles/common';
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
+import Button from '@material-ui/core/Button'
 
 const Title = styled(Typography)`
   color       : #222222;
@@ -79,19 +80,16 @@ const CardSubContentWrapper = styled.div`
   right             : 0;
   z-index           : 2;
 `
+const Icon = styled.i`
+  font-size     : 24px;
+  height        : 41px;
+  color         : #333333;
+  margin-top    : 10px;
+`
 
-const subject_dit = {
-  '바나나' : 0,
-  '복숭아' : 1,
-  '청포도' : 2,
-  '산딸기' : 3,
-  '코코넛' : 4,
-  '두리안' : 5,
-  '무화과' : 6,
-  '오렌지' : 7,
-  '토마토' : 8,
-  '한라봉' : 9,
-}
+const IconWrapper = styled(FlexWrapper)`
+  cursor        : pointer;
+`
 
 const KeywordCard = ({ data }) => {
   const [cardWidth, setCardWidth] = React.useState(0);
@@ -147,6 +145,12 @@ const RankingPage = () => {
 
   return (
     <RootWrapper>
+      {/* 뒤로가기 버튼 */}
+      <IconWrapper>
+        <Button onClick={() => window.location.href="/rank"}>
+          <Icon className="fi-rr-angle-double-left" />
+        </Button>
+      </IconWrapper>
       <TitleWrapper>
         <Title>
           명예의 전당

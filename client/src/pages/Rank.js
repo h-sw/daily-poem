@@ -110,6 +110,11 @@ const Rank = () => {
 						<Button onClick={() => handleSortingClick('연간')}>
 							{sorting=== '연간' ? <CheckedButton check={'연간'}/> : '연간' }
 						</Button> 
+            <Button
+							onClick={() => window.location.href="/ranking"}
+						>
+								명예의 전당
+						</Button>
 					</Box>
 					<Padding/>
 					<TableContainer component={Paper}>
