@@ -5,6 +5,9 @@ import Button from '@material-ui/core/Button'
 import InputBase from '@material-ui/core/InputBase'
 import axios from 'axios';
 import dayjs from 'dayjs';
+import Report from './Report'
+import Collapse from '@material-ui/core/Collapse';
+import BlockIcon from '@material-ui/icons/Block';
 import styled from "styled-components";
 import {
   Spacer,
@@ -98,6 +101,8 @@ const EmptyText = styled(Typography)`
 `
 
 function Row({ row, onReply = true, onLike = true}) {
+  const [open_report, setOpen_report] = React.useState(false);
+
   const [values, setValues] = React.useState({ 
     poemId    :"", 
     id        : "", 
@@ -122,7 +127,6 @@ function Row({ row, onReply = true, onLike = true}) {
       else{
         alert('모두 입력해주세요!');
       }
-      /* e.preventDefault(); */
     }else{
       axios.post('/postReply',{
         poemId  : values.poemId, 
@@ -190,6 +194,13 @@ function Row({ row, onReply = true, onLike = true}) {
               <Icon className="fi-sr-comment" />
               <IconText>{row.comment}</IconText>
             </IconWrapper>
+            
+            <IconWrapper onClick={() => setOpen_report(!open_report)}>
+              <BlockIcon></BlockIcon>
+            </IconWrapper>
+            <Collapse in={open_report} timeout="auto" unmountOnExit>
+              <Report row={row}></Report>
+            </Collapse>
           </FlexWrapper>
         </div>
       </Card>
