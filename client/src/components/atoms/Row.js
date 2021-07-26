@@ -133,6 +133,7 @@ function Row({ row, onReply = true, onLike = true}) {
       .then((response) => { 
         console.log(response)
         alert('댓글이 등록되었습니다!');
+        window.location.reload();
       }) 
       .catch(error => { 
         console.log('error : ', error.response) 
@@ -148,6 +149,7 @@ function Row({ row, onReply = true, onLike = true}) {
     .then((response) => { 
       console.log(response); 
       alert("좋아요를 눌렀어요!")
+      window.location.reload();
     }) 
     .catch(error => { 
       console.log('error : ', error.response) 
