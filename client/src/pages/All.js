@@ -1,5 +1,5 @@
 import React from 'react';
-import { RootWrapper,TitleWrapper } from '../styles/common';
+import { RootWrapper,TitleWrapper,Padding } from '../styles/common';
 import styled from 'styled-components';
 import * as Hangul from 'hangul-js';
 import {
@@ -88,6 +88,47 @@ const ButtonWrapper = styled.div`
   justify-Content : flex-end;
 `
 
+const SearchResultContainer = ({ search, keyword }) => {
+  const [data,  setData] = React.useState([]);
+  
+  React.useEffect(() => {
+    try{
+			var temp=[];
+      if(search.length > 0){
+				var searcher = new Hangul.Searcher(search);
+				keyword.forEach((item) => {
+					if(searcher.search(item.word)==0){
+						temp.push(item.word);
+					}
+				})
+				setData(temp);
+				console.log(temp);
+      }
+    }catch(e){
+
+    }
+  }, [search]);
+
+  const handleClickButton = (item) => {
+		setData([])
+		window.location.href=`/ranking/${item.word}`
+  }
+
+  return (
+    <div>
+      {data.map((item, idx) => {
+        return(
+          <div onClick={()=>handleClickButton(item)} style={{cursor:'pointer'}}>
+            <CardActionArea style={{padding: 9, borderBottom: '1px solid #eee'}}>
+              <Typography>{item}</Typography>
+            </CardActionArea>
+          </div>
+        )
+      })}
+    </div>
+  );
+}
+
 const KeywordCard = ({ data }) => {
   const [cardWidth, setCardWidth] = React.useState(0);
   const cardRef = React.useRef()
@@ -115,9 +156,7 @@ const KeywordCard = ({ data }) => {
 
 const All = () => {
   const [allKeyword, setAllKeyword] = React.useState([]);
-	const [values, setValues] = React.useState({ 
-    search        : ""
-  });
+	const [values, setValues] = React.useState();
 
   const initAll = async () => {
     const res = await fetch('/all');
@@ -138,11 +177,12 @@ const All = () => {
 	
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setValues({ ...values, [name]: value });
+    setValues(value);
   } 
 
   const handleSubmit= (e) => {
 		console.log(values);
+		e.preventDefault();
   } 
 
   return (
@@ -170,8 +210,12 @@ const All = () => {
 						</SubmitButton>
 					</ButtonWrapper>
         </PoemInputWrapper>
-
       </form>
+			<div style={{maxHeight: 300, overflow:'auto', }}>
+        <SearchResultContainer search={values} keyword={allKeyword} />
+      </div>
+
+			<Padding/>
 			<Grid 
         container 
         spacing={3}
