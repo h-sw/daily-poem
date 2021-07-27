@@ -68,12 +68,6 @@ const PoemInput = styled(InputBase)`
   font-weight : 600;
 `
 
-const PoemKeyword = styled(Typography)`
-  align-self  : center;
-  font-weight : 700;
-  color       : #676A59;
-`
-
 const SubmitButton = styled(Button)`
   background-color  : #8FB896;
   color             : #FFFFFF;
@@ -87,51 +81,6 @@ const ButtonWrapper = styled.div`
   display         : flex;
   justify-Content : flex-end;
 `
-
-const SearchResultContainer = ({ search, keyword }) => {
-  const [data,  setData] = React.useState([]);
-  
-  React.useEffect(() => {
-    try{
-			var temp=[];
-      if(search.length > 0){
-				var searcher = new Hangul.Searcher(search);
-				keyword.forEach((item) => {
-					if(searcher.search(item.word)==0){
-						temp.push(item.word);
-					}
-				})
-				setData(temp);
-				console.log(temp);
-      }
-			else{
-				setData([]);
-			}
-    }catch(e){
-
-    }
-  }, [search]);
-
-  const handleClickButton = (item) => {
-		setData([])
-		window.location.href=`/ranking/${item}`
-  }
-
-  return (
-    <div>
-      {data.map((item, idx) => {
-        return(
-          <div onClick={()=>handleClickButton(item)} style={{cursor:'pointer'}}>
-            <CardActionArea style={{padding: 9, borderBottom: '1px solid #eee'}}>
-              <Typography>{item}</Typography>
-            </CardActionArea>
-          </div>
-        )
-      })}
-    </div>
-  );
-}
-
 const KeywordCard = ({ data }) => {
   const [cardWidth, setCardWidth] = React.useState(0);
   const cardRef = React.useRef()
@@ -160,7 +109,7 @@ const KeywordCard = ({ data }) => {
 const All = () => {
   const [allKeyword, setAllKeyword] = React.useState([]);
 	const [values, setValues] = React.useState();
-
+	const [display, setDisplay]=React.useState(allKeyword);
   const initAll = async () => {
     const res = await fetch('/all');
     return await res.json();
@@ -170,13 +119,34 @@ const All = () => {
 		console.log(Hangul.disassemble('가나다'));
     initAll()
       .then(res => {
-        setAllKeyword(res.data)
+        setAllKeyword(res.data);
+				setDisplay(res.data);
       })
       .catch(err => {
         console.log(err)
       });
   }, []);
 
+	React.useEffect(() => {
+    try{
+			var temp=[];
+      if(values.length > 0){
+				var searcher = new Hangul.Searcher(values);
+				allKeyword.forEach((item) => {
+					if(searcher.search(item.word)==0){
+						temp.push(item);
+					}
+				})
+				setDisplay(temp);
+				console.log(temp);
+      }
+			else{
+				setDisplay(allKeyword);
+			}
+    }catch(e){
+
+    }
+  }, [values]);
 	
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -214,16 +184,12 @@ const All = () => {
 					</ButtonWrapper>
         </PoemInputWrapper>
       </form>
-			<div style={{maxHeight: 300, overflow:'auto', }}>
-        <SearchResultContainer search={values} keyword={allKeyword} />
-      </div>
-
 			<Padding/>
 			<Grid 
         container 
         spacing={3}
       >
-        {allKeyword.map((data, idx) => (
+        {display.map((data, idx) => (
             <Grid
               key={idx} 
               item 
