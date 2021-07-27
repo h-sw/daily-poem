@@ -1,11 +1,13 @@
 import React from 'react';
 import { RootWrapper,TitleWrapper } from '../styles/common';
 import styled from 'styled-components';
+import * as Hangul from 'hangul-js';
 import {
   CardActionArea,
   Grid, 
   Typography,
-	Button
+	Button,
+	InputBase
 } from '@material-ui/core'
 
 const Title = styled(Typography)`
@@ -52,6 +54,40 @@ const CardTitle = styled(Typography)`
   color       : #000;
 `
 
+const PoemInputWrapper = styled.div`
+  display       : flex;
+  margin        : 5px 0px;
+  border-radius : 5px;
+  padding       : 0px 0px;
+  border        : 1px solid #8FB896;
+`
+
+const PoemInput = styled(InputBase)`
+  font-size   : 14px;
+  color       : #565656;
+  font-weight : 600;
+`
+
+const PoemKeyword = styled(Typography)`
+  align-self  : center;
+  font-weight : 700;
+  color       : #676A59;
+`
+
+const SubmitButton = styled(Button)`
+  background-color  : #8FB896;
+  color             : #FFFFFF;
+  font-wieght       : 600;
+  font-size         : 14px;
+  &:hover {
+    background-color  : #8FB896;
+  }
+`
+const ButtonWrapper = styled.div`
+  display         : flex;
+  justify-Content : flex-end;
+`
+
 const KeywordCard = ({ data }) => {
   const [cardWidth, setCardWidth] = React.useState(0);
   const cardRef = React.useRef()
@@ -79,13 +115,17 @@ const KeywordCard = ({ data }) => {
 
 const All = () => {
   const [allKeyword, setAllKeyword] = React.useState([]);
-  
+	const [values, setValues] = React.useState({ 
+    search        : ""
+  });
+
   const initAll = async () => {
     const res = await fetch('/all');
     return await res.json();
   }
 
   React.useEffect(() => {
+		console.log(Hangul.disassemble('가나다'));
     initAll()
       .then(res => {
         setAllKeyword(res.data)
@@ -94,6 +134,16 @@ const All = () => {
         console.log(err)
       });
   }, []);
+
+	
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setValues({ ...values, [name]: value });
+  } 
+
+  const handleSubmit= (e) => {
+		console.log(values);
+  } 
 
   return (
     <RootWrapper>
@@ -105,6 +155,23 @@ const All = () => {
           현재까지 제시된 모든 3행시를 보여줍니다. 
         </Subtitle>
       </TitleWrapper>
+
+			<form onSubmit={handleSubmit} noValidate autoComplete="off">
+        <PoemInputWrapper>
+          <PoemInput
+            name="search"
+            fullWidth
+            placeholder="이 곳에 입력해주세요."
+            onChange={handleChange}
+          />
+					<ButtonWrapper>
+						<SubmitButton type="submit">
+							검색
+						</SubmitButton>
+					</ButtonWrapper>
+        </PoemInputWrapper>
+
+      </form>
 			<Grid 
         container 
         spacing={3}
@@ -114,8 +181,8 @@ const All = () => {
               key={idx} 
               item 
               xs={12} 
-              sm={6} 
-              md={4}
+              sm={3} 
+              md={2}
             >
               <KeywordCard data={data} />   
             </Grid>
