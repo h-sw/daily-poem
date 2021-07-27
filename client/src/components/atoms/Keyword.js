@@ -31,7 +31,7 @@ const KeywordButton = styled(Button)`
 
 const Keyword = () => {
   const [open_content, setOpen_content] = React.useState(false);
-  const [keyword, setKeyword] = React.useState("키워드");
+  const [keyword, setKeyword] = React.useState("뿌우웅");
 
   const callKeywordApi = async()=>{
     const response = await fetch('/Keyword');
@@ -43,7 +43,7 @@ const Keyword = () => {
     callKeywordApi()
     .then(res=>{
       //setKeyword(res.data[0].keyword);
-      setKeyword("키워드");
+      setKeyword("뿌우웅");
     })
     .catch(err=>console.log(err));
   };
