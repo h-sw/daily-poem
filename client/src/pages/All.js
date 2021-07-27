@@ -104,6 +104,9 @@ const SearchResultContainer = ({ search, keyword }) => {
 				setData(temp);
 				console.log(temp);
       }
+			else{
+				setData([]);
+			}
     }catch(e){
 
     }
@@ -111,7 +114,7 @@ const SearchResultContainer = ({ search, keyword }) => {
 
   const handleClickButton = (item) => {
 		setData([])
-		window.location.href=`/ranking/${item.word}`
+		window.location.href=`/ranking/${item}`
   }
 
   return (
