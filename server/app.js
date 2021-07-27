@@ -14,10 +14,6 @@ var pool = require("./lib/pool");
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-// view engine setup
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'pug');
-
 const subject_dit = {
   '바나나' : 0,
   '복숭아' : 1,
