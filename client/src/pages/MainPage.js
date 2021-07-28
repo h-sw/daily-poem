@@ -30,6 +30,7 @@ const IconText = styled(Typography)`
 
 const MainPage = () => {
   const [displayData, setDisplayData]=React.useState([]);
+  const [keyword, setKeyword] = React.useState("도깨비");
   const callLatestApi = async()=>{
     const response = await fetch('/MainLatest');
     const body = await response.json();
@@ -47,8 +48,8 @@ const MainPage = () => {
 
   return (
     <RootWrapper>
-      <Keyword />
-      <KeywordButton onClick={() => window.location.href="/ranking/키워드"}>
+      <Keyword keyword={keyword} setKeyword={setKeyword}/>
+      <KeywordButton onClick={() => window.location.href="/ranking/"+keyword}>
         <i class="fi-rr-add" style={{fontSize:14, height:14,marginBottom:7,marginRight:5}}/>
         <IconText>3행시 더보기</IconText>
       </KeywordButton>
