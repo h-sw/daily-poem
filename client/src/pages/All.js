@@ -77,10 +77,12 @@ const SubmitButton = styled(Button)`
     background-color  : #8FB896;
   }
 `
+
 const ButtonWrapper = styled.div`
   display         : flex;
   justify-Content : flex-end;
 `
+
 const KeywordCard = ({ data }) => {
   const [cardWidth, setCardWidth] = React.useState(0);
   const cardRef = React.useRef()
@@ -110,13 +112,13 @@ const All = () => {
   const [allKeyword, setAllKeyword] = React.useState([]);
 	const [values, setValues] = React.useState();
 	const [display, setDisplay]=React.useState(allKeyword);
+	const classify=['ㄱ','ㄴ','ㄷ','ㄹ','ㅁ','ㅂ','ㅅ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
   const initAll = async () => {
     const res = await fetch('/all');
     return await res.json();
   }
 
   React.useEffect(() => {
-		console.log(Hangul.disassemble('가나다'));
     initAll()
       .then(res => {
         setAllKeyword(res.data);
@@ -138,7 +140,6 @@ const All = () => {
 					}
 				})
 				setDisplay(temp);
-				console.log(temp);
       }
 			else{
 				setDisplay(allKeyword);
@@ -154,7 +155,6 @@ const All = () => {
   } 
 
   const handleSubmit= (e) => {
-		console.log(values);
 		e.preventDefault();
   } 
 
@@ -185,22 +185,41 @@ const All = () => {
         </PoemInputWrapper>
       </form>
 			<Padding/>
+			<div style={{height:50}}/>
 			<Grid 
         container 
         spacing={3}
       >
-        {display.map((data, idx) => (
-            <Grid
-              key={idx} 
-              item 
-              xs={12} 
-              sm={3} 
-              md={2}
-            >
-              <KeywordCard data={data} />   
-            </Grid>
+        {classify.map((item, idx) => (
+          <Grid
+            key={idx} 
+            item 
+            xs={12} 
+            sm={12} 
+            md={12}
+          >
+            <div>{item}</div>
+						<Grid
+							container 
+							spacing={3}
+						>
+							{display.map((data, idx) => (
+								//item은 ㄱ,ㄴ,ㄷ,ㄹ, 분류 , data는 현재 displaydata
+								Hangul.search(data.word,item)==0 ?
+								<Grid
+									key={idx} 
+									item 
+									xs={12} 
+									sm={3} 
+									md={2}
+								>
+									<KeywordCard data={data} />
+								</Grid> :<></>
+							))}
+						</Grid>
+          </Grid>
         ))}
-        </Grid>
+      </Grid>
     </RootWrapper>
   )
 }
