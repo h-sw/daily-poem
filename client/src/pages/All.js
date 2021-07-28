@@ -94,6 +94,7 @@ const KeywordCard = ({ data }) => {
     <Card 
       ref={cardRef} 
       height={cardWidth}
+      onClick={() => window.location.href="/ranking/"+data.word}
     >
       <CardImg />
       <CardContentWrapper>
@@ -101,6 +102,7 @@ const KeywordCard = ({ data }) => {
           {data.word}
         </CardTitle>
       </CardContentWrapper>
+      
     </Card>
   )
 }

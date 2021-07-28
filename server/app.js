@@ -266,7 +266,6 @@ app.get('/HOfPage', async (req, res, next) => {
     
     let hofs = resultHof[0];
     let idx = 0;
-    //console.log("hofs: ", hofs);
     res.json({ code: 200, result: "success", data : hofs });
   }
   catch(e) {
