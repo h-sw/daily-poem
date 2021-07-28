@@ -68,19 +68,16 @@ const PoemInput = styled(InputBase)`
   font-weight : 600;
 `
 
-const SubmitButton = styled(Button)`
-  background-color  : #8FB896;
-  color             : #FFFFFF;
-  font-wieght       : 600;
-  font-size         : 14px;
-  &:hover {
-    background-color  : #8FB896;
-  }
+
+const classifyWrapper = styled.div`
+	padding-bottom : 5px;
 `
 
-const ButtonWrapper = styled.div`
-  display         : flex;
-  justify-Content : flex-end;
+const Icon = styled.i`
+  font-size     : 14px;
+  height        : 14px;
+  color         : #333333;
+  margin-right  : 5px;
 `
 
 const KeywordCard = ({ data }) => {
@@ -177,11 +174,7 @@ const All = () => {
             placeholder="이 곳에 입력해주세요."
             onChange={handleChange}
           />
-					<ButtonWrapper>
-						<SubmitButton type="submit">
-							검색
-						</SubmitButton>
-					</ButtonWrapper>
+					<i class="fi-rr-search"style={{fontSize:'20px',height:'20px',color:'#8EB695',marginRight:5}}/>
         </PoemInputWrapper>
       </form>
 			<Padding/>
@@ -198,7 +191,7 @@ const All = () => {
             sm={12} 
             md={12}
           >
-            <div>{item}</div>
+            <classifyWrapper>{item}</classifyWrapper>
 						<Grid
 							container 
 							spacing={3}
