@@ -2,12 +2,15 @@ import React from 'react';
 import { RootWrapper,TitleWrapper,Padding } from '../styles/common';
 import styled from 'styled-components';
 import * as Hangul from 'hangul-js';
+import dayjs from 'dayjs';
+import CheckIcon from '@material-ui/icons/Check';
 import {
   CardActionArea,
   Grid, 
   Typography,
 	Button,
-	InputBase
+	InputBase,
+	Box
 } from '@material-ui/core'
 
 const Title = styled(Typography)`
@@ -80,6 +83,10 @@ const Icon = styled.i`
   margin-right  : 5px;
 `
 
+const boldWrapper = styled.div`
+	font-weight	: bolder;
+`
+
 const KeywordCard = ({ data }) => {
   const [cardWidth, setCardWidth] = React.useState(0);
   const cardRef = React.useRef()
@@ -109,6 +116,7 @@ const All = () => {
   const [allKeyword, setAllKeyword] = React.useState([]);
 	const [values, setValues] = React.useState();
 	const [display, setDisplay]=React.useState(allKeyword);
+	const [sorting, setSorting] = React.useState('글자순');
 	const classify=['ㄱ','ㄴ','ㄷ','ㄹ','ㅁ','ㅂ','ㅅ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
   const initAll = async () => {
     const res = await fetch('/all');
@@ -155,6 +163,24 @@ const All = () => {
 		e.preventDefault();
   } 
 
+	const handleSortingClick = (category) => {
+    setSorting(category);
+  };
+
+	const CheckedButton = ({check}) => {
+    if(check === '글자순'){
+      
+    }
+    else if(check === '날짜순'){
+      
+    }
+    return(
+      <>
+        <CheckIcon/>
+        <boldWrapper>{check}</boldWrapper>
+      </>)
+  }
+
   return (
     <RootWrapper>
       <TitleWrapper>
@@ -178,7 +204,16 @@ const All = () => {
         </PoemInputWrapper>
       </form>
 			<Padding/>
-			<div style={{height:50}}/>
+			<Box flexDirection="row" style={{display: 'inline-flex'}}>
+				<Button onClick={() => handleSortingClick('글자순')}>
+					{sorting=== '글자순' ? <CheckedButton check={'글자순'}/> : '글자순' } 
+				</Button>
+				<Button onClick={() => handleSortingClick('날짜순')}>
+					{sorting=== '날짜순' ? <CheckedButton check={'날짜순'}/> : '날짜순' } 
+				</Button>
+			</Box>
+
+			{allKeyword[0]? console.log(dayjs(allKeyword[0].created).format("YY.MM.DD")) : console.log("no")}
 			<Grid 
         container 
         spacing={3}
@@ -213,6 +248,7 @@ const All = () => {
           </Grid>
         ))}
       </Grid>
+
     </RootWrapper>
   )
 }

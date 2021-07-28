@@ -39,8 +39,9 @@ app.use('/users', usersRouter);
 app.get('/all', async (req, res, next) => {
   try {
     const sqlAll = `
-      SELECT distinct word
-      FROM project1.POEM;
+      SELECT word, created
+      FROM project1.POEM
+      group by(word);
     `
     const resultAll = await pool.query(sqlAll);
     
