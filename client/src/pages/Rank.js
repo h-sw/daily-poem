@@ -18,7 +18,7 @@ const TitleWrapper = styled.div`
   margin  		: 50px;
 `
 
-const boldWrapper = styled.div`
+const BoldWrapper = styled.div`
 	font-weight	: bolder;
 `
 const Rank = () => {
@@ -89,7 +89,7 @@ const Rank = () => {
     return(
       <>
         <CheckIcon/>
-        <boldWrapper>{check}</boldWrapper>
+        <BoldWrapper>{check}</BoldWrapper>
       </>)
   }
 

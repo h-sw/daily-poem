@@ -14,17 +14,17 @@ import {
 } from '@material-ui/core'
 
 const Title = styled(Typography)`
-  color       : #222222;
-  font-weight : 600;
-  text-align  : center;
-  font-size   : 28px;
+  color       	: #222222;
+  font-weight 	: 600;
+  text-align  	: center;
+  font-size   	: 28px;
 `
 
 const Subtitle = styled(Typography)`
-  color       : #222222;
-  font-weight : 500;
-  text-align  : center;
-  font-size   : 14px;
+  color       	: #222222;
+  font-weight 	: 500;
+  text-align  	: center;
+  font-size   	: 14px;
 `
 
 const Card = styled(CardActionArea)`
@@ -36,25 +36,25 @@ const Card = styled(CardActionArea)`
 `
 
 const CardImg = styled.div`
-  width   : 100%;
-  display : block;
+  width   			: 100%;
+  display			 	: block;
 	background-color:#8EB695;
 `
 
 const CardContentWrapper = styled.div`
-  position    : absolute;
-  padding     : 20px;
-  background  : rgba(0,0,0, 0.15);
-  width       : 100%;
-  height      : 100%;
-  top         : 0;
-  left        : 0;
+  position    	: absolute;
+  padding     	: 20px;
+  background  	: rgba(0,0,0, 0.15);
+  width       	: 100%;
+  height      	: 100%;
+  top         	: 0;
+  left        	: 0;
 `
 
 const CardTitle = styled(Typography)`
-  font-weight : 600;
-  font-size   : 28px;
-  color       : #000;
+  font-weight 	: 600;
+  font-size   	: 28px;
+  color       	: #000;
 `
 
 const PoemInputWrapper = styled.div`
@@ -66,24 +66,23 @@ const PoemInputWrapper = styled.div`
 `
 
 const PoemInput = styled(InputBase)`
-  font-size   : 14px;
-  color       : #565656;
-  font-weight : 600;
+  font-size   	: 14px;
+  color       	: #565656;
+  font-weight 	: 600;
 `
 
-
-const classifyWrapper = styled.div`
-	padding-bottom : 5px;
+const ClassifyWrapper = styled.div`
+	padding-bottom: 5px;
 `
 
 const Icon = styled.i`
-  font-size     : 14px;
-  height        : 14px;
-  color         : #333333;
-  margin-right  : 5px;
+	font-size			:20px;
+	height				:20px;
+	color					:#8EB695;
+	marginRight		:5;
 `
 
-const boldWrapper = styled.div`
+const BoldWrapper = styled.div`
 	font-weight	: bolder;
 `
 
@@ -179,7 +178,7 @@ const All = () => {
     return(
       <>
         <CheckIcon/>
-        <boldWrapper>{check}</boldWrapper>
+        <BoldWrapper>{check}</BoldWrapper>
       </>)
   }
 
@@ -202,7 +201,7 @@ const All = () => {
             placeholder="이 곳에 입력해주세요."
             onChange={handleChange}
           />
-					<i class="fi-rr-search"style={{fontSize:'20px',height:'20px',color:'#8EB695',marginRight:5}}/>
+					<Icon className="fi-rr-search"/>
         </PoemInputWrapper>
       </form>
 			<Padding/>
@@ -228,7 +227,7 @@ const All = () => {
             sm={12} 
             md={12}
           >
-            <classifyWrapper>{item}</classifyWrapper>
+            <ClassifyWrapper>{item}</ClassifyWrapper>
 						<Grid
 							container 
 							spacing={3}
