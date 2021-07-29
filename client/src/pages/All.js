@@ -8,23 +8,23 @@ import {
   CardActionArea,
   Grid, 
   Typography,
-	Button,
-	InputBase,
-	Box
+   Button,
+   InputBase,
+   Box
 } from '@material-ui/core'
 
 const Title = styled(Typography)`
-  color       	: #222222;
-  font-weight 	: 600;
-  text-align  	: center;
-  font-size   	: 28px;
+  color          : #222222;
+  font-weight    : 600;
+  text-align     : center;
+  font-size      : 28px;
 `
 
 const Subtitle = styled(Typography)`
-  color       	: #222222;
-  font-weight 	: 500;
-  text-align  	: center;
-  font-size   	: 14px;
+  color          : #222222;
+  font-weight    : 500;
+  text-align     : center;
+  font-size      : 14px;
 `
 
 const Card = styled(CardActionArea)`
@@ -36,25 +36,25 @@ const Card = styled(CardActionArea)`
 `
 
 const CardImg = styled.div`
-  width   			: 100%;
-  display			 	: block;
-	background-color:#8EB695;
+  width            : 100%;
+  display             : block;
+   background-color:#8EB695;
 `
 
 const CardContentWrapper = styled.div`
-  position    	: absolute;
-  padding     	: 20px;
-  background  	: rgba(0,0,0, 0.15);
-  width       	: 100%;
-  height      	: 100%;
-  top         	: 0;
-  left        	: 0;
+  position       : absolute;
+  padding        : 20px;
+  background     : rgba(0,0,0, 0.15);
+  width          : 100%;
+  height         : 100%;
+  top            : 0;
+  left           : 0;
 `
 
 const CardTitle = styled(Typography)`
-  font-weight 	: 600;
-  font-size   	: 28px;
-  color       	: #000;
+  font-weight    : 600;
+  font-size      : 28px;
+  color          : #000;
 `
 
 const PoemInputWrapper = styled.div`
@@ -66,25 +66,28 @@ const PoemInputWrapper = styled.div`
 `
 
 const PoemInput = styled(InputBase)`
-  font-size   	: 14px;
-  color       	: #565656;
-  font-weight 	: 600;
+  font-size      : 14px;
+  color          : #565656;
+  font-weight    : 600;
 `
 
 const ClassifyWrapper = styled.div`
-	padding-bottom: 5px;
+   padding-bottom: 5px;
 `
 
 const Icon = styled.i`
-	font-size			:20px;
-	height				:20px;
-	color					:#8EB695;
-	marginRight		:5;
+   font-size         :20px;
+   height            :20px;
+   color               :#8EB695;
+   marginRight      :5;
 `
 
 const BoldWrapper = styled.div`
-	font-weight	: bolder;
+   font-weight   : bolder;
 `
+
+const SORT_BY_WORD = 1; /*글자순*/
+const SORT_BY_DATE = 2; /*날짜순*/
 
 const KeywordCard = ({ data }) => {
   const [cardWidth, setCardWidth] = React.useState(0);
@@ -115,10 +118,12 @@ const KeywordCard = ({ data }) => {
 
 const All = () => {
   const [allKeyword, setAllKeyword] = React.useState([]);
-	const [values, setValues] = React.useState();
-	const [display, setDisplay]=React.useState(allKeyword);
-	const [sorting, setSorting] = React.useState('글자순');
-	const classify=['ㄱ','ㄴ','ㄷ','ㄹ','ㅁ','ㅂ','ㅅ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+  const [values, setValues] = React.useState();
+  const [display, setDisplay] = React.useState(allKeyword);
+  const [sorting, setSorting] = React.useState(SORT_BY_WORD);
+  const classifyWord = ['ㄱ','ㄴ','ㄷ','ㄹ','ㅁ','ㅂ','ㅅ','ㅇ','ㅈ','ㅊ','ㅋ','ㅌ','ㅍ','ㅎ'];
+  const [classifyDate, setClassifyDate] = React.useState([]);
+  const [classify, setClassify] = React.useState(classifyWord);
   const initAll = async () => {
     const res = await fetch('/all');
     return await res.json();
@@ -128,52 +133,69 @@ const All = () => {
     initAll()
       .then(res => {
         setAllKeyword(res.data);
-				setDisplay(res.data);
+        setDisplay(res.data);
+        let tempClassify = [];
+        let idx = 0;
+        for(const d of res.data){
+          console.log('d: ', d.date);
+          if(!tempClassify.includes(dayjs(d.date).format('YYYY.MM'))){
+            tempClassify[idx] = dayjs(d.date).format('YYYY.MM');
+            idx += 1;
+          }
+        }
+        setClassifyDate(tempClassify);
+        console.log("data", tempClassify);
       })
       .catch(err => {
-        console.log(err)
+        console.log(err);
       });
   }, []);
 
-	React.useEffect(() => {
+  React.useEffect(() => {
     try{
-			var temp=[];
+      var temp=[];
       if(values.length > 0){
-				var searcher = new Hangul.Searcher(values);
-				allKeyword.forEach((item) => {
-					if(searcher.search(item.word)==0){
-						temp.push(item);
-					}
-				})
-				setDisplay(temp);
+        var searcher = new Hangul.Searcher(values);
+        allKeyword.forEach((item) => {
+          if(searcher.search(item.word)==0){
+            temp.push(item);
+          }
+      })
+        setDisplay(temp);
       }
-			else{
-				setDisplay(allKeyword);
-			}
+      else{
+        setDisplay(allKeyword);
+      }
     }catch(e){
 
     }
   }, [values]);
-	
+   
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues(value);
-  } 
+  }
 
   const handleSubmit= (e) => {
-		e.preventDefault();
+    e.preventDefault();
   } 
 
-	const handleSortingClick = (category) => {
+  const handleSortingClick = (category) => {
+    if(category === SORT_BY_WORD){
+      setClassify(classifyWord);
+    } 
+    else if(category === SORT_BY_DATE){
+      setClassify(classifyDate);
+    }
     setSorting(category);
   };
 
-	const CheckedButton = ({check}) => {
-    if(check === '글자순'){
-      
+   const CheckedButton = ({check}) => {
+    if(check === SORT_BY_WORD){
+      console.log('글자순');
     }
-    else if(check === '날짜순'){
-      
+    else if(check === SORT_BY_DATE){
+      console.log('날짜순');
     }
     return(
       <>
@@ -193,7 +215,7 @@ const All = () => {
         </Subtitle>
       </TitleWrapper>
 
-			<form onSubmit={handleSubmit} noValidate autoComplete="off">
+      <form onSubmit={handleSubmit} noValidate autoComplete="off">
         <PoemInputWrapper>
           <PoemInput
             name="search"
@@ -201,21 +223,20 @@ const All = () => {
             placeholder="이 곳에 입력해주세요."
             onChange={handleChange}
           />
-					<Icon className="fi-rr-search"/>
+          <Icon className="fi-rr-search"/>
         </PoemInputWrapper>
       </form>
-			<Padding/>
-			<Box flexDirection="row">
-				<Button onClick={() => handleSortingClick('글자순')}>
-					{sorting=== '글자순' ? <CheckedButton check={'글자순'}/> : '글자순' } 
-				</Button>
-				<Button onClick={() => handleSortingClick('날짜순')}>
-					{sorting=== '날짜순' ? <CheckedButton check={'날짜순'}/> : '날짜순' } 
-				</Button>
-			</Box>
+      <Padding/>
+      <Box flexDirection="row">
+        <Button onClick={() => handleSortingClick(SORT_BY_WORD)}>
+          { sorting === SORT_BY_WORD ? <CheckedButton check={'글자순'} /> : '글자순' } 
+        </Button>
+        <Button onClick={() => handleSortingClick(SORT_BY_DATE)}>
+          { sorting === SORT_BY_DATE ? <CheckedButton check={'날짜순'} /> : '날짜순' }
+        </Button>
+      </Box>
 
-			{allKeyword[0]? console.log(dayjs(allKeyword[0].created).format("YY.MM.DD")) : console.log("no")}
-			<Grid 
+      <Grid 
         container 
         spacing={3}
       >
@@ -228,28 +249,39 @@ const All = () => {
             md={12}
           >
             <ClassifyWrapper>{item}</ClassifyWrapper>
-						<Grid
-							container 
-							spacing={3}
-						>
-							{display.map((data, idx) => (
-								//item은 ㄱ,ㄴ,ㄷ,ㄹ, 분류 , data는 현재 displaydata
-								Hangul.search(data.word,item)==0 ?
-								<Grid
-									key={idx} 
-									item 
-									xs={12} 
-									sm={3} 
-									md={2}
-								>
-									<KeywordCard data={data} />
-								</Grid> :<></>
-							))}
-						</Grid>
+            <Grid
+              container 
+              spacing={3}
+            >
+              {display.map((data, idx) => (
+                sorting === SORT_BY_WORD ?
+                //item은 ㄱ,ㄴ,ㄷ,ㄹ, 분류 , data는 현재 displaydata
+                (Hangul.search(data.word,item)==0 ?
+                <Grid
+                  key={idx} 
+                  item 
+                  xs={12} 
+                  sm={3} 
+                  md={2}
+                >
+                <KeywordCard data={data} />
+                </Grid> : <></>)
+                :
+                (dayjs(data.date).format('YYYY.MM')==item ?
+                <Grid
+                    key={idx} 
+                    item 
+                    xs={12} 
+                    sm={3} 
+                    md={2}
+                >
+                <KeywordCard data={data} />
+                </Grid> : <></>)
+              ))}
+            </Grid>
           </Grid>
         ))}
       </Grid>
-
     </RootWrapper>
   )
 }
