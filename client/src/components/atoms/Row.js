@@ -16,104 +16,98 @@ import {
 import HistoryComment from './HistoryComment.js'
 
 const Card = styled.div`
-  margin            : 15px;
-  padding           : 15px;
-  border-radius     : 15px;
-  background-color  : #8EB695;
+  margin          : 15px;
+  padding         : 15px;
+  border-radius   : 15px;
+  background-color: #8EB695;
 `
 
 const PostThemeText = styled(Typography)`
-  color       : #676A59;
-  font-size   : 20px;
-  font-weight : 600;
+  color           : #676A59;
+  font-size       : 20px;
+  font-weight     : 600;
 `
 
 const PostCreatedDate = styled(Typography)`
-  font-size : 12px;
-  color     : #333333;
+  font-size       : 12px;
+  color           : #333333;
 `
 
 const PoemText = styled(Typography)`
-  font-size   : 16px;
-  font-weight : 500;
-  color       : #676A59;
+  font-size       : 16px;
+  font-weight     : 500;
+  color           : #676A59;
 `
 
 const PoemWord = styled.span`
-  font-size     : 16px;
-  font-weight   : 700;
-  border-radius : 100%;
-  color         : #676A59;
+  font-size       : 16px;
+  font-weight     : 700;
+  border-radius   : 100%;
+  color           : #676A59;
 `
 
 const Icon = styled.i`
-  font-size     : 14px;
-  height        : 14px;
-  color         : #333333;
-  margin-right  : 5px;
+  font-size       : 14px;
+  height          : 14px;
+  color           : #333333;
+  margin-right    : 5px;
 `
 
 const IconText = styled(Typography)`
-  font-size : 14px;
-  color     : #333333;
+  font-size       : 14px;
+  color           : #333333;
 `
 
 const IconWrapper = styled(FlexWrapper)`
-  margin-right  : 10px;
-  cursor        : pointer;
+  margin-right    : 10px;
+  cursor          : pointer;
 `
 
 const ContentWrapper = styled.div`
-  margin-top    : 10px;
-  margin-bottom : 40px;
+  margin-top      : 10px;
+  margin-bottom   : 40px;
 `
 
 const CommentContainer = styled.div`
-  margin  : 20px;
+  margin          : 20px;
 `
 
 const Input = styled(InputBase)`
-  border        : 1px solid #EEE;
-  font-size     : 14px;
-  padding-left  : 10px;
-  color         : #333333;
+  border          : 1px solid #EEE;
+  font-size       : 14px;
+  padding-left    : 10px;
+  color           : #333333;
 `
 
 const CommentSubmitButton = styled(Button)`
-  position  : absolute;
-  bottom    : 0px;
-  right     : 0px;
-  font-size : 14px;
-  color     : #333333;
-  border    : 1px solid #EEE
+  position        : absolute;
+  bottom          : 0px;
+  right           : 0px;
+  font-size       : 14px;
+  color           : #333333;
+  border          : 1px solid #EEE
 `
 
 const CommentFormWrapper = styled.div`
-  position    : relative;
-  margin-top  : 20px;
+  position        : relative;
+  margin-top      : 20px;
 `
 
 const EmptyText = styled(Typography)`
-  padding     : 20px 0px;
-  text-align  : center;
-  font-size   : 14px;
-  color       : #888888;
-`
-
-const PostWrapper = styled.div`
-  margin          : 10;
-  display         : flex;
-  flex-Direction  : column;
+  padding         : 20px 0px;
+  text-align      : center;
+  font-size       : 14px;
+  color           : #888888;
 `
 
 function Row({ row, onReply = true, onLike = true}) {
   const [open_report, setOpen_report] = React.useState(false);
 
   const [values, setValues] = React.useState({ 
-    poemId    : "", 
-    id        : "", 
-    password  : "", 
-    reply     : "" 
+    "poemId"    : "", 
+    "id"        : "", 
+    "password"  : "", 
+    "reply"     : "" 
   });
 
   const  handleChange = (e) => {
@@ -126,8 +120,10 @@ function Row({ row, onReply = true, onLike = true}) {
   }
 
   const handleSubmit = (e) => {
-    if(values.id==""||values.password==""||values.reply==""){
-      if(values.reply==""){
+    if( values.id       =="" ||
+        values.password =="" ||
+        values.reply    =="" ){
+      if( values.reply  =="" ){
         alert("댓글을 입력해주세요!");
       }
       else{
@@ -135,10 +131,10 @@ function Row({ row, onReply = true, onLike = true}) {
       }
     }else{
       axios.post('/postReply',{
-        poemId  : values.poemId, 
-        id      : values.id, 
-        pwd     : values.password, 
-        reply   : values.reply
+        "poemId"  : values.poemId, 
+        "id"      : values.id, 
+        "pwd"     : values.password, 
+        "reply"   : values.reply
       }) 
       .then((response) => { 
         console.log(response)
@@ -153,8 +149,8 @@ function Row({ row, onReply = true, onLike = true}) {
 
   const likeSubmit = (e) => {
     axios.post('/postLike', {
-      likes   : parseInt(row.likes) + 1, 
-      poemId  : row.poemId
+      "likes"   : parseInt(row.likes) + 1, 
+      "poemId"  : row.poemId
     }) 
     .then((response) => { 
       console.log(response); 

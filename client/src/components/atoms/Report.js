@@ -4,23 +4,38 @@ import axios from 'axios';
 
 function Report({ row }) {
 
-  const [report, setReport] = React.useState({ replyId: row.replyId, poemId: row.poemId, reason: "" });
+  const [report, setReport] = React.useState({ 
+    "replyId"   : row.replyId, 
+    "poemId"    : row.poemId, 
+    "reason"    : "" 
+  });
 
   const handleReport = ( e ) => {
     const { name, value } = e.target;
-    setReport({ ...report, [ name ]: value });
+    setReport({ 
+      ...report,
+      [name]: value 
+    });
   } 
 
   const handleSubmit = ( e ) => {
-    if( report.reason === "" ){
+    if( report.reason=== "" ){
       alert( "신고 사유를 입력해주세요" );
     }else if( report.reason.length < 10 ){
       alert( "10글자 이상 입력해주세요" );
     }else{
       alert( "신고가 완료 되었습니다." );
-      axios.post('/Report', { replyId : report.replyId, poemId : report.poemId, reason : report.reason }) 
-      .then( function (response) { console.log(response); } ) 
-      .catch( error => { console.log('error : ',error.response) } );
+      axios.post('/Report',{ 
+        "replyId"   : report.replyId, 
+        "poemId"    : report.poemId, 
+        "reason"    : report.reason 
+      }) 
+      .then( function (response) {
+         console.log(response); 
+      }) 
+      .catch( error => {
+        console.log('error : ',error.response) 
+      });
       window.location.reload();
     }
   }
@@ -34,8 +49,7 @@ function Report({ row }) {
         variant="outlined" 
         size="small" 
         value={report.reason} 
-        onChange={handleReport}
-        />
+        onChange={handleReport}/>
 			<button type="submit" >
 					신고
 			</button>

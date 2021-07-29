@@ -205,7 +205,7 @@ const All = () => {
         </PoemInputWrapper>
       </form>
 			<Padding/>
-			<Box flexDirection="row" style={{display: 'inline-flex'}}>
+			<Box flexDirection="row">
 				<Button onClick={() => handleSortingClick('글자순')}>
 					{sorting=== '글자순' ? <CheckedButton check={'글자순'}/> : '글자순' } 
 				</Button>
