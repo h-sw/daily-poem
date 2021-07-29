@@ -6,31 +6,28 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import styled from "styled-components"
-
 import Typography from '@material-ui/core/Typography';
-
 import ThumbUpAltIcon from '@material-ui/icons/ThumbUpAlt';
 
-
 const GridCard = styled(Card)`
-height: '100%';
-display: 'flex;
-flex-Direction: 'column';
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 `
 
 const GridButton = styled(Button)`
-  display:'flex';
-  justify-Content:'space-between';
-  background-Color:'#f2f4f7';
-  border-Color:'1px solid black;
+  display:flex;
+  justify-content:space-between;
+  background-color:#f2f4f7;
+  border-color:1px solid black;
 `
 
 const GridCardContent = styled(CardContent)`
-  flex-Grow: 1;
+  flex-grow: 1;
 `
 
 const GridCardMedia = styled(CardMedia)`
-  padding-Top: '56.25%'; 
+  padding-top: '56.25%'; 
 ` // 16:9
 
 const Grids = (props) => {
@@ -44,36 +41,36 @@ const callApi = async()=>{
 
 useEffect(()=>{
   callApi()
-  .then(res=>{
-    setHofData(res.data)
+  .then( res=>{
+    setHofData( res.data )
   })
-  .catch(err=>console.log(err));
+  .catch( err=>console.log(err) );
 }, []);
 
 return (
   <Grid container spacing={5}>
   {hofDatas.map((hofData) => (
-      <Grid item key={hofData.subject} xs={12} sm={6} md={4}>
-        <GridCard>
-          <GridButton 
-            onClick={() => window.location.href="/ranking/"+hofData.subject}
-          >
-              <GridCardContent>
-              <Hidden xsDown>
-                  <GridCardMedia image={hofData.img_url} title="Image title"/>
-              </Hidden>
-              <Typography 
-                gutterBottom variant="h4" 
-                component="h2"
-              > 
-                {hofData.subject} 
-                <ThumbUpAltIcon /> 
-                {hofData.likes} 
-              </Typography>
-              </GridCardContent>
-          </GridButton>
-        </GridCard>        
-      </Grid>
+    <Grid item key={hofData.subject} xs={12} sm={6} md={4}>
+      <GridCard>
+        <GridButton 
+          onClick={() => window.location.href="/ranking/"+hofData.subject}
+        >
+          <GridCardContent>
+            <Hidden xsDown>
+              <GridCardMedia image={hofData.img_url} title="Image title"/>
+            </Hidden>
+            <Typography 
+              gutterBottom variant="h4" 
+              component="h2"
+            > 
+              {hofData.subject} 
+              <ThumbUpAltIcon /> 
+              {hofData.likes} 
+            </Typography>
+          </GridCardContent>
+        </GridButton>
+      </GridCard>        
+    </Grid>
   ))}
   </Grid>
 )

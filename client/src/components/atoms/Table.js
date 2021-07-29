@@ -6,24 +6,21 @@ import {
 	Padding
 } from '../../styles/common';
 
-const NoticeTable = styled.div`
-  min-Width: 500;
-  flex: 1;
-  flex-Direction:'row';
-  align-Items:'flex-start';
-`
 const NoticeTitle = styled(Typography)`
-  font-size: 20px;
+  font-size       : 20px;
 `
+
 const NoticeWrapper = styled.div`
 	border					: 1px solid #8EB695;
 	border-radius		: 5px;
   padding         : 15px;
 `
+
 const ContentWrapper = styled.div`
-	height  : 80px;
-  color   : #565656;
+	height          : 80px;
+  color           : #565656;
 `
+
 const CreatedDateWrapper = styled.div`
 	display					: flex;
 	justify-content	: flex-end;
@@ -35,7 +32,7 @@ const CreatedDateWrapper = styled.div`
 const Table = ({ rowsPerPage, page, emptyRows, data }) => {
 
   return (
-    <NoticeTable>
+    <div>
     {(rowsPerPage > 0
       ? data.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
       : data
@@ -58,8 +55,8 @@ const Table = ({ rowsPerPage, page, emptyRows, data }) => {
     {emptyRows > 0 && (
       <Padding/>
     )}
-  </NoticeTable>
-    )
+  </div>
+  )
 }
 
 export default Table;
