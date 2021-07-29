@@ -14,6 +14,10 @@ import {
   Padding
 } from '../styles/common';
 
+const SORT_BY_WEEK = 1;
+const SORT_BY_MONTH = 2;
+const SORT_BY_YEAR = 3;
+
 const TitleWrapper = styled.div`
   margin  		: 50px;
 `
@@ -21,9 +25,10 @@ const TitleWrapper = styled.div`
 const BoldWrapper = styled.div`
 	font-weight	: bolder;
 `
+
 const Rank = () => {
 
-	const [sorting, setSorting] = React.useState('주간');
+	const [sorting, setSorting] = React.useState(SORT_BY_WEEK);
   const [rankData, setRankData] = React.useState([]);
   const [Weeklylist, setWeeklyList] = React.useState([]);
   const [monthlylist, setMonthlyList] = React.useState([]);
@@ -51,7 +56,6 @@ const Rank = () => {
 
       callWeeklyApi()
       .then(res=>{
-
         setWeeklyList(res.data)
       })
       .catch(err=>console.log(err));
@@ -76,21 +80,32 @@ const Rank = () => {
   };
 
 	const CheckedButton = ({check}) => {
-    if(check === '주간'&& Weeklylist){
+    if(check === SORT_BY_WEEK&& Weeklylist){
       setRankData(Weeklylist)
+      return(
+        <>
+          <CheckIcon/>
+          <BoldWrapper>{"주간"}</BoldWrapper>
+        </>)
     }
-    else if(check === '월간'&& monthlylist){
+    else if(check === SORT_BY_MONTH&& monthlylist){
       setRankData(monthlylist)
+      return(
+        <>
+          <CheckIcon/>
+          <BoldWrapper>{"월간"}</BoldWrapper>
+        </>)
     }
-    else if(check === '연간'&& yearlylist){
+    else if(check === SORT_BY_YEAR&& yearlylist){
       setRankData(yearlylist)
+      return(
+        <>
+          <CheckIcon/>
+          <BoldWrapper>{"연간"}</BoldWrapper>
+        </>)
     }
   
-    return(
-      <>
-        <CheckIcon/>
-        <BoldWrapper>{check}</BoldWrapper>
-      </>)
+
   }
 
   return (
@@ -101,14 +116,14 @@ const Rank = () => {
 				</TitleWrapper>
 				<div>
 					<Box flexDirection="row" style={{display: 'inline-flex'}}>
-						<Button onClick={() => handleSortingClick('주간')}>
-							{sorting=== '주간' ? <CheckedButton check={'주간'}/> : '주간' } 
+						<Button onClick={() => handleSortingClick(SORT_BY_WEEK)}>
+							{sorting === SORT_BY_WEEK  ? <CheckedButton check={SORT_BY_WEEK}/>   : "주간" } 
 						</Button>
-						<Button onClick={() => handleSortingClick('월간')}>
-							{sorting=== '월간' ? <CheckedButton check={'월간'}/> : '월간' } 
+						<Button onClick={() => handleSortingClick(SORT_BY_MONTH)}>
+							{sorting === SORT_BY_MONTH ? <CheckedButton check={SORT_BY_MONTH}/>  : "월간" } 
 						</Button>
-						<Button onClick={() => handleSortingClick('연간')}>
-							{sorting=== '연간' ? <CheckedButton check={'연간'}/> : '연간' }
+						<Button onClick={() => handleSortingClick(SORT_BY_YEAR)}>
+							{sorting === SORT_BY_YEAR  ? <CheckedButton check={SORT_BY_YEAR}/>   : "연간" }
 						</Button> 
             <Button
 							onClick={() => window.location.href="/ranking"}
