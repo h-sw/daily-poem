@@ -1,5 +1,10 @@
 import React from 'react';
-import { RootWrapper,TitleWrapper,Padding } from '../styles/common';
+import { 
+  RootWrapper,
+  TitleWrapper,
+  Padding,
+  BoldWrapper 
+} from '../styles/common';
 import styled from 'styled-components';
 import * as Hangul from 'hangul-js';
 import dayjs from 'dayjs';
@@ -80,10 +85,6 @@ const Icon = styled.i`
 	height				:20px;
 	color					:#8EB695;
 	marginRight		:5;
-`
-
-const BoldWrapper = styled.div`
-	font-weight	: bolder;
 `
 
 const KeywordCard = ({ data }) => {

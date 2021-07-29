@@ -11,7 +11,8 @@ import CheckIcon from '@material-ui/icons/Check';
 import TableContainer from '@material-ui/core/TableContainer';
 import {
   RootWrapper,
-  Padding
+  Padding,
+  BoldWrapper
 } from '../styles/common';
 
 const SORT_BY_WEEK = 1;
@@ -20,10 +21,6 @@ const SORT_BY_YEAR = 3;
 
 const TitleWrapper = styled.div`
   margin  		: 50px;
-`
-
-const BoldWrapper = styled.div`
-	font-weight	: bolder;
 `
 
 const Rank = () => {
