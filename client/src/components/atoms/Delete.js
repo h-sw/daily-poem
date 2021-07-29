@@ -49,7 +49,15 @@ function Delete({ row, isReply }) {
 
   return (
   	<form onSubmit ={handleSubmit} noValidate autoComplete="off">
-      <TextField id="outlined-basic" label="닉네임" name="name" variant="outlined" size="small" value={poemDelete.name} onChange={handleDeleteChange}/>
+      <TextField 
+        id="outlined-basic" 
+        label="닉네임" 
+        name="name" 
+        variant="outlined" 
+        size="small" 
+        value={poemDelete.name} 
+        onChange={handleDeleteChange}
+      />
       <TextField id="outlined-basic" label="비밀번호" name="password" variant="outlined" size="small"value={poemDelete.password} onChange={handleDeleteChange}/>
       <button type="submit" >
         삭제
