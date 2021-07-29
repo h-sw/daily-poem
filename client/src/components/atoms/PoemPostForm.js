@@ -125,7 +125,7 @@ function PoemPostForm({keyword}) {
                 <PoemKeyword>{item}</PoemKeyword>
                 <PoemInput
                   key={idx} 
-                  name={`poem_${idx}`} 
+                  name={`poem_${idx+1}`} 
                   fullWidth
                   placeholder="이 곳에 입력해주세요."
                   onChange={handleChange}
