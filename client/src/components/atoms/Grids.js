@@ -62,7 +62,14 @@ return (
               <Hidden xsDown>
                   <GridCardMedia image={hofData.img_url} title="Image title"/>
               </Hidden>
-              <Typography gutterBottom variant="h4" component="h2"> {hofData.subject} <ThumbUpAltIcon /> {hofData.likes} </Typography>
+              <Typography 
+                gutterBottom variant="h4" 
+                component="h2"
+              > 
+                {hofData.subject} 
+                <ThumbUpAltIcon /> 
+                {hofData.likes} 
+              </Typography>
               </GridCardContent>
           </GridButton>
         </GridCard>        

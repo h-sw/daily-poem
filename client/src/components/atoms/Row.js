@@ -171,9 +171,6 @@ function Row({ row, onReply = true, onLike = true}) {
           <PostCreatedDate>{dayjs(row.created).format("M.DD H:mm")}</PostCreatedDate>
         </FlexWrapper>
         <ContentWrapper>
-          {console.log("poem 1: ", row.poem_1)}
-          {console.log("poem 2: ", row.poem_2)}
-          {console.log("poem 3: ", row.poem_3)}
           <PoemText>
             <PoemWord>{row.word.split('')[0]}</PoemWord>{row.poem_1}
           </PoemText>
