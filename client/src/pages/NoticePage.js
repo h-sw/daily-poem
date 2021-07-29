@@ -9,6 +9,7 @@ import KeyboardArrowRight from '@material-ui/icons/KeyboardArrowRight';
 import LastPageIcon from '@material-ui/icons/LastPage';
 import styled from "styled-components"
 import Header from "../components/atoms/Header"
+import Table from "../components/atoms/Table"
 import dayjs from 'dayjs'
 import Typography from '@material-ui/core/Typography';
 import {
@@ -152,51 +153,35 @@ export default function NoticePage() {
 
   return (
     <RootWrapper>
-      <React.Fragment>
-    		<TitleWrapper>
-    			<Header name={"공지사항"}></Header>
-    		</TitleWrapper>
-    		<div >
-      		<NoticeTable aria-label="custom pagination table">
-						{(rowsPerPage > 0
-							? notice.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-							: notice
-						).map((row,index) => (
-							<div>
-								<Padding/>
-								<NoticeWrapper key={index}>
-									<NoticeTitle>
-										{row.title}
-									</NoticeTitle>
-									<ContentWrapper>
-										{row.content}
-									</ContentWrapper>
-									<CreatedDateWrapper>
-										{dayjs(notice.date).format("YYYY.MM.DD HH:mm")}
-									</CreatedDateWrapper>
-								</NoticeWrapper>
-							</div>
-						))}
-          	{emptyRows > 0 && (
-							<Padding/>
-						)}
-            <PaginationSelector
-							rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
-							colSpan={5}
-							count={notice.length}
-							rowsPerPage={rowsPerPage}
-							page={page}
-							SelectProps={{
-								inputProps: { 'aria-label': 'notice per page' },
-								native: true,
-							}}
-							onPageChange={handleChangePage}
-							onRowsPerPageChange={handleChangeRowsPerPage}
-							ActionsComponent={TablePaginationActions}
-						/>
-      		</NoticeTable>
-    		</div>
-  		</React.Fragment>
+      <TitleWrapper>
+        <Header name={"공지사항"}></Header>
+      </TitleWrapper>
+      <div>
+        <Table 
+          rowsPerPage = {rowsPerPage} 
+          page = {page} 
+          emptyRows = {emptyRows}
+          data = {notice} 
+        >
+        </Table>
+        {emptyRows > 0 && (
+          <Padding/>
+        )}
+        <PaginationSelector
+          rowsPerPageOptions={[5, 10, 25, { label: 'All', value: -1 }]}
+          colSpan={5}
+          count={notice.length}
+          rowsPerPage={rowsPerPage}
+          page={page}
+          SelectProps={{
+            inputProps: { 'aria-label': 'notice per page' },
+            native: true,
+          }}
+          onPageChange={handleChangePage}
+          onRowsPerPageChange={handleChangeRowsPerPage}
+          ActionsComponent={TablePaginationActions}
+        />
+      </div>
   	</RootWrapper>
   );
 }
