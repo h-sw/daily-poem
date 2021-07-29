@@ -8,18 +8,18 @@ import {NoPaddingButton} from '../../styles/common';
 import Delete from './Delete'
 
 const Padding = styled.div`
-   padding-top: 0.75rem;
+   padding-top  : 0.75rem;
 `
 const CommentWrapper = styled.div`
-   display: flex;
+   display      : flex;
 `
 const WriterText = styled(Typography)`
-   font-size: 12px;
-   margin-right: 1rem;
+   font-size    : 12px;
+   margin-right : 1rem;
 `
 const CreatedDate = styled(Typography)`
-   font-size: 12px;
-   color: #888;
+   font-size    : 12px;
+   color        : #888;
 `
 function HistoryComment({historyComment} ) {
 

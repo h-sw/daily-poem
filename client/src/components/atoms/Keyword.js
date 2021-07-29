@@ -7,26 +7,26 @@ import Schedule from 'react-schedule-job';
 import styled from "styled-components";
 
 const KewordWrapper = styled.div`
-  text-align: center;
-  margin-bottom: 40px;
+  text-align    : center;
+  margin-bottom : 40px;
 `
 
 const KeywordText = styled(Typography)`
-  disply: flex;
-  font-size: 48px;
-  font-weight: 700;
+  disply        : flex;
+  font-size     : 48px;
+  font-weight   : 700;
   flex-direction: column;
-  line-height: 1.1;
+  line-height   : 1.1;
 `
 
 const Subtitle = styled(Typography)`
-  line-height: 1.1;
-  font-size: 16px;
+  line-height   : 1.1;
+  font-size     : 16px;
 `
 
 const KeywordButton = styled(Button)`
-  padding: 5px 30px;
-  border-radius: 15px;
+  padding       : 5px 30px;
+  border-radius : 15px;
 `
 
 const Keyword = ({keyword, setKeyword}) => {

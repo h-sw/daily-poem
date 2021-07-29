@@ -29,12 +29,12 @@ const NoticeWrapper = styled.div`
 `
 
 const NoticeTitle = styled(Typography)`
-  font-size: 20px;
+  font-size       : 20px;
 `
 
 const ContentWrapper = styled.div`
-	height  : 80px;
-  color   : #565656;
+	height          : 80px;
+  color           : #565656;
 `
 
 const CreatedDateWrapper = styled.div`
