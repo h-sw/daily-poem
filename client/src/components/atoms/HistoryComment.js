@@ -4,36 +4,36 @@ import Collapse from '@material-ui/core/Collapse';
 import dayjs from 'dayjs';
 import DeleteIcon from '@material-ui/icons/Delete';
 import styled from "styled-components";
-import {NoPaddingButton} from '../../styles/common';
+import {
+  NoPaddingButton,
+  FlexWrapper,
+  Padding
+} from '../../styles/common';
 import Delete from './Delete'
 
-const Padding = styled.div`
-   padding-top  : 0.75rem;
-`
-const CommentWrapper = styled.div`
-   display      : flex;
-`
 const WriterText = styled(Typography)`
-   font-size    : 12px;
-   margin-right : 1rem;
+  font-size    : 12px;
+  margin-right : 1rem;
 `
+
 const CreatedDate = styled(Typography)`
-   font-size    : 12px;
-   color        : #888;
+  font-size    : 12px;
+  color        : #888;
 `
-function HistoryComment({historyComment} ) {
+
+function HistoryComment({ historyComment }) {
 
   const [openDeleteRpy, setOpenDeleteRpy] = React.useState(false);
 
   return (
     <Padding>
-      <CommentWrapper>
+      <FlexWrapper>
         <WriterText>{historyComment.name}</WriterText>
         <CreatedDate>{dayjs(historyComment.created).format("MM.DD HH:mm")}</CreatedDate>
-        <NoPaddingButton  aria-label="delete" onClick={() => setOpenDeleteRpy(!openDeleteRpy)}>
+        <NoPaddingButton  aria-label="delete" onClick={() => setOpenDeleteRpy( !openDeleteRpy )}>
           <DeleteIcon fontSize="small" />
-        </NoPaddingButton >
-    	</CommentWrapper>
+        </NoPaddingButton>
+    	</FlexWrapper>
       <WriterText>{historyComment.reply}</WriterText>
       <Collapse in={openDeleteRpy} timeout="auto" unmountOnExit>
         <Delete row={historyComment} isReply={true}/>

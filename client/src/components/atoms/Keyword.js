@@ -29,9 +29,8 @@ const KeywordButton = styled(Button)`
   border-radius : 15px;
 `
 
-const Keyword = ({keyword, setKeyword}) => {
+const Keyword = ({ keyword, setKeyword }) => {
   const [open_content, setOpen_content] = React.useState(false);
-
 
   const callKeywordApi = async()=>{
     const response = await fetch('/Keyword');
@@ -41,11 +40,11 @@ const Keyword = ({keyword, setKeyword}) => {
 
   const callKeyword = () => {
     callKeywordApi()
-    .then(res=>{
+    .then( res=>{
       //setKeyword(res.data[0].keyword);
-      setKeyword("도깨비");
+      setKeyword( "민경훈" );
     })
-    .catch(err=>console.log(err));
+    .catch( err=>console.log(err) );
   };
 
   const jobs = [
@@ -67,7 +66,7 @@ const Keyword = ({keyword, setKeyword}) => {
           // if true, dashboard is hidden
         }}
       />
-      <KeywordButton onClick={() => setOpen_content(!open_content)}>
+      <KeywordButton onClick={() => setOpen_content( !open_content )}>
         <div>
           <Subtitle>
             오늘의 단어

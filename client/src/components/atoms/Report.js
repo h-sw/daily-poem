@@ -19,7 +19,7 @@ function Report({ row }) {
   } 
 
   const handleSubmit = ( e ) => {
-    if( report.reason=== "" ){
+    if( report.reason === "" ){
       alert( "신고 사유를 입력해주세요" );
     }else if( report.reason.length < 10 ){
       alert( "10글자 이상 입력해주세요" );

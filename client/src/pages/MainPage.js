@@ -30,7 +30,7 @@ const IconText = styled(Typography)`
 
 const MainPage = () => {
   const [displayData, setDisplayData]=React.useState([]);
-  const [keyword, setKeyword] = React.useState("도깨비");
+  const [keyword, setKeyword] = React.useState("민경훈");
   const callLatestApi = async()=>{
     const response = await fetch('/MainLatest');
     const body = await response.json();
