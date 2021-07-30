@@ -1,9 +1,9 @@
 import './App.css';
 import React from 'react';
-import MainPage from './pages/MainPage';
-import NoticePage from './pages/NoticePage';
-import HofPage from './pages/HofPage';
-import RankingKeywordPage from './pages/RankingKeywordPage';
+import Main from './pages/Main';
+import Notice from './pages/Notice';
+import Hof from './pages/Hof';
+import HofDataContainer from './pages/HofDataContainer';
 import Rank from './pages/Rank';
 import All from './pages/All';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -15,10 +15,10 @@ function App() {
       <NavigationBar/>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={MainPage} />
-          <Route exact path="/notice" component={NoticePage} />
-          <Route exact path="/hof" component={HofPage} />
-          <Route exact path="/ranking/:keyword" component={RankingKeywordPage} />
+          <Route exact path="/" component={Main} />
+          <Route exact path="/notice" component={Notice} />
+          <Route exact path="/hof" component={Hof} />
+          <Route exact path="/ranking/:keyword" component={HofDataContainer} />
           <Route exact path="/rank" component={Rank}/>
           <Route exact path="/all" component={All}/>
         </Switch>

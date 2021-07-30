@@ -6,7 +6,7 @@ import {
 } from '../styles/common';
 import { useParams } from 'react-router-dom';
 
-const HOFdataContainer = () => {
+const HofDataContainer = () => {
   const [rankData, setRankData] = React.useState([]);
   const { keyword } = useParams()
 
@@ -40,4 +40,4 @@ const HOFdataContainer = () => {
     </RootWrapper>
   )
 }
-export default HOFdataContainer;
+export default HofDataContainer;

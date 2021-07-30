@@ -37,7 +37,7 @@ const IconWrapper = styled(FlexWrapper)`
   cursor          : pointer;
 `
 
-const HofPage = () => {
+const Hof = () => {
   const [rankingList, setRankingList] = React.useState([]);
   
   const initRankingList = async () => {
@@ -91,4 +91,4 @@ const HofPage = () => {
   );
 }
 
-export default HofPage;
+export default Hof;

@@ -27,7 +27,7 @@ const IconText = styled(Typography)`
   color         : #333333;
 `
 
-const MainPage = () => {
+const Main = () => {
   const [displayData, setDisplayData]=React.useState([]);
   const [keyword, setKeyword] = React.useState("민경훈");
   const callLatestApi = async()=>{
@@ -55,4 +55,4 @@ const MainPage = () => {
     </RootWrapper>
   )
 }
-export default MainPage;
+export default Main;

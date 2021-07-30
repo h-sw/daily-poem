@@ -15,7 +15,7 @@ const PaginationSelector = styled(TablePagination)`
 	border-bottom		: none;
 `
 
-export default function NoticePage() {
+export default function Notice() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
   const [notice, setNotice]=React.useState([]);
