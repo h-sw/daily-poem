@@ -27,13 +27,13 @@ export default function NoticePage() {
   }
 
   React.useEffect(()=>{
-      callApi()
-      .then(res => {
-        setNotice(res.data)
-      })
-      .catch(err=>{
-        console.log(err)
-      });
+    callApi()
+    .then(res => {
+      setNotice(res.data)
+    })
+    .catch(err=>{
+      console.log(err)
+    });
   }, []);
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, notice.length - page * rowsPerPage);

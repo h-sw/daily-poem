@@ -163,18 +163,18 @@ const RankingPage = () => {
         container 
         spacing={3}
       >
-        {rankingList.map((data, idx) => (
-            <Grid
-              key={idx} 
-              item 
-              xs={12} 
-              sm={6} 
-              md={4}
-            >
-              <KeywordCard data={data} />   
-            </Grid>
-        ))}
+      {rankingList.map((data, idx) => (
+        <Grid
+          key={idx} 
+          item 
+          xs={12} 
+          sm={6} 
+          md={4}
+        >
+          <KeywordCard data={data} />   
         </Grid>
+      ))}
+      </Grid>
     </RootWrapper>
   );
 }

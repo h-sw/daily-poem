@@ -260,4 +260,4 @@ function Row({ row, onReply = true, onLike = true}) {
   );
 }
 
-  export default Row;
+export default Row;

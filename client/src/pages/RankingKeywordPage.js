@@ -17,25 +17,25 @@ const HOFdataContainer = () => {
   }
 
   useEffect(()=>{
-      callWeeklyApi()
-      .then(res=>{
-        console.log(res.data)
-        setRankData(res.data)
-      })
-      .catch(err=>console.log(err));
+    callWeeklyApi()
+    .then(res=>{
+      console.log(res.data)
+      setRankData(res.data)
+    })
+    .catch(err=>console.log(err));
   }, []);
 
   return (
     <RootWrapper>
       <Header name={keyword}></Header>
       <div>
-        {rankData && 
-          <div> 
-            {rankData.map((row, idx) => (
-              <Row key={idx} row={row} onReply={false} onLike={false}/>
-            ))}
-          </div>
-        }
+      {rankData && 
+        <div> 
+        {rankData.map((row, idx) => (
+          <Row key={idx} row={row} onReply={false} onLike={false}/>
+        ))}
+        </div>
+      }
       </div>
     </RootWrapper>
   )
