@@ -47,7 +47,7 @@ const MainPage = () => {
   return (
     <RootWrapper>
       <Keyword keyword={keyword} setKeyword={setKeyword}/>
-      <KeywordButton onClick={() => window.location.href="/ranking/"+keyword}>
+      <KeywordButton onClick={() => window.location.href="/hof/"+keyword}>
         <Icon className="fi-rr-add"/>
         <IconText>3행시 더보기</IconText>
       </KeywordButton>

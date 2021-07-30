@@ -122,7 +122,7 @@ const Rank = () => {
 						{sorting === SORT_BY_YEAR  ? <CheckedButton check={SORT_BY_YEAR}/>   : "연간" }
 					</Button> 
           <Button
-						onClick={() => window.location.href="/ranking"}
+						onClick={() => window.location.href="/hof"}
 					>
 						명예의 전당
 					</Button>
