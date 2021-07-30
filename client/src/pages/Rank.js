@@ -69,7 +69,6 @@ const Rank = () => {
     })
     .catch(err=>console.log(err));
 
-    setRankData(Weeklylist);
   }, []);
 
   const handleSortingClick = (category) => {

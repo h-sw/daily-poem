@@ -71,7 +71,7 @@ const HofKeywordCard = ({ data }) => {
     if(cardRef.current){
       setCardWidth(cardRef.current.offsetWidth)
     }
-  }, [cardRef.current])
+  }, [cardRef])
 
   return (
     <Card 

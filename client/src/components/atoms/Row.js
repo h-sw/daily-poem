@@ -113,10 +113,10 @@ function Row({ row }) {
   }
 
   const handleSubmit = (e) => {
-    if( values.id       =="" ||
-        values.password =="" ||
-        values.reply    =="" ){
-      if( values.reply  =="" ){
+    if( values.id       ==="" ||
+        values.password ==="" ||
+        values.reply    ==="" ){
+      if( values.reply  ==="" ){
         alert("댓글을 입력해주세요!");
       }
       else{

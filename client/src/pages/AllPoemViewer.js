@@ -22,7 +22,7 @@ const AllPoemViewer = () => {
       setRankData(res.data)
     })
     .catch(err=>console.log(err));
-  }, []);
+  });
 
   return (
     <RootWrapper>
