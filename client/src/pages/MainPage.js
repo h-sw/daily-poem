@@ -1,7 +1,6 @@
 import React from 'react';
 import PoemList from '../components/atoms/PoemList';
 import { RootWrapper } from '../styles/common';
-//import AllPoemList from '../components/organisms/AllPoemList';
 import Keyword from '../components/atoms/Keyword';
 import { Typography,Button } from '@material-ui/core';
 import styled from 'styled-components'
@@ -42,8 +41,7 @@ const MainPage = () => {
     .then(res=>{
       setDisplayData(res.data)
     })
-    .catch(err=>console.log(err));
-
+    .catch( err=>console.log(err) );
   }, []);
 
   return (

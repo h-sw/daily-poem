@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { useTheme } from '@material-ui/core/styles';
 import TablePagination from '@material-ui/core/TablePagination';
@@ -10,8 +10,6 @@ import LastPageIcon from '@material-ui/icons/LastPage';
 import styled from "styled-components"
 import Header from "../components/atoms/Header"
 import Table from "../components/atoms/Table"
-import dayjs from 'dayjs'
-import Typography from '@material-ui/core/Typography';
 import {
   RootWrapper,
   TitleWrapper,
@@ -21,29 +19,6 @@ import {
 const PaginationWrapper = styled.div`
   flex-Shrink			: 0;
   margin-Left			: theme.spacing(2.5);
-`
-
-const NoticeWrapper = styled.div`
-	border					: 1px solid #8EB695;
-	border-radius		: 5px;
-  padding         : 15px;
-`
-
-const NoticeTitle = styled(Typography)`
-  font-size       : 20px;
-`
-
-const ContentWrapper = styled.div`
-	height          : 80px;
-  color           : #565656;
-`
-
-const CreatedDateWrapper = styled.div`
-	display					: flex;
-	justify-content	: flex-end;
-	font-size 			: 14px;
-	align-items			: flex-end;
-  color           : #888888;
 `
 
 const PaginationSelector = styled(TablePagination)`
@@ -112,13 +87,6 @@ TablePaginationActions.propTypes = {
   rowsPerPage: PropTypes.number.isRequired,
 };
 
-const NoticeTable = styled.div`
-  min-Width: 500;
-  flex: 1;
-  flex-Direction:'row';
-  align-Items:'flex-start';
-`
-
 export default function NoticePage() {
   const [page, setPage] = React.useState(0);
   const [rowsPerPage, setRowsPerPage] = React.useState(5);
@@ -130,7 +98,7 @@ export default function NoticePage() {
     return body;
   }
 
-  useEffect(()=>{
+  React.useEffect(()=>{
       callApi()
       .then(res => {
         setNotice(res.data)
