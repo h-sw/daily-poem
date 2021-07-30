@@ -77,7 +77,7 @@ const HofKeywordCard = ({ data }) => {
     <Card 
       ref={cardRef} 
       height={cardWidth}
-      onClick={() => window.location.href="/ranking/"+data.subject}
+      onClick={() => window.location.href="/all/"+data.subject}
     >
       <CardImg src={data.img_url} alt=""/>
       <CardContentWrapper>

@@ -6,7 +6,7 @@ import {
 } from '../styles/common';
 import { useParams } from 'react-router-dom';
 
-const HofDataContainer = () => {
+const AllPoemViewer = () => {
   const [rankData, setRankData] = React.useState([]);
   const { keyword } = useParams()
 
@@ -19,7 +19,6 @@ const HofDataContainer = () => {
   useEffect(()=>{
     callWeeklyApi()
     .then(res=>{
-      console.log(res.data)
       setRankData(res.data)
     })
     .catch(err=>console.log(err));
@@ -32,7 +31,7 @@ const HofDataContainer = () => {
       {rankData && 
         <div> 
         {rankData.map((row, idx) => (
-          <Row key={idx} row={row} onReply={false} onLike={false}/>
+          <Row key={idx} row={row}/>
         ))}
         </div>
       }
@@ -40,4 +39,4 @@ const HofDataContainer = () => {
     </RootWrapper>
   )
 }
-export default HofDataContainer;
+export default AllPoemViewer;

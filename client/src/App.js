@@ -3,7 +3,7 @@ import React from 'react';
 import Main from './pages/Main';
 import Notice from './pages/Notice';
 import Hof from './pages/Hof';
-import HofDataContainer from './pages/HofDataContainer';
+import AllPoemViewer from './pages/AllPoemViewer';
 import Rank from './pages/Rank';
 import All from './pages/All';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
@@ -18,7 +18,7 @@ function App() {
           <Route exact path="/" component={Main} />
           <Route exact path="/notice" component={Notice} />
           <Route exact path="/hof" component={Hof} />
-          <Route exact path="/ranking/:keyword" component={HofDataContainer} />
+          <Route exact path="/all/:keyword" component={AllPoemViewer} />
           <Route exact path="/rank" component={Rank}/>
           <Route exact path="/all" component={All}/>
         </Switch>
