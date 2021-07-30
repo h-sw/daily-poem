@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 import Report from './Report'
 import Collapse from '@material-ui/core/Collapse';
 import BlockIcon from '@material-ui/icons/Block';
+import GridInput from '../atoms/GridInput'
 import styled from "styled-components";
 import {
   Spacer,
@@ -110,7 +111,7 @@ function Row({ row, onReply = true, onLike = true}) {
     "reply"     : "" 
   });
 
-  const  handleChange = (e) => {
+  const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ 
       ...values, 
@@ -160,6 +161,10 @@ function Row({ row, onReply = true, onLike = true}) {
     .catch(error => { 
       console.log('error : ', error.response) 
     }); 
+  }
+
+  const fun = () => {
+    alert('fun')
   }
 
   return (
@@ -217,36 +222,34 @@ function Row({ row, onReply = true, onLike = true}) {
         }
         <CommentFormWrapper>
           <Grid container>
-            <Grid xs={6} md={6}>
-              <Input 
-                fullWidth
-                name="id" 
-                value={values.id} 
-                onChange={handleChange}
-                placeholder="닉네임"
-              />
-            </Grid>
-            <Grid xs={6} md={6}>
-              <Input 
-                fullWidth
-                name="password" 
-                type="password"
-                value={values.password} 
-                onChange={handleChange}  
-                placeholder="비밀번호"
-              />
-            </Grid>
-            <Grid item xs={12} md={12}>
-              <Input 
-                fullWidth
-                multiline
-                rows={5}
-                name="reply"
-                value={values.reply} 
-                onChange={handleChange} 
-                placeholder="이 곳에 댓글을 작성해주세요."
-              />
-            </Grid>
+            <GridInput 
+              xs={6} 
+              md={6} 
+              name={"id"} 
+              value={values.id} 
+              onChange={handleChange} 
+              placeholder={"닉네임"}
+              fun={fun}
+            />
+            <GridInput 
+              xs={6} 
+              md={6} 
+              name={"password"} 
+              type={"password"}
+              value={values.password} 
+              onChange={handleChange} 
+              placeholder={"비밀번호"}
+            />
+            <GridInput 
+              xs={12} 
+              md={12} 
+              rows = {5}
+              name={"reply"} 
+              value={values.reply} 
+              onChange={handleChange} 
+              placeholder={"이 곳에 댓글을 작성해주세요."}
+              multiline={true}
+            />
           </Grid>
           <CommentSubmitButton onClick={handleSubmit}>
             등록

@@ -87,10 +87,6 @@ const Icon = styled.i`
    marginRight      :5;
 `
 
-const BoldWrapper = styled.div`
-   font-weight   : bolder;
-`
-
 const SORT_BY_WORD = 1; /*글자순*/
 const SORT_BY_DATE = 2; /*날짜순*/
 
