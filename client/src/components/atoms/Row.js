@@ -2,7 +2,6 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { Grid } from '@material-ui/core';
 import Button from '@material-ui/core/Button'
-import InputBase from '@material-ui/core/InputBase'
 import axios from 'axios';
 import dayjs from 'dayjs';
 import Report from './Report'
@@ -73,13 +72,6 @@ const CommentContainer = styled.div`
   margin          : 20px;
 `
 
-const Input = styled(InputBase)`
-  border          : 1px solid #EEE;
-  font-size       : 14px;
-  padding-left    : 10px;
-  color           : #333333;
-`
-
 const CommentSubmitButton = styled(Button)`
   position        : absolute;
   bottom          : 0px;
@@ -101,7 +93,7 @@ const EmptyText = styled(Typography)`
   color           : #888888;
 `
 
-function Row({ row, onReply = true, onLike = true}) {
+function Row({ row }) {
   const [open_report, setOpen_report] = React.useState(false);
 
   const [values, setValues] = React.useState({ 

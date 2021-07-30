@@ -2,7 +2,7 @@ import React from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
 import styled from "styled-components"
 import Header from "../components/atoms/Header"
-import Table from "../components/atoms/Table"
+import NoticeTable from "../components/atoms/NoticeTable"
 import NoticePaginationActions from '../components/atoms/NoticePaginationActions';
 import {
   RootWrapper,
@@ -53,13 +53,13 @@ export default function Notice() {
         <Header name={"공지사항"}></Header>
       </TitleWrapper>
       <div>
-        <Table 
+        <NoticeTable
           rowsPerPage = {rowsPerPage} 
           page = {page} 
           emptyRows = {emptyRows}
           data = {notice} 
         >
-        </Table>
+        </NoticeTable>
         {emptyRows > 0 && (
           <Padding/>
         )}
