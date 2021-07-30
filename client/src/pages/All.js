@@ -19,76 +19,72 @@ import {
 } from '@material-ui/core'
 
 const Title = styled(Typography)`
-  color          : #222222;
-  font-weight    : 600;
-  text-align     : center;
-  font-size      : 28px;
+  color          	: #222222;
+  font-weight    	: 600;
+  text-align     	: center;
+  font-size      	: 28px;
 `
 
 const Subtitle = styled(Typography)`
-  color          : #222222;
-  font-weight    : 500;
-  text-align     : center;
-  font-size      : 14px;
+  color          	: #222222;
+  font-weight    	: 500;
+  text-align     	: center;
+  font-size      	: 14px;
 `
 
 const Card = styled(CardActionArea)`
-  position      : relative;
-  border-radius : 10px;
-  height        : ${props => props.height / 1.8}px;
-  overflow      : hidden;
-  box-shadow    : 10px 10px 30px #d9d9d9, -10px -10px 30px #ffffff;
+  position     	 	: relative;
+  border-radius 	: 10px;
+  height        	: ${props => props.height / 1.8}px;
+  overflow      	: hidden;
+  box-shadow    	: 10px 10px 30px #d9d9d9, -10px -10px 30px #ffffff;
 `
 
 const CardImg = styled.div`
-  width            : 100%;
-  display             : block;
-   background-color:#8EB695;
+  width           : 100%;
+  display         : block;
+  background-color:#8EB695;
 `
 
 const CardContentWrapper = styled.div`
-  position       : absolute;
-  padding        : 20px;
-  background     : rgba(0,0,0, 0.15);
-  width          : 100%;
-  height         : 100%;
-  top            : 0;
-  left           : 0;
+  position        : absolute;
+  padding         : 20px;
+  background      : rgba(0,0,0, 0.15);
+  width           : 100%;
+  height					: 100%;
+  top            	: 0;
+  left           	: 0;
 `
 
 const CardTitle = styled(Typography)`
-  font-weight    : 600;
-  font-size      : 28px;
-  color          : #000;
+  font-weight    	: 600;
+  font-size      	: 28px;
+  color          	: #000;
 `
 
 const PoemInputWrapper = styled.div`
-  display       : flex;
-  margin        : 5px 0px;
-  border-radius : 5px;
-  padding       : 0px 0px;
-  border        : 1px solid #8FB896;
+  display       	: flex;
+  margin        	: 5px 0px;
+  border-radius 	: 5px;
+  padding       	: 0px 0px;
+  border        	: 1px solid #8FB896;
 `
 
 const PoemInput = styled(InputBase)`
-  font-size      : 14px;
-  color          : #565656;
-  font-weight    : 600;
+  font-size      	: 14px;
+  color          	: #565656;
+  font-weight    	: 600;
 `
 
 const ClassifyWrapper = styled.div`
-   padding-bottom: 5px;
+  padding-bottom	: 5px;
 `
 
 const Icon = styled.i`
-   font-size         :20px;
-   height            :20px;
-   color               :#8EB695;
-   marginRight      :5;
-`
-
-const BoldWrapper = styled.div`
-   font-weight   : bolder;
+  font-size      	:20px;
+  height         	:20px;
+  color          	:#8EB695;
+  marginRight    	:5;
 `
 
 const SORT_BY_WORD = 1; /*글자순*/
@@ -116,7 +112,6 @@ const KeywordCard = ({ data }) => {
           {data.word}
         </CardTitle>
       </CardContentWrapper>
-      
     </Card>
   )
 }
@@ -142,7 +137,6 @@ const All = () => {
         let tempClassify = [];
         let idx = 0;
         for(const d of res.data){
-          console.log('d: ', d.date);
           if(!tempClassify.includes(dayjs(d.date).format('YYYY.MM'))){
             tempClassify[idx] = dayjs(d.date).format('YYYY.MM');
             idx += 1;
@@ -197,10 +191,8 @@ const All = () => {
 
    const CheckedButton = ({check}) => {
     if(check === SORT_BY_WORD){
-      console.log('글자순');
     }
     else if(check === SORT_BY_DATE){
-      console.log('날짜순');
     }
     return(
       <>
