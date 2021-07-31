@@ -1,10 +1,23 @@
 import React,{ useEffect } from 'react';
 import Row from '../components/atoms/Row';
+import Button from '@material-ui/core/Button';
 import Header from '../components/atoms/Header';
+import styled from 'styled-components';
 import {
-  RootWrapper
+  RootWrapper,
+  FlexWrapper,
 } from '../styles/common';
 import { useParams } from 'react-router-dom';
+
+const IconWrapper = styled(FlexWrapper)`
+  cursor          : pointer;
+`
+const Icon = styled.i`
+  font-size       : 24px;
+  height          : 41px;
+  color           : #333333;
+  margin-top      : 10px;
+`
 
 export default function AllPoemViewer(){
   const [rankData, setRankData] = React.useState([]);
@@ -26,6 +39,11 @@ export default function AllPoemViewer(){
 
   return (
     <RootWrapper>
+      <IconWrapper>
+        <Button onClick={() => window.location.href="/all"}>
+          <Icon className="fi-rr-angle-double-left" />
+        </Button>
+      </IconWrapper>
       <Header name={keyword}></Header>
         {rankData && 
           <> 
