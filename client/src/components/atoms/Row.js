@@ -100,8 +100,9 @@ function Row({ row }) {
   return (
     <div>
       <RowContext.Provider value={row}>
-        <ViewPoem>
+        <ViewPoem
           submit={likeSubmit}
+        >
         </ViewPoem>
       </RowContext.Provider>
       <CommentContainer>
