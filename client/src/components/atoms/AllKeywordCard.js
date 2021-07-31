@@ -43,13 +43,13 @@ const AllKeywordCard = ({ data }) => {
     if(cardRef.current){
       setCardWidth(cardRef.current.offsetWidth)
     }
-  }, [cardRef.current])
+  }, [cardRef])
 
   return (
     <Card 
       ref={cardRef} 
       height={cardWidth}
-      onClick={() => window.location.href="/ranking/"+data.word}
+      onClick={() => window.location.href="/all/"+data.word}
     >
       <CardImg />
       <CardContentWrapper>

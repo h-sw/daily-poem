@@ -31,7 +31,7 @@ const Icon = styled.i`
 const AllSearch = ({ setValues }) => {
 
 	const handleChange = (e) => {
-    const { name, value } = e.target;
+    const {value } = e.target;
     setValues(value);
   }
 

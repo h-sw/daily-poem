@@ -29,8 +29,8 @@ function Delete({ row, isReply }) {
     e.preventDefault();
     if( poemDelete.name ==="" || poemDelete.password ==="" ){
       alert( "삭제 정보를 입력해주세요." );
-    }else if( poemDelete.name     != row.name ||
-              poemDelete.password != row.password) {
+    }else if( poemDelete.name     !== row.name ||
+              poemDelete.password !== row.password) {
       alert( "삭제 정보가 틀렸습니다." );
     }else{
       if( isReply ) {

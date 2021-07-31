@@ -14,19 +14,6 @@ var pool = require("./lib/pool");
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-const subject_dit = {
-  '바나나' : 0,
-  '복숭아' : 1,
-  '청포도' : 2,
-  '산딸기' : 3,
-  '코코넛' : 4,
-  '두리안' : 5,
-  '무화과' : 6,
-  '오렌지' : 7,
-  '토마토' : 8,
-  '한라봉' : 9,
-};
-
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));

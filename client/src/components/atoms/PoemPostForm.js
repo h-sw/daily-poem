@@ -153,17 +153,6 @@ function PoemPostForm({ keyword }) {
               </PoemInputWrapper>
             )
           })}
-          {/*
-            <TextField  InputProps={{
-              startAdornment: <InputAdornment position="start">{keyword.split('')[0]}</InputAdornment>,
-              }} required id="standard-required" name="poem_1" value={values.poem_1} onChange={handleChange}/>
-            <TextField  InputProps={{
-              startAdornment: <InputAdornment position="start">{keyword.split('')[1]}</InputAdornment>,
-              }} required id="standard-required" name="poem_2" value={values.poem_2} onChange={handleChange}/>
-            <TextField  InputProps={{
-              startAdornment: <InputAdornment position="start">{keyword.split('')[2]}</InputAdornment>,
-              }} required id="standard-required" name="poem_3" value={values.poem_3} onChange={handleChange}/>
-          */}
         </PostWrapper>
         <ButtonWrapper>
           <SubmitButton type="submit">

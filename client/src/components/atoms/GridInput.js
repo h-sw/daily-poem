@@ -13,34 +13,34 @@ const GridInput = ({ xs, md, rows, name, type, value, onChange, placeholder, mul
 
   return (
     <>
-      {multiline ?
-        <Grid xs={xs} md={md}>
-          <Input 
-            fullWidth
-            multiline
-            rows={rows}
-            name={name}
-            type={type}
-            value={value} 
-            onChange={onChange}
-            placeholder={placeholder}
-          />
-        </Grid>
+    {multiline ?
+      <Grid xs={xs} md={md}>
+        <Input 
+          fullWidth
+          multiline
+          rows={rows}
+          name={name}
+          type={type}
+          value={value} 
+          onChange={onChange}
+          placeholder={placeholder}
+        />
+      </Grid>
       : 
-        <Grid xs={xs} md={md}>
-          <Input 
-            fullWidth
-            name={name}
-            rows={rows}
-            type={type}
-            value={value} 
-            onChange={onChange}
-            placeholder={placeholder}
-          />
-        </Grid>
-      }
+      <Grid xs={xs} md={md}>
+        <Input 
+          fullWidth
+          name={name}
+          rows={rows}
+          type={type}
+          value={value} 
+          onChange={onChange}
+          placeholder={placeholder}
+        />
+      </Grid>
+    }
     </>
-    )
+  )
 }
 
 export default GridInput;

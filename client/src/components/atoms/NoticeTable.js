@@ -29,7 +29,7 @@ const CreatedDateWrapper = styled.div`
   color           : #888888;
 `
 
-const Table = ({ rowsPerPage, page, emptyRows, data }) => {
+const NoticeTable = ({ rowsPerPage, page, emptyRows, data }) => {
 
   return (
     <div>
@@ -59,4 +59,4 @@ const Table = ({ rowsPerPage, page, emptyRows, data }) => {
   )
 }
 
-export default Table;
+export default NoticeTable;

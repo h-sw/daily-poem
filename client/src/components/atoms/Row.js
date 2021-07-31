@@ -2,22 +2,16 @@ import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import { Grid } from '@material-ui/core';
 import Button from '@material-ui/core/Button'
-import InputBase from '@material-ui/core/InputBase'
 import axios from 'axios';
 import GridInput from '../atoms/GridInput'
-import Card from './Card'
+import ViewPoem from './ViewPoem'
 import styled from "styled-components";
 import HistoryComment from './HistoryComment.js'
 
+export const RowContext = React.createContext();
+
 const CommentContainer = styled.div`
   margin          : 20px;
-`
-
-const Input = styled(InputBase)`
-  border          : 1px solid #EEE;
-  font-size       : 14px;
-  padding-left    : 10px;
-  color           : #333333;
 `
 
 const CommentSubmitButton = styled(Button)`
@@ -41,15 +35,14 @@ const EmptyText = styled(Typography)`
   color           : #888888;
 `
 
-function Row({ row, onReply = true, onLike = true}) {
-
+function Row({ row }) {
   const [values, setValues] = React.useState({ 
     "poemId"    : "", 
     "id"        : "", 
     "password"  : "", 
     "reply"     : "" 
   });
-
+  
   const handleChange = (e) => {
     const { name, value } = e.target;
     setValues({ 
@@ -60,10 +53,10 @@ function Row({ row, onReply = true, onLike = true}) {
   }
 
   const handleSubmit = (e) => {
-    if( values.id       =="" ||
-        values.password =="" ||
-        values.reply    =="" ){
-      if( values.reply  =="" ){
+    if( values.id       === "" ||
+        values.password === "" ||
+        values.reply    === "" ){
+      if( values.reply  === "" ){
         alert("댓글을 입력해주세요!");
       }
       else{
@@ -102,16 +95,15 @@ function Row({ row, onReply = true, onLike = true}) {
     }); 
   }
 
-  const fun = () => {
-    alert('fun')
-  }
+
 
   return (
     <div>
-      <Card
-        row={row} 
-        submit={likeSubmit}>
-      </Card>
+      <RowContext.Provider value={row}>
+        <ViewPoem>
+          submit={likeSubmit}
+        </ViewPoem>
+      </RowContext.Provider>
       <CommentContainer>
         {row.replyList && row.replyList.map((historyComment, idx) => {
           return(
@@ -130,7 +122,6 @@ function Row({ row, onReply = true, onLike = true}) {
               value={values.id} 
               onChange={handleChange} 
               placeholder={"닉네임"}
-              fun={fun}
             />
             <GridInput 
               xs={6} 
@@ -161,4 +152,4 @@ function Row({ row, onReply = true, onLike = true}) {
   );
 }
 
-  export default Row;
+export default Row;

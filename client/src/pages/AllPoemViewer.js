@@ -6,10 +6,10 @@ import {
 } from '../styles/common';
 import { useParams } from 'react-router-dom';
 
-const HOFdataContainer = () => {
+export default function AllPoemViewer(){
   const [rankData, setRankData] = React.useState([]);
   const { keyword } = useParams()
-
+  
   const callWeeklyApi = async()=>{
     const response = await fetch('/all/'+ keyword);
     const body = await response.json();
@@ -17,27 +17,23 @@ const HOFdataContainer = () => {
   }
 
   useEffect(()=>{
-      callWeeklyApi()
-      .then(res=>{
-        console.log(res.data)
-        setRankData(res.data)
-      })
-      .catch(err=>console.log(err));
+    callWeeklyApi()
+    .then(res=>{
+      setRankData(res.data)
+    })
+    .catch(err=>console.log(err));
   }, []);
 
   return (
     <RootWrapper>
       <Header name={keyword}></Header>
-      <div>
         {rankData && 
-          <div> 
-            {rankData.map((row, idx) => (
-              <Row key={idx} row={row} onReply={false} onLike={false}/>
-            ))}
-          </div>
+          <> 
+          {rankData.map((row, idx) => (
+            <Row key={idx} row={row}/>
+          ))}
+          </>
         }
-      </div>
     </RootWrapper>
   )
 }
-export default HOFdataContainer;

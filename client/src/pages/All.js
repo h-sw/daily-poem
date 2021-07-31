@@ -77,7 +77,7 @@ const All = () => {
       if(values.length > 0){
         var searcher = new Hangul.Searcher(values);
         allKeyword.forEach((item) => {
-          if(searcher.search(item.word)==0){
+          if(searcher.search(item.word)===0){
             temp.push(item);
           }
       })
@@ -89,7 +89,7 @@ const All = () => {
     }catch(e){
 
     }
-  }, [values]);
+  }, [values, allKeyword]);
 
   const handleSortingClick = (category) => {
     if(category === SORT_BY_WORD){
@@ -154,7 +154,7 @@ const All = () => {
               {display.map((data, idx) => (
                 sorting === SORT_BY_WORD ?
                 //item은 ㄱ,ㄴ,ㄷ,ㄹ, 분류 , data는 현재 displaydata
-                (Hangul.search(data.word,item)==0 ?
+                (Hangul.search(data.word,item)===0 ?
                 <Grid
                   key={idx} 
                   item 
@@ -165,7 +165,7 @@ const All = () => {
                 <AllKeywordCard data={data} />
                 </Grid> : <></>)
                 :
-                (dayjs(data.date).format('YYYY.MM')==item ?
+                (dayjs(data.date).format('YYYY.MM')===item ?
                 <Grid
                     key={idx} 
                     item 

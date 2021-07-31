@@ -42,7 +42,7 @@ const Keyword = ({ keyword, setKeyword }) => {
     callKeywordApi()
     .then( res=>{
       //setKeyword(res.data[0].keyword);
-      setKeyword( "민경훈" );
+      setKeyword( "민직킴" );
     })
     .catch( err=>console.log(err) );
   };
