@@ -247,7 +247,9 @@ app.get('/HOfPage', async (req, res, next) => {
   try {
     const sqlHof = `
       SELECT * 
-      FROM hof
+      FROM dailyKeword 
+      ORDER BY likes DESC
+      LIMIT 10
     `
     const resultHof = await pool.query(sqlHof);
     
