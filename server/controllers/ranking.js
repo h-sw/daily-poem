@@ -2,11 +2,20 @@ const RANKING = require("../models/ranking")
 
 exports.read = async (req, res, next) => {
   try {
-    const result = await RANKING.read();
+    const resultPoem = await RANKING.read();
+    
+    let poems = resultPoem;
+    let idx = 0;
+
+    for(const poem of poems){
+      const resultReply = await KEYWORD.readReply(poem.poemId); 
+      poems[idx]["replyList"] = resultReply;
+      idx += 1;
+    }
     res.json({ 
       code: 200, 
-      result: "success", 
-      data : result 
+      result: "success",  
+      data : poems
     });
   }
   catch(e) {
@@ -19,25 +28,15 @@ exports.read = async (req, res, next) => {
 }
 
 exports.readWeekly = async (req, res, next) => {
-
   try {
-    const result = await RANKING.readWeekly();
-    
-    let poems = result;
+    const resultPoem = await RANKING.readWeekly();
+
+    let poems = resultPoem;
     let idx = 0;
 
     for(const poem of poems){
-      const sqlReply = `
-        SELECT * 
-        FROM REPLY
-        WHERE REPLY.poemId = ?
-      `
-      const resultReply = await pool.query(sqlReply, [
-        poem.poemId
-      ])
-      
-      poems[idx]["replyList"] = resultReply[0]
-
+      const resultReply = await KEYWORD.readReply(poem.poemId); 
+      poems[idx]["replyList"] = resultReply;
       idx += 1;
     }
     res.json({ 
@@ -54,26 +53,17 @@ exports.readWeekly = async (req, res, next) => {
     });
   }
 }
+
 exports.readMonthly = async (req, res, next) => {
-
   try {
-    const result = await RANKING.readMonthly();
+    const resultPoem = await RANKING.readMonthly();
     
-    let poems = result;
+    let poems = resultPoem;
     let idx = 0;
 
     for(const poem of poems){
-      const sqlReply = `
-        SELECT * 
-        FROM REPLY
-        WHERE REPLY.poemId = ?
-      `
-      const resultReply = await pool.query(sqlReply, [
-        poem.poemId
-      ])
-      
-      poems[idx]["replyList"] = resultReply[0]
-
+      const resultReply = await KEYWORD.readReply(poem.poemId); 
+      poems[idx]["replyList"] = resultReply;
       idx += 1;
     }
     res.json({ 
@@ -90,26 +80,18 @@ exports.readMonthly = async (req, res, next) => {
     });
   }
 }
+
 exports.readYearly = async (req, res, next) => {
 
   try {
-    const result = await RANKING.readYearly();
+    const resultPoem = await RANKING.readYearly();
     
-    let poems = result;
+    let poems = resultPoem;
     let idx = 0;
 
     for(const poem of poems){
-      const sqlReply = `
-        SELECT * 
-        FROM REPLY
-        WHERE REPLY.poemId = ?
-      `
-      const resultReply = await pool.query(sqlReply, [
-        poem.poemId
-      ])
-      
-      poems[idx]["replyList"] = resultReply[0]
-
+      const resultReply = await KEYWORD.readReply(poem.poemId); 
+      poems[idx]["replyList"] = resultReply;
       idx += 1;
     }
     res.json({ 
@@ -126,10 +108,10 @@ exports.readYearly = async (req, res, next) => {
     });
   }
 }
+
 exports.readHof = async (req, res, next) => {
   try {
     const result = await RANKING.readHof();
-
     res.json({ 
       code: 200, 
       result: "success",  
