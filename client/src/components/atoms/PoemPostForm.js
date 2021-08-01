@@ -9,7 +9,7 @@ const FormWrapper = styled.div`
   max-width 	    : 600px;
 	margin	  	    : 0px auto;
 	height			    : 100%;
-	padding			    : 0px 20px;
+	padding			    : 5px 20px;
 `
 
 const ButtonWrapper = styled.div`
@@ -58,7 +58,7 @@ const SubmitButton = styled(Button)`
   font-wieght     : 600;
   font-size       : 14px;
   &:hover {
-    background-color : #8FB896;
+    background-color : #8F8F8F;
   }
 `
 
@@ -84,8 +84,8 @@ function PoemPostForm({ keyword }) {
     if( values.id       ==="" ||
         values.password ==="" ||
         values.word     ==="" ||
-        ( values.poem_1 ==="" && values.poem_2 ==="" &&values.poem_3 ==="" )){
-      if( values.poem_1 ==="" && values.poem_2 ==="" &&values.poem_3 ==="" ){
+        ( values.poem_1 ==="" && values.poem_2 ==="" && values.poem_3 ==="" )){
+      if( values.poem_1 ==="" && values.poem_2 ==="" && values.poem_3 ==="" ){
         alert("3행시를 입력해주세요!");
       }else{
         alert('모두 입력해주세요!');
