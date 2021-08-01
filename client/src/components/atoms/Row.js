@@ -106,7 +106,8 @@ const PostWrapper = styled.div`
   flex-Direction  : column;
 `
 
-function Row({ row, onReply = true, onLike = true}) {
+
+function Row({ row, onReply = true, onLike = true }) {
   const [open_report, setOpen_report] = React.useState(false);
 
   const [values, setValues] = React.useState({ 
@@ -203,7 +204,6 @@ function Row({ row, onReply = true, onLike = true}) {
               <Icon className="fi-sr-comment" />
               <IconText>{row.comment}</IconText>
             </IconWrapper>
-            
             <IconWrapper onClick={() => setOpen_report(!open_report)}>
               <BlockIcon></BlockIcon>
             </IconWrapper>

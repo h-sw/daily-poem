@@ -1,13 +1,17 @@
 import React from 'react';
 import PoemList from '../components/atoms/PoemList';
-import { RootWrapper } from '../styles/common';
+import { 
+  RootWrapper,
+  FlexWrapper,
+  Spacer,
+ } from '../styles/common';
 //import AllPoemList from '../components/organisms/AllPoemList';
 import Keyword from '../components/atoms/Keyword';
 import { Typography,Button } from '@material-ui/core';
 import styled from 'styled-components'
 
 const KeywordButton = styled(Button)`
-  padding       : 5px;
+  padding       : 5px 15px;
   border-radius : 15px;
 
   &:hover {
@@ -49,10 +53,13 @@ const MainPage = () => {
   return (
     <RootWrapper>
       <Keyword keyword={keyword} setKeyword={setKeyword}/>
-      <KeywordButton onClick={() => window.location.href="/ranking/"+keyword}>
-        <i class="fi-rr-add" style={{fontSize:14, height:14,marginBottom:7,marginRight:5}}/>
-        <IconText>3행시 더보기</IconText>
-      </KeywordButton>
+      <FlexWrapper>
+        <Spacer />
+        <KeywordButton onClick={() => window.location.href="/ranking/"+keyword}>
+          <Icon className="fi-rr-add" />
+          <IconText>3행시 더보기</IconText>
+        </KeywordButton>
+      </FlexWrapper>
       <PoemList displayData={displayData}/>
     </RootWrapper>
   )

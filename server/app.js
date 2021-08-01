@@ -83,7 +83,7 @@ app.get('/MainLike', async (req, res, next) => {
       idx += 1;
     }
 
-    console.log(poems)
+    console.log(poems);
 
     res.json({ code: 200, result: "success", data : poems });
   }

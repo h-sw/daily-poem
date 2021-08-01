@@ -58,7 +58,7 @@ const PoemInputWrapper = styled.div`
   display       : flex;
   margin        : 5px 0px;
   border-radius : 5px;
-  padding       : 0px 0px;
+  padding       : 5px 10px;
   border        : 1px solid #8FB896;
 `
 
@@ -74,10 +74,10 @@ const classifyWrapper = styled.div`
 `
 
 const Icon = styled.i`
-  font-size     : 14px;
-  height        : 14px;
-  color         : #333333;
-  margin-right  : 5px;
+  font-size: 20px;
+  height: 20px;
+  color: #8EB695;
+  margin-right:5px;
 `
 
 const KeywordCard = ({ data }) => {
@@ -167,7 +167,6 @@ const All = () => {
           현재까지 제시된 모든 3행시를 보여줍니다. 
         </Subtitle>
       </TitleWrapper>
-
 			<form onSubmit={handleSubmit} noValidate autoComplete="off">
         <PoemInputWrapper>
           <PoemInput
@@ -176,7 +175,7 @@ const All = () => {
             placeholder="이 곳에 입력해주세요."
             onChange={handleChange}
           />
-					<i class="fi-rr-search"style={{fontSize:'20px',height:'20px',color:'#8EB695',marginRight:5}}/>
+					<Icon className="fi-rr-search" />
         </PoemInputWrapper>
       </form>
 			<Padding/>

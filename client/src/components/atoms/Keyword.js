@@ -3,7 +3,6 @@ import Typography from '@material-ui/core/Typography';
 import PoemPostForm from './PoemPostForm';
 import Button from '@material-ui/core/Button';
 import Collapse from '@material-ui/core/Collapse';
-import Schedule from 'react-schedule-job';
 import styled from "styled-components";
 
 const KewordWrapper = styled.div`
@@ -48,25 +47,8 @@ const Keyword = ({keyword, setKeyword}) => {
     .catch(err=>console.log(err));
   };
 
-  const jobs = [
-    {
-      fn: callKeyword,
-      id: '1',
-      schedule: '0 0 * * *'
-    }
-  ]
-
   return (
     <KewordWrapper>
-      <Schedule
-        jobs={jobs}
-        timeZone='Asia/Seoul'
-        // "UTC", "local" or "YOUR PREFERRED TIMEZONE",
-        dashboard={{
-          hidden: true
-          // if true, dashboard is hidden
-        }}
-      />
       <KeywordButton onClick={() => setOpen_content(!open_content)}>
         <div>
           <Subtitle>

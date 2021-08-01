@@ -1,4 +1,4 @@
-import { Typography } from '@material-ui/core';
+import { Typography, IconButton } from '@material-ui/core';
 import React from 'react';
 import Slider from "react-slick";
 import Row from './Row';
@@ -9,18 +9,76 @@ const TextHint = styled(Typography)`
   color         : #888888;
   font-size     : 14px;
 `
+
+const PrevArrowWrapper = styled(IconButton)`
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: -100px;
+  border-radius: 100%;
+  transform : translate(-50%, 0);
+  &:hover {
+    background-color: #EEE;
+    cursor: pointer;
+  }
+`
+
+const NextArrowWrapper = styled(IconButton)`
+  display: block;
+  position: absolute;
+  top: 50%;
+  left: -40px;
+
+  border-radius: 100%;
+
+  transform : translate(-50%, 0);
+  &:hover {
+    background-color: #EEE;
+    cursor: pointer;
+  }
+`
+
+const ArrowIcon = styled.i`
+  font-size: 20px;
+  height: 20px;
+  margin: 20px;
+`
+
+
+function SampleNextArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <PrevArrowWrapper onClick={onClick}>
+      <ArrowIcon className="fi-rr-angle-right" />
+    </PrevArrowWrapper>
+  );
+}
+
+function SamplePrevArrow(props) {
+  const { className, style, onClick } = props;
+  return (
+    <NextArrowWrapper onClick={onClick}>
+      <ArrowIcon className="fi-rr-angle-left" />
+    </NextArrowWrapper>
+  );
+}
+
 const PoemListContainer = ({ displayData }) => {
   var settings = {
     dots: false,
     infinite: false,
     slidesToShow: 1,
     slidesToScroll: 1,
+    nextArrow: <SampleNextArrow />,
+    prevArrow: <SamplePrevArrow />,
     responsive: [
       {
         breakpoint: 1280,
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
+          nextArrow: <SampleNextArrow />,
+          prevArrow: <SamplePrevArrow />,
         }
       },
       {
@@ -28,14 +86,18 @@ const PoemListContainer = ({ displayData }) => {
         settings: {
           slidesToShow: 1,
           slidesToScroll: 1,
-          initialSlide: 1
+          initialSlide: 1,
+          nextArrow: <SampleNextArrow />,
+          prevArrow: <SamplePrevArrow />,
         }
       },
       {
         breakpoint: 600,
         settings: {
           slidesToShow: 1,
-          slidesToScroll: 1
+          slidesToScroll: 1,
+          nextArrow: <SampleNextArrow />,
+          prevArrow: <SamplePrevArrow />,
         }
       }
     ]
