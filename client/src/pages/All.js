@@ -7,6 +7,7 @@ import {
 import styled from 'styled-components';
 import * as Hangul from 'hangul-js';
 import dayjs from 'dayjs';
+import axios from 'axios';
 import CheckIcon from '@material-ui/icons/Check';
 import AllKeywordCard from '../components/atoms/AllKeywordCard';
 import AllSearch from '../components/atoms/AllSearch';
