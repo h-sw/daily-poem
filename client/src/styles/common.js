@@ -23,9 +23,13 @@ export const TitleWrapper = styled.div`
 `
 
 export const NoPaddingButton = styled(IconButton)`
-   padding:0;
+  padding:0;
 `
 
 export const Padding = styled.div`
 	padding-top : 15px;
+`
+
+export const BoldWrapper = styled.div`
+  font-weight	: bolder;
 `

@@ -3,9 +3,9 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var cors = require('cors');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 
 var app = express();
 var pool = require("./lib/pool");
@@ -14,19 +14,7 @@ var pool = require("./lib/pool");
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
-const subject_dit = {
-  '바나나' : 0,
-  '복숭아' : 1,
-  '청포도' : 2,
-  '산딸기' : 3,
-  '코코넛' : 4,
-  '두리안' : 5,
-  '무화과' : 6,
-  '오렌지' : 7,
-  '토마토' : 8,
-  '한라봉' : 9,
-};
-
+app.use(cors());
 app.use(logger('dev'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -34,13 +22,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
 
 app.get('/all', async (req, res, next) => {
   try {
     const sqlAll = `
-      SELECT distinct word
-      FROM project1.POEM;
+      SELECT word, date
+      FROM project1.dailyKeword
     `
     const resultAll = await pool.query(sqlAll);
     
@@ -260,7 +247,9 @@ app.get('/HOfPage', async (req, res, next) => {
   try {
     const sqlHof = `
       SELECT * 
-      FROM hof
+      FROM dailyKeword 
+      ORDER BY likes DESC
+      LIMIT 10
     `
     const resultHof = await pool.query(sqlHof);
     
@@ -540,3 +529,41 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
+
+
+
+app.post('/Report', async (req, res, next) => {
+  //들어오는 요청을 가공
+  let { replyId, poemId, reason } = req.body;
+
+
+  try {
+
+    //요청을 쿼리로 보내고
+    const sql=`INSERT INTO manage 
+    SET replyId=?, poemId=?, reason=?;
+    `
+
+    //DB에서 데이터를 받아와서
+    const post = await pool.query(sql, [
+      replyId, poemId, reason
+    ])
+
+    //응답을 보낸다
+    res.json({ code: 200, result: "success", data : post });
+  }
+  catch(e) {
+    console.log(e)
+    res.json({ code: 500, result: "error", message: e.message });
+  }
+});
+
+//MVC 패턴
+
+// model view controller
+
+//model = db
+//view = 보이는거
+//controller = 제어
+
+

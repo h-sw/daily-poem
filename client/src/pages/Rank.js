@@ -11,19 +11,21 @@ import CheckIcon from '@material-ui/icons/Check';
 import TableContainer from '@material-ui/core/TableContainer';
 import {
   RootWrapper,
-  Padding
+  Padding,
+  BoldWrapper
 } from '../styles/common';
+
+const SORT_BY_WEEK = 1;
+const SORT_BY_MONTH = 2;
+const SORT_BY_YEAR = 3;
 
 const TitleWrapper = styled.div`
   margin  		: 50px;
 `
 
-const boldWrapper = styled.div`
-	font-weight	: bolder;
-`
 const Rank = () => {
 
-	const [sorting, setSorting] = React.useState('주간');
+	const [sorting, setSorting] = React.useState(SORT_BY_WEEK);
   const [rankData, setRankData] = React.useState([]);
   const [Weeklylist, setWeeklyList] = React.useState([]);
   const [monthlylist, setMonthlyList] = React.useState([]);
@@ -49,26 +51,24 @@ const Rank = () => {
 
   React.useEffect(()=>{
 
-      callWeeklyApi()
-      .then(res=>{
+    callWeeklyApi()
+    .then(res=>{
+      setWeeklyList(res.data)
+    })
+    .catch(err=>console.log(err));
 
-        setWeeklyList(res.data)
-      })
-      .catch(err=>console.log(err));
+    callMonthlyApi()
+    .then(res=>{
+      setMonthlyList(res.data)
+    })
+    .catch(err=>console.log(err));
 
-      callMonthlyApi()
-      .then(res=>{
-        setMonthlyList(res.data)
-      })
-      .catch(err=>console.log(err));
+    callYearlyApi()
+    .then(res=>{
+      setYearlyList(res.data)
+    })
+    .catch(err=>console.log(err));
 
-      callYearlyApi()
-      .then(res=>{
-        setYearlyList(res.data)
-      })
-      .catch(err=>console.log(err));
-
-      setRankData(Weeklylist);
   }, []);
 
   const handleSortingClick = (category) => {
@@ -76,60 +76,68 @@ const Rank = () => {
   };
 
 	const CheckedButton = ({check}) => {
-    if(check === '주간'&& Weeklylist){
+    if(check === SORT_BY_WEEK&& Weeklylist){
       setRankData(Weeklylist)
+      return(
+        <>
+          <CheckIcon/>
+          <BoldWrapper>{"주간"}</BoldWrapper>
+        </>)
     }
-    else if(check === '월간'&& monthlylist){
+    else if(check === SORT_BY_MONTH&& monthlylist){
       setRankData(monthlylist)
+      return(
+        <>
+          <CheckIcon/>
+          <BoldWrapper>{"월간"}</BoldWrapper>
+        </>)
     }
-    else if(check === '연간'&& yearlylist){
+    else if(check === SORT_BY_YEAR&& yearlylist){
       setRankData(yearlylist)
+      return(
+        <>
+          <CheckIcon/>
+          <BoldWrapper>{"연간"}</BoldWrapper>
+        </>)
     }
   
-    return(
-      <>
-        <CheckIcon/>
-        <boldWrapper>{check}</boldWrapper>
-      </>)
+
   }
 
   return (
-    <div>
-      <RootWrapper>
-				<TitleWrapper>
-					<Header name="주간/월간/연간랭킹" description="주간/월간/연간별 TOP10을 보여줍니다."/>
-				</TitleWrapper>
-				<div>
-					<Box flexDirection="row" style={{display: 'inline-flex'}}>
-						<Button onClick={() => handleSortingClick('주간')}>
-							{sorting=== '주간' ? <CheckedButton check={'주간'}/> : '주간' } 
-						</Button>
-						<Button onClick={() => handleSortingClick('월간')}>
-							{sorting=== '월간' ? <CheckedButton check={'월간'}/> : '월간' } 
-						</Button>
-						<Button onClick={() => handleSortingClick('연간')}>
-							{sorting=== '연간' ? <CheckedButton check={'연간'}/> : '연간' }
-						</Button> 
-            <Button
-							onClick={() => window.location.href="/ranking"}
-						>
-								명예의 전당
-						</Button>
-					</Box>
-					<Padding/>
-					<TableContainer component={Paper}>
-						<Table aria-label="Ranking table">
-							<TableBody>
-								{rankData.slice(0,10).map((row, idx) => (
-									<Row key={idx} row={row}/>
-								))}
-							</TableBody>
-						</Table>
-					</TableContainer>
-				</div>
-			</RootWrapper>
-    </div>
-
+    <RootWrapper>
+			<TitleWrapper>
+				<Header name="주간/월간/연간랭킹" description="주간/월간/연간별 TOP10을 보여줍니다."/>
+			</TitleWrapper>
+			<div>
+				<Box flexDirection="row" style={{display: 'inline-flex'}}>
+					<Button onClick={() => handleSortingClick(SORT_BY_WEEK)}>
+						{sorting === SORT_BY_WEEK  ? <CheckedButton check={SORT_BY_WEEK}/>   : "주간" } 
+					</Button>
+					<Button onClick={() => handleSortingClick(SORT_BY_MONTH)}>
+						{sorting === SORT_BY_MONTH ? <CheckedButton check={SORT_BY_MONTH}/>  : "월간" } 
+					</Button>
+					<Button onClick={() => handleSortingClick(SORT_BY_YEAR)}>
+						{sorting === SORT_BY_YEAR  ? <CheckedButton check={SORT_BY_YEAR}/>   : "연간" }
+					</Button> 
+          <Button
+						onClick={() => window.location.href="/hof"}
+					>
+						명예의 전당
+					</Button>
+				</Box>
+				<Padding/>
+				<TableContainer component={Paper}>
+					<Table aria-label="Ranking table">
+						<TableBody>
+							{rankData.slice(0,10).map((row, idx) => (
+								<Row key={idx} row={row}/>
+							))}
+						</TableBody>
+					</Table>
+				</TableContainer>
+			</div>
+		</RootWrapper>
   )
 }
 export default Rank;

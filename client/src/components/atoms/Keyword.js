@@ -6,31 +6,30 @@ import Collapse from '@material-ui/core/Collapse';
 import styled from "styled-components";
 
 const KewordWrapper = styled.div`
-  text-align: center;
-  margin-bottom: 40px;
+  text-align    : center;
+  margin-bottom : 40px;
 `
 
 const KeywordText = styled(Typography)`
-  disply: flex;
-  font-size: 48px;
-  font-weight: 700;
+  disply        : flex;
+  font-size     : 48px;
+  font-weight   : 700;
   flex-direction: column;
-  line-height: 1.1;
+  line-height   : 1.1;
 `
 
 const Subtitle = styled(Typography)`
-  line-height: 1.1;
-  font-size: 16px;
+  line-height   : 1.1;
+  font-size     : 16px;
 `
 
 const KeywordButton = styled(Button)`
-  padding: 5px 30px;
-  border-radius: 15px;
+  padding       : 5px 30px;
+  border-radius : 15px;
 `
 
-const Keyword = ({keyword, setKeyword}) => {
+const Keyword = ({ keyword, setKeyword }) => {
   const [open_content, setOpen_content] = React.useState(false);
-
 
   const callKeywordApi = async()=>{
     const response = await fetch('/Keyword');
@@ -40,11 +39,11 @@ const Keyword = ({keyword, setKeyword}) => {
 
   const callKeyword = () => {
     callKeywordApi()
-    .then(res=>{
+    .then( res=>{
       //setKeyword(res.data[0].keyword);
-      setKeyword("도깨비");
+      setKeyword( "민직킴" );
     })
-    .catch(err=>console.log(err));
+    .catch( err=>console.log(err) );
   };
 
   return (

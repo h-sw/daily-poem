@@ -7,27 +7,27 @@ import {
 } from '../../styles/common'
 
 const NavigationWrapper = styled.div`
-	height			: 60px;
-	background-color	: #8EB695;
+	height					: 60px;
+	background-color: #8EB695;
 `
 
 const NavigationSubWrapper = styled.div`
-	max-width 	: 1280px;
-	margin	  	: 0px auto;
-	height			: 100%;
-	padding			: 0px 20px;
+	max-width 			: 1280px;
+	margin	  			: 0px auto;
+	height					: 100%;
+	padding					: 0px 20px;
 `
 
 const ButtonWrapper = styled.div`
-	display			: flex;
-	align-items	: center;
-	height			: 100%;
+	display					: flex;
+	align-items			: center;
+	height					: 100%;
 `
 
 const MenuText = styled(Typography)`
-	font-size		: 14px;
-	font-weight : 500;
-	color       : #FFF;
+	font-size				: 14px;
+	font-weight 		: 500;
+	color       		: #FFF;
 `
 
 const NavigationBar = () => {
