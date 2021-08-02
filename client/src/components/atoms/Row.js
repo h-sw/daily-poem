@@ -97,7 +97,7 @@ function Row({ row, onReply = true, onLike = true }) {
     .then((response) => { 
       console.log(response); 
       alert("좋아요를 눌렀어요!")
-     /*  window.location.reload(); */
+      window.location.reload();
     }) 
     .catch(error => { 
       console.log('error : ', error.response) 

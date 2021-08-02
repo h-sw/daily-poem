@@ -24,7 +24,7 @@ export default function AllPoemViewer(){
   const { keyword } = useParams()
   
   const callWeeklyApi = async()=>{
-    const response = await fetch('/all/'+ keyword);
+    const response = await fetch('http://localhost:4000/keyword/'+ keyword);
     const body = await response.json();
     return body;
   }
@@ -40,7 +40,7 @@ export default function AllPoemViewer(){
   return (
     <RootWrapper>
       <IconWrapper>
-        <Button onClick={() => window.location.href="/all"}>
+        <Button onClick={() => window.location.href="/keyword"}>
           <Icon className="fi-rr-angle-double-left" />
         </Button>
       </IconWrapper>

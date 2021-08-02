@@ -18,7 +18,7 @@ function App() {
           <Route exact path="/" component={Main} />
           <Route exact path="/notice" component={Notice} />
           <Route exact path="/hof" component={Hof} />
-          <Route exact path="/all/:keyword" component={AllPoemViewer} />
+          <Route exact path="/keyword/:keyword" component={AllPoemViewer} />
           <Route exact path="/rank" component={Rank}/>
           <Route exact path="/keyword" component={Keyword}/>
         </Switch>

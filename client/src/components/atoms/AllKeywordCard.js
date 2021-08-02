@@ -49,7 +49,7 @@ const AllKeywordCard = ({ data }) => {
     <Card 
       ref={cardRef} 
       height={cardWidth}
-      onClick={() => window.location.href="/all/"+data.word}
+      onClick={() => window.location.href="/keyword/"+data.word}
     >
       <CardImg />
       <CardContentWrapper>
