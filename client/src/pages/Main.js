@@ -33,8 +33,6 @@ const Main = () => {
   const [keyword, setKeyword] = React.useState([]);
   const callLatestApi = async()=>{
     const response = await axios.get('http://localhost:4000/ranking');
-    console.log(response.data.data);
-    //const body = await response.json();
     return response.data.data;
   }
 

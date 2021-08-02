@@ -33,17 +33,13 @@ const Keyword = ({ keyword, setKeyword }) => {
   const [open_content, setOpen_content] = React.useState(false);
 
   const callKeywordApi = async()=>{
-    console.log("도착");
     const response = await axios.get('http://localhost:4000/keyword');
-    console.log(response.data.data);
-    //const body = await response.json();
     return response.data.data;
   }
 
   React.useEffect(()=>{
     callKeywordApi()
     .then( res=>{
-      console.log(res);
       setKeyword(res.keyword);
     })
     .catch( err=>console.log(err) );
