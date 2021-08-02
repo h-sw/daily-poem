@@ -8,7 +8,7 @@ var cors = require('cors');
 var indexRouter = require('./routes/index');
 
 var app = express();
-var pool = require("./lib/pool");
+//var pool = require("./lib/pool");
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-
+/* 
 app.get('/all', async (req, res, next) => {
   try {
     const sqlAll = `
@@ -260,7 +260,7 @@ app.get('/HOfPage', async (req, res, next) => {
   catch(e) {
     res.json({ code: 500, result: "error", message: e.message });
   }
-});
+}); */
 
 /* app.get('/ranking/:poemId', async (req, res, next) => {
   const { poemId } = req.params;
@@ -302,7 +302,7 @@ app.get('/HOfPage', async (req, res, next) => {
   }
 }); */
 
-app.get('/all/:keyword', async (req, res, next) => {
+/* app.get('/all/:keyword', async (req, res, next) => {
   const { keyword } = req.params;
 
   try {
@@ -364,7 +364,7 @@ app.post('/postReply', async (req, res, next) => {
   
   let {poemId, id, pwd, reply}=req.body;
   try {
-    /* 댓글 업로드 부분 */
+    //댓글 업로드 부분 
     const sql=`INSERT INTO REPLY 
     SET poemId=?, name=?, password=?, reply=?;
     `
@@ -381,7 +381,7 @@ app.post('/postReply', async (req, res, next) => {
     res.json({ code: 500, result: "error", message: e.message });
   }
   try{
-    /* 댓글 몇 개인지 세고 업데이트 하는 부분 */
+    //댓글 몇 개인지 세고 업데이트 하는 부분 
     const sql_poemId = `
       SELECT COUNT(poemId) FROM REPLY 
       WHERE poemId = ?;
@@ -406,8 +406,8 @@ app.post('/postReply', async (req, res, next) => {
     res.json({ code: 500, result: "error", message: e.message });
   }
 });
-
-app.post('/deletePoem', async (req, res, next) => {
+ */
+/* app.post('/deletePoem', async (req, res, next) => {
 
   let {id, name, pwd}=req.body;
   try {
@@ -511,7 +511,7 @@ app.post('/Report', async (req, res, next) => {
     res.json({ code: 500, result: "error", message: e.message });
   }
 });
-
+*/
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
@@ -532,7 +532,7 @@ module.exports = app;
 
 
 
-app.post('/Report', async (req, res, next) => {
+/* app.post('/Report', async (req, res, next) => {
   //들어오는 요청을 가공
   let { replyId, poemId, reason } = req.body;
 
@@ -556,8 +556,8 @@ app.post('/Report', async (req, res, next) => {
     console.log(e)
     res.json({ code: 500, result: "error", message: e.message });
   }
-});
-
+}); 
+ */
 //MVC 패턴
 
 // model view controller

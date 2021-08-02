@@ -4,8 +4,8 @@ class Keyword {
   async read (){
     try{
       const sql = `
-        SELECT word, date
-        FROM dailyKeword
+        SELECT keyword,createTime
+        FROM keyword
       `
       const result = await pool.query(sql);
       return result[0];

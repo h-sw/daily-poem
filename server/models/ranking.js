@@ -10,6 +10,7 @@ class Ranking {
         ORDER BY likes desc
       `
       const result = await pool.query(sql);
+
       return result[0];
     }catch(err) {
       throw err;

@@ -1,9 +1,9 @@
 const RANKING = require("../models/ranking")
-
+const KEYWORD = require("../models/keyword")
 exports.read = async (req, res, next) => {
   try {
     const resultPoem = await RANKING.read();
-    
+    console.log(resultPoem);
     let poems = resultPoem;
     let idx = 0;
 

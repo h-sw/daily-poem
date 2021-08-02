@@ -4,6 +4,7 @@ import PoemPostForm from './PoemPostForm';
 import Button from '@material-ui/core/Button';
 import Collapse from '@material-ui/core/Collapse';
 import styled from "styled-components";
+import axios from 'axios';
 
 const KewordWrapper = styled.div`
   text-align    : center;
@@ -32,19 +33,22 @@ const Keyword = ({ keyword, setKeyword }) => {
   const [open_content, setOpen_content] = React.useState(false);
 
   const callKeywordApi = async()=>{
-    const response = await fetch('/Keyword');
-    const body = await response.json();
-    return body;
+    console.log("도착");
+    const response = await axios.get('http://localhost:4000/keyword');
+    console.log(response.data.data);
+    //const body = await response.json();
+    return response.data.data;
   }
 
-  const callKeyword = () => {
+  React.useEffect(()=>{
     callKeywordApi()
     .then( res=>{
-      //setKeyword(res.data[0].keyword);
-      setKeyword( "민직킴" );
+      console.log(res);
+      setKeyword(res.keyword);
     })
     .catch( err=>console.log(err) );
-  };
+  }, []);
+
 
   return (
     <KewordWrapper>
