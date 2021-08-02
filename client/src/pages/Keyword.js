@@ -115,7 +115,7 @@ const KeywordCard = ({ data }) => {
 const SORT_BY_WORD = 1; /*글자순*/
 const SORT_BY_DATE = 2; /*날짜순*/
 
-const All = () => {
+const Keyword = () => {
   const [allKeyword, setAllKeyword] = React.useState([]);
   const [values, setValues] = React.useState();
   const [display, setDisplay] = React.useState(allKeyword);
@@ -200,9 +200,9 @@ const All = () => {
           현재까지 제시된 모든 3행시를 보여줍니다. 
         </Subtitle>
       </TitleWrapper>
-      {/**키워드 검색창 */}
+      {/*키워드 검색창 */}
       <AllSearch setValues={setValues}/>
-      {/**키워드 분류 버튼 */}
+      {/*키워드 분류 버튼 */}
       <Box flexDirection="row">
         <Button onClick={() => handleSortingClick(SORT_BY_WORD)}>
           { sorting === SORT_BY_WORD ? <CheckedButton check={'글자순'} /> : '글자순' } 
@@ -260,4 +260,4 @@ const All = () => {
     </RootWrapper>
   )
 }
-export default All;
+export default Keyword;

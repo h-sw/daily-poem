@@ -42,9 +42,7 @@ const PostWrapper = styled.div`
 `
 
 
-function Row({ row, onReply = true, onLike = true }) {
-  const [open_report, setOpen_report] = React.useState(false);
-
+function Row({ row }) {
   const [values, setValues] = React.useState({ 
     "poemId"    : "", 
     "id"        : "", 
