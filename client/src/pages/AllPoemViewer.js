@@ -39,6 +39,7 @@ export default function AllPoemViewer(){
 
   return (
     <RootWrapper>
+      {/* 뒤로가기 버튼 */}
       <IconWrapper>
         <Button onClick={() => window.location.href="/keyword"}>
           <Icon className="fi-rr-angle-double-left" />

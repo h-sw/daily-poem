@@ -2,7 +2,7 @@ const NOTICE = require("../models/notice")
 
 exports.read = async (req, res, next) => {
   try {
-    const result = NOTICE.read()
+    const result = await NOTICE.read()
     res.json({ 
       code: 200, 
       result: "success", 
