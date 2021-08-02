@@ -6,7 +6,9 @@ class Ranking {
       const sql = `
         SELECT * 
         FROM POEM 
-        WHERE DATE_FORMAT(created, "%Y-%m-%d")=current_date()
+        WHERE 
+        DATE_FORMAT(created, "%Y-%m-%d")
+        = current_date()
         ORDER BY likes desc
       `
       const result = await pool.query(sql);
@@ -15,13 +17,14 @@ class Ranking {
       throw err;
     }
   }
-
+  // 주간 랭킹
   async readWeekly(){
     try {
       const sql = `
         SELECT * 
         FROM POEM 
-        WHERE YEARWEEK(created) = YEARWEEK(now())
+        WHERE YEARWEEK(created) 
+        = YEARWEEK(now())
         ORDER BY likes desc
       `  
       const result = await pool.query(sql);
@@ -30,13 +33,14 @@ class Ranking {
       throw err;
     }
   }
-
+  // 월간 랭킹
   async readMonthly(){
     try {
       const sql= `
         SELECT * 
         FROM POEM 
-        WHERE DATE_FORMAT(created, '%m')=MONTH(current_date())
+        WHERE DATE_FORMAT(created, '%m')
+        = MONTH(current_date())
         ORDER BY likes desc
       `
       const result = await pool.query(sql);
@@ -46,13 +50,14 @@ class Ranking {
       throw err;
     }
   }
-
+  // 연간 랭킹
   async readYearly(){
     try {
       const sql = `
         SELECT * 
         FROM POEM 
-        WHERE DATE_FORMAT(created, '%Y')=YEAR(current_date()) 
+        WHERE DATE_FORMAT(created, '%Y')
+        = YEAR(current_date()) 
         ORDER BY likes desc
       `
       const result = await pool.query(sql);
@@ -61,7 +66,7 @@ class Ranking {
       throw err;
     }
   }
-
+  // 명예의 전당
   async readHof(){
     try {
       const sql = `
@@ -73,23 +78,6 @@ class Ranking {
       const result = await pool.query(sql);
       return result[0];
     }catch(err){
-      throw err;
-    }
-  }
-
-  async readReply( poemId ){
-    try{
-      const sql = `
-        SELECT * 
-        FROM REPLY
-        WHERE REPLY.poemId = ?
-      `
-      const result = await pool.query(sql, [
-        poemId
-      ]);
-      return result[0];
-    }
-    catch(err){
       throw err;
     }
   }
