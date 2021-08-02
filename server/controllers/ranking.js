@@ -1,8 +1,27 @@
 const RANKING = require("../models/ranking")
+const pool = require("../lib/pool");
 
 exports.read = async (req, res, next) => {
   try {
     const result = await RANKING.read();
+
+    let poems = result;
+    let idx = 0;
+
+    for(const poem of poems){
+      const sqlReply = `
+        SELECT * 
+        FROM REPLY
+        WHERE REPLY.poemId = ?
+      `
+      const resultReply = await pool.query(sqlReply, [
+        poem.poemId
+      ])
+      
+      poems[idx]["replyList"] = resultReply[0]
+
+      idx += 1;
+    }
     res.json({ 
       code: 200, 
       result: "success", 

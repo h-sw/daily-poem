@@ -9,6 +9,7 @@ import {
   FlexWrapper,
   TitleWrapper,
 } from '../styles/common';
+import axios from 'axios';
 import Button from '@material-ui/core/Button';
 import HofKeywordCard from '../components/atoms/HofKeywordCard';
 
@@ -41,8 +42,8 @@ const Hof = () => {
   const [rankingList, setRankingList] = React.useState([]);
   
   const initRankingList = async () => {
-    const res = await fetch('/HOfPage');
-    return await res.json();
+    const res = await axios.get('http://localhost:4000/ranking/hof');
+    return await res.data;
   }
 
   React.useEffect(() => {
@@ -59,7 +60,7 @@ const Hof = () => {
     <RootWrapper>
       {/* 뒤로가기 버튼 */}
       <IconWrapper>
-        <Button onClick={() => window.location.href="/rank"}>
+        <Button onClick={() => window.location.href="/ranking"}>
           <Icon className="fi-rr-angle-double-left" />
         </Button>
       </IconWrapper>

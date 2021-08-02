@@ -54,7 +54,7 @@ const NavigationBar = () => {
 							</MenuText>
 						</Button>
 						<Button
-							onClick={() => window.location.href="/rank"}
+							onClick={() => window.location.href="/ranking"}
 						>
 							<MenuText>
 								랭킹

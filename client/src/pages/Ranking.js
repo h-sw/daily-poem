@@ -32,19 +32,19 @@ const Rank = () => {
   const [yearlylist, setYearlyList] = React.useState([]);
 
 	const callWeeklyApi = async()=>{
-    const response = await fetch('/RankingWeekly');
+    const response = await fetch('http://localhost:4000/ranking/weekly');
     const body = await response.json();
     return body;
   }
 
   const callMonthlyApi = async()=>{
-    const response = await fetch('/RankingMonthly');
+    const response = await fetch('http://localhost:4000/ranking/monthly');
     const body = await response.json();
     return body;
   }
 
   const callYearlyApi = async()=>{
-    const response = await fetch('/RankingYearly');
+    const response = await fetch('http://localhost:4000/ranking/yearly');
     const body = await response.json();
     return body;
   }

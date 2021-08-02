@@ -10,25 +10,7 @@ class Ranking {
         ORDER BY likes desc
       `
       const result = await pool.query(sql);
-      let poems = resultPoem[0];
-      let idx = 0;
-
-      for(const poem of result[0]){
-        const sqlReply = `
-          SELECT * 
-          FROM REPLY
-          WHERE REPLY.poemId = ?
-        `
-
-        const resultReply = await pool.query(sqlReply, [
-          poem.poemId
-        ])
-        
-        poems[idx]["replyList"] = resultReply[0]
-
-        idx += 1;
-      }
-        return poems;
+        return result[0];
       }catch(err) {
         throw err;
       }
