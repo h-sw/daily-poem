@@ -47,7 +47,7 @@ const NavigationBar = () => {
 							</MenuText>
 						</Button>
 						<Button
-							onClick={() => window.location.href="/all"}
+							onClick={() => window.location.href="/keyword"}
 						>
 							<MenuText>
 								키워드

@@ -6,6 +6,7 @@ var logger = require('morgan');
 var cors = require('cors');
 
 var indexRouter = require('./routes/index');
+var keywordRouter = require('./routes/keyword');
 
 var app = express();
 var pool = require("./lib/pool");
@@ -22,8 +23,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/keyword', keywordRouter);
+app.use('/notice', indexRouter);
+app.use('/poem', indexRouter);
+app.use('/ranking', indexRouter);
 
-app.get('/all', async (req, res, next) => {
+/* app.get('/all', async (req, res, next) => {
   try {
     const sqlAll = `
       SELECT word, date
@@ -260,7 +265,7 @@ app.get('/HOfPage', async (req, res, next) => {
   catch(e) {
     res.json({ code: 500, result: "error", message: e.message });
   }
-});
+}); */
 
 /* app.get('/ranking/:poemId', async (req, res, next) => {
   const { poemId } = req.params;
@@ -302,7 +307,7 @@ app.get('/HOfPage', async (req, res, next) => {
   }
 }); */
 
-app.get('/all/:keyword', async (req, res, next) => {
+/* app.get('/all/:keyword', async (req, res, next) => {
   const { keyword } = req.params;
 
   try {
@@ -358,13 +363,13 @@ app.post('/postPoem', async (req, res, next) => {
     console.log(e)
     res.json({ code: 500, result: "error", message: e.message });
   }
-});
+}); */
 
-app.post('/postReply', async (req, res, next) => {
+/* app.post('/postReply', async (req, res, next) => {
   
   let {poemId, id, pwd, reply}=req.body;
   try {
-    /* 댓글 업로드 부분 */
+    // 댓글 업로드 부분 
     const sql=`INSERT INTO REPLY 
     SET poemId=?, name=?, password=?, reply=?;
     `
@@ -381,7 +386,7 @@ app.post('/postReply', async (req, res, next) => {
     res.json({ code: 500, result: "error", message: e.message });
   }
   try{
-    /* 댓글 몇 개인지 세고 업데이트 하는 부분 */
+    // 댓글 몇 개인지 세고 업데이트 하는 부분 
     const sql_poemId = `
       SELECT COUNT(poemId) FROM REPLY 
       WHERE poemId = ?;
@@ -405,9 +410,9 @@ app.post('/postReply', async (req, res, next) => {
     console.log(e)
     res.json({ code: 500, result: "error", message: e.message });
   }
-});
+}); */
 
-app.post('/deletePoem', async (req, res, next) => {
+/* app.post('/deletePoem', async (req, res, next) => {
 
   let {id, name, pwd}=req.body;
   try {
@@ -430,9 +435,9 @@ app.post('/deletePoem', async (req, res, next) => {
     console.log(e)
     res.json({ code: 500, result: "error", message: e.message });
   }
-});
+}); */
 
-app.post('/deleteReply', async (req, res, next) => {
+/* app.post('/deleteReply', async (req, res, next) => {
 
   let {id, rpyId, name, pwd}=req.body;
   try { 
@@ -472,9 +477,9 @@ app.post('/deleteReply', async (req, res, next) => {
     console.log(e)
     res.json({ code: 500, result: "error", message: e.message });
   }
-});
+}); */
 
-app.post('/postLike', async (req, res, next) => {
+/* app.post('/postLike', async (req, res, next) => {
   
   let {likes, poemId}=req.body;
   try {
@@ -492,8 +497,8 @@ app.post('/postLike', async (req, res, next) => {
     //console.log(e)
     res.json({ code: 500, result: "error", message: e.message });
   }
-});
-
+}); */
+/* 
 app.post('/Report', async (req, res, next) => {
   
   let {replyId, poemId, reason} = req.body;
@@ -527,12 +532,12 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-
+*/
 module.exports = app;
+ 
 
 
-
-app.post('/Report', async (req, res, next) => {
+/* app.post('/Report', async (req, res, next) => {
   //들어오는 요청을 가공
   let { replyId, poemId, reason } = req.body;
 
@@ -556,7 +561,7 @@ app.post('/Report', async (req, res, next) => {
     console.log(e)
     res.json({ code: 500, result: "error", message: e.message });
   }
-});
+}); */
 
 //MVC 패턴
 

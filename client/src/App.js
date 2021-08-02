@@ -5,7 +5,7 @@ import Notice from './pages/Notice';
 import Hof from './pages/Hof';
 import AllPoemViewer from './pages/AllPoemViewer';
 import Rank from './pages/Rank';
-import All from './pages/All';
+import Keyword from './pages/Keyword';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import NavigationBar from './components/atoms/NavigationBar';
 
@@ -20,7 +20,7 @@ function App() {
           <Route exact path="/hof" component={Hof} />
           <Route exact path="/all/:keyword" component={AllPoemViewer} />
           <Route exact path="/rank" component={Rank}/>
-          <Route exact path="/all" component={All}/>
+          <Route exact path="/keyword" component={Keyword}/>
         </Switch>
       </BrowserRouter>
     </div>
