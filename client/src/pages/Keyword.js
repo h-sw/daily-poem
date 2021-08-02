@@ -15,9 +15,7 @@ import {
   Grid, 
   Typography,
   Button,
-  Box,
-  InputBase,
-  Card
+  Box
 } from '@material-ui/core'
 
 const Title = styled(Typography)`
@@ -38,80 +36,6 @@ const ClassifyWrapper = styled.div`
   padding-bottom	: 5px;
 `
 
-const CardImg = styled.div`
-  width   : 100%;
-  display : block;
-	background-color:#8EB695;
-`
-
-const CardContentWrapper = styled.div`
-  position    : absolute;
-  padding     : 20px;
-  background  : rgba(0,0,0, 0.15);
-  width       : 100%;
-  height      : 100%;
-  top         : 0;
-  left        : 0;
-`
-
-const CardTitle = styled(Typography)`
-  font-weight : 600;
-  font-size   : 28px;
-  color       : #000;
-`
-
-const PoemInputWrapper = styled.div`
-  display       : flex;
-  margin        : 5px 0px;
-  border-radius : 5px;
-  padding       : 5px 10px;
-  border        : 1px solid #8FB896;
-`
-
-const PoemInput = styled(InputBase)`
-  font-size   : 14px;
-  color       : #565656;
-  font-weight : 600;
-`
-
-
-const classifyWrapper = styled.div`
-	padding-bottom : 5px;
-`
-
-const Icon = styled.i`
-  font-size: 20px;
-  height: 20px;
-  color: #8EB695;
-  margin-right:5px;
-`
-
-const KeywordCard = ({ data }) => {
-  const [cardWidth, setCardWidth] = React.useState(0);
-  const cardRef = React.useRef()
-
-  React.useEffect(() => {
-    if(cardRef.current){
-      setCardWidth(cardRef.current.offsetWidth)
-    }
-  }, [cardRef.current])
-
-  return (
-    <Card
-      ref={cardRef} 
-      height={cardWidth}
-      onClick={() => window.location.href="/ranking/"+data.word}
-    >
-      <CardImg />
-      <CardContentWrapper>
-        <CardTitle>
-          {data.word}
-        </CardTitle>
-      </CardContentWrapper>
-      
-    </Card>
-  )
-}
 const SORT_BY_WORD = 1; /*글자순*/
 const SORT_BY_DATE = 2; /*날짜순*/
 

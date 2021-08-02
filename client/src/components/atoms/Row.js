@@ -35,13 +35,6 @@ const EmptyText = styled(Typography)`
   color           : #888888;
 `
 
-const PostWrapper = styled.div`
-  margin          : 10;
-  display         : flex;
-  flex-Direction  : column;
-`
-
-
 function Row({ row }) {
   const [values, setValues] = React.useState({ 
     "poemId"    : "", 

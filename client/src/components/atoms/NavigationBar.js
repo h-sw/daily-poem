@@ -1,6 +1,6 @@
 import React from 'react';
 import Title from './Title';
-import {Button, Typography } from '@material-ui/core';
+import { Button, Typography } from '@material-ui/core';
 import styled from "styled-components";
 import {
 	Spacer	
