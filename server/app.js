@@ -358,9 +358,9 @@ app.post('/postPoem', async (req, res, next) => {
     console.log(e)
     res.json({ code: 500, result: "error", message: e.message });
   }
-});
+}); */
 
-app.post('/postReply', async (req, res, next) => {
+/* app.post('/postReply', async (req, res, next) => {
   
   let {poemId, id, pwd, reply}=req.body;
   try {
@@ -430,9 +430,9 @@ app.post('/postReply', async (req, res, next) => {
     console.log(e)
     res.json({ code: 500, result: "error", message: e.message });
   }
-});
+}); */
 
-app.post('/deleteReply', async (req, res, next) => {
+/* app.post('/deleteReply', async (req, res, next) => {
 
   let {id, rpyId, name, pwd}=req.body;
   try { 
@@ -472,9 +472,9 @@ app.post('/deleteReply', async (req, res, next) => {
     console.log(e)
     res.json({ code: 500, result: "error", message: e.message });
   }
-});
+}); */
 
-app.post('/postLike', async (req, res, next) => {
+/* app.post('/postLike', async (req, res, next) => {
   
   let {likes, poemId}=req.body;
   try {
@@ -492,8 +492,8 @@ app.post('/postLike', async (req, res, next) => {
     //console.log(e)
     res.json({ code: 500, result: "error", message: e.message });
   }
-});
-
+}); */
+/* 
 app.post('/Report', async (req, res, next) => {
   
   let {replyId, poemId, reason} = req.body;
@@ -529,7 +529,7 @@ app.use(function(err, req, res, next) {
 });
 
 module.exports = app;
-
+ 
 
 
 /* app.post('/Report', async (req, res, next) => {

@@ -1,15 +1,16 @@
 const RANKING = require("../models/ranking")
 const KEYWORD = require("../models/keyword")
+
 exports.read = async (req, res, next) => {
   try {
-    const resultPoem = await RANKING.read();
-    console.log(resultPoem);
-    let poems = resultPoem;
+    const result = await RANKING.read();
+    
+    let poems = result;
     let idx = 0;
 
     for(const poem of poems){
-      const resultReply = await KEYWORD.readReply(poem.poemId); 
-      poems[idx]["replyList"] = resultReply;
+      const resultReply = await KEYWORD.readReply(poem.poemId);
+      poems[idx]["replyList"] = resultReply[0]
       idx += 1;
     }
     res.json({ 

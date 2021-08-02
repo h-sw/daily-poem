@@ -1,6 +1,7 @@
 import React from 'react';
 import TablePagination from '@material-ui/core/TablePagination';
 import styled from "styled-components"
+import axios from 'axios';
 import Header from "../components/atoms/Header"
 import NoticeTable from "../components/atoms/NoticeTable"
 import NoticePaginationActions from '../components/atoms/NoticePaginationActions';
@@ -21,9 +22,8 @@ export default function Notice() {
   const [notice, setNotice]=React.useState([]);
 
   const callApi = async()=>{
-    const response = await fetch('/notice');
-    const body = await response.json();
-    return body;
+    const res = await axios.get('http://localhost:4000/notice');
+    return res.data
   }
 
   React.useEffect(()=>{

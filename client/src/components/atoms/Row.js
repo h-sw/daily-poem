@@ -103,9 +103,6 @@ function Row({ row, onReply = true, onLike = true }) {
       console.log('error : ', error.response) 
     }); 
   }
-
-
-
   return (
     <div>
       <RowContext.Provider value={row}>

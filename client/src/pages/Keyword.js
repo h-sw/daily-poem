@@ -124,8 +124,8 @@ const All = () => {
   const [classifyDate, setClassifyDate] = React.useState([]);
   const [classify, setClassify] = React.useState(classifyWord);
   const initAll = async () => {
-    const res = await axios.get('/all');
-    return await res.json();
+    const res = await axios.get('http://localhost:4000/keyword');
+    return await res.data;
   }
 
   React.useEffect(() => {

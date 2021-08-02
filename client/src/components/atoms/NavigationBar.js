@@ -47,14 +47,14 @@ const NavigationBar = () => {
 							</MenuText>
 						</Button>
 						<Button
-							onClick={() => window.location.href="/all"}
+							onClick={() => window.location.href="/keyword"}
 						>
 							<MenuText>
 								키워드
 							</MenuText>
 						</Button>
 						<Button
-							onClick={() => window.location.href="/rank"}
+							onClick={() => window.location.href="/ranking"}
 						>
 							<MenuText>
 								랭킹

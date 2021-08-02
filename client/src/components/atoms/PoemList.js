@@ -63,6 +63,10 @@ function SamplePrevArrow(props) {
   );
 }
 
+function init(){
+
+}
+
 const PoemListContainer = ({ displayData }) => {
   var settings = {
     dots: false,
