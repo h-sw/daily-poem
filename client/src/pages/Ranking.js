@@ -9,6 +9,7 @@ import Row from '../components/atoms/Row';
 import Button from '@material-ui/core/Button';
 import CheckIcon from '@material-ui/icons/Check';
 import TableContainer from '@material-ui/core/TableContainer';
+import axios from 'axios';
 import {
   RootWrapper,
   Padding,
@@ -32,20 +33,20 @@ const Rank = () => {
   const [yearlylist, setYearlyList] = React.useState([]);
 
 	const callWeeklyApi = async()=>{
-    const response = await fetch('http://localhost:4000/ranking/weekly');
-    const body = await response.json();
+    const res = await axios.get('http://localhost:4000/ranking/weekly');
+    const body = await res.data;
     return body;
   }
 
   const callMonthlyApi = async()=>{
-    const response = await fetch('http://localhost:4000/ranking/monthly');
-    const body = await response.json();
+    const res = await axios.get('http://localhost:4000/ranking/monthly');
+    const body = await res.data;
     return body;
   }
 
   const callYearlyApi = async()=>{
-    const response = await fetch('http://localhost:4000/ranking/yearly');
-    const body = await response.json();
+    const res = await axios.get('http://localhost:4000/ranking/yearly');
+    const body = await res.data;
     return body;
   }
 
