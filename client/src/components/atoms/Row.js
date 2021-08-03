@@ -44,7 +44,6 @@ const PostWrapper = styled.div`
 
 function Row({ row, onReply = true, onLike = true }) {
   const [open_report, setOpen_report] = React.useState(false);
-
   const [values, setValues] = React.useState({ 
     "poemId"    : "", 
     "id"        : "", 
@@ -72,7 +71,7 @@ function Row({ row, onReply = true, onLike = true }) {
         alert('모두 입력해주세요!');
       }
     }else{
-      axios.post('/postReply',{
+      axios.post('http://localhost:4000/poem/'+values.poemId+'/reply',{
         "poemId"  : values.poemId, 
         "id"      : values.id, 
         "pwd"     : values.password, 

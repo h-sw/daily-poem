@@ -52,13 +52,27 @@ exports.createReply = async (req, res, next) => {
   let {poemId, id, pwd, reply}=req.body;
   try {
     const result = await POEM.createReply(poemId, id, pwd, reply);
+    res.json({ 
+      code: 200, 
+      result: "success", 
+      data : result 
+    });
+  }
+  catch(e) {
+    res.json({ 
+      code: 500, 
+      result: "error", 
+      message: e.message 
+    });
+  }
+  try {
     /*댓글 수 업데이트*/
     const numberOfReply = await POEM.countReply(poemId);
     const resultUpdate = await POEM.updateReply(numberOfReply, poemId);
     res.json({ 
       code: 200, 
       result: "success", 
-      data : result 
+      data : resultUpdate 
     });
   }
   catch(e) {
