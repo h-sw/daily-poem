@@ -33,7 +33,8 @@ const Keyword = ({ keyword, setKeyword }) => {
   const [open_content, setOpen_content] = React.useState(false);
 
   const callKeywordApi = async()=>{
-    const response = await axios.get('http://localhost:4000/keyword');
+    const response = await axios.get('http://localhost:4000/keyword/dailyKeyword');
+    console.log("그래서 데이터는 ",response);
     return response.data.data;
   }
 

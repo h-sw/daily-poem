@@ -4,8 +4,8 @@ class Keyword {
   async read (){
     try{
       const sql = `
-        SELECT keyword,createTime
-        FROM keyword
+        SELECT word, date
+        FROM dailyKeword
       `
       const result = await pool.query(sql);
       return result[0];
@@ -41,6 +41,20 @@ class Keyword {
       const result = await pool.query(sql, [
         poemId
       ])
+      return result[0];
+    }catch(err) {
+      throw err;
+    }
+  }
+
+  async dailyKeyword (){
+    try{
+      const sql = `
+        SELECT keyword,createTime
+        FROM keyword
+      `
+      const result = await pool.query(sql);
+      console.log("받아옴")
       return result[0];
     }catch(err) {
       throw err;

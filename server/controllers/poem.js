@@ -85,16 +85,31 @@ exports.createReply = async (req, res, next) => {
 }
 
 exports.deleteReply = async (req, res, next) => {
-  let {id, rpyId, name, pwd}=req.params;
+  let {poemId, replyId}=req.params;
   try { 
-    const result = await POEM.deleteReply(rpyId, name, pwd);
+    const result = await POEM.deleteReply(replyId);
+
+    res.json({ 
+      code: 200, 
+      result: "success", 
+      data : result 
+    });
+  }
+  catch(e) {
+    res.json({ 
+      code: 500, 
+      result: "error", 
+      message: e.message 
+    });
+  }
+  try { 
     /*댓글 수 업데이트*/
     const numberOfReply = await POEM.countReply(id);
     const resultUpdate = await POEM.updateReply(numberOfReply, id);
     res.json({ 
       code: 200, 
       result: "success", 
-      data : result 
+      data : resultUpdate 
     });
   }
   catch(e) {

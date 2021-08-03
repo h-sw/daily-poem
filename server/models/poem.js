@@ -105,17 +105,16 @@ class Poem {
     }
   }
 
-  async deleteReply( rpyId, name, pwd ){
+  async deleteReply( replyId ){
     try{
       const sql=`
         DELETE FROM REPLY 
-        WHERE replyId = ? 
-        AND name=? 
-        AND password=?;
+        WHERE replyId = ?;
       `
       const result = await pool.query(sql, [
-        rpyId, name, pwd
+        replyId
       ]);
+      console.log(result);
       return result[0];
     }catch(err) {
       throw err;

@@ -36,14 +36,14 @@ function Delete({ row, isReply }) {
     }else{
       if( isReply ) {
         alert( '댓글이 삭제되었습니다!' );
-        axios.post( '/deleteReply' , {
+        axios.delete('http://localhost:4000/poem/'+poemDelete.poemId+'/reply/'+poemDelete.replyId , {
           "id"    : poemDelete.poemId,
           "rpyId" : poemDelete.replyId,
           "name"  : poemDelete.name,
           "pwd"   : poemDelete.password
         }) 
         .then( function ( response ) {
-          console.log( response ); 
+          console.log( '성공 : ', response ); 
         }) 
         .catch( error => {
           console.log( 'error : ', error.response ) 
