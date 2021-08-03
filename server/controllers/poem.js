@@ -104,8 +104,8 @@ exports.deleteReply = async (req, res, next) => {
   }
   try { 
     /*댓글 수 업데이트*/
-    const numberOfReply = await POEM.countReply(id);
-    const resultUpdate = await POEM.updateReply(numberOfReply, id);
+    const numberOfReply = await POEM.countReply(poemId);
+    const resultUpdate = await POEM.updateReply(numberOfReply, poemId);
     res.json({ 
       code: 200, 
       result: "success", 
