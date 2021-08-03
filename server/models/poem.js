@@ -147,7 +147,7 @@ class Poem {
       const post = await pool.query(sql, [
         replyId, poemId, reason
       ])
-      return result[0];
+      return post;
     }catch(err) {
       throw err;
     }
