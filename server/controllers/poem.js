@@ -28,15 +28,16 @@ exports.deletePoem = async (req, res, next) => {
 
   //삭제 여부를 검증하는 라우터를 추가
   //id랑 name을 query에 넣는 방법 ?id=akk123&pw=123903123312
-
   //url 노출이 안됨
-  let {id, name, pwd}=req.params;
+  let {poemId}=req.params;
   try {
-    const result = await POEM.deletePoem(id, name, pwd);
+    const result2 = await POEM.deleteAllReply(poemId);
+    const result = await POEM.deletePoem(poemId);
     res.json({ 
       code: 200, 
       result: "success", 
-      data : result 
+      data : result ,
+      data2 : result2
     });
   }
   catch(e) {
@@ -52,9 +53,6 @@ exports.createReply = async (req, res, next) => {
   let {poemId, id, pwd, reply}=req.body;
   try {
     const result = await POEM.createReply(poemId, id, pwd, reply);
-    /*댓글 수 업데이트*/
-    const numberOfReply = await POEM.countReply(poemId);
-    const resultUpdate = await POEM.updateReply(numberOfReply, poemId);
     res.json({ 
       code: 200, 
       result: "success", 
@@ -68,19 +66,51 @@ exports.createReply = async (req, res, next) => {
       message: e.message 
     });
   }
+  try {
+    /*댓글 수 업데이트*/
+    const numberOfReply = await POEM.countReply(poemId);
+    const resultUpdate = await POEM.updateReply(numberOfReply, poemId);
+    res.json({ 
+      code: 200, 
+      result: "success", 
+      data : resultUpdate 
+    });
+  }
+  catch(e) {
+    res.json({ 
+      code: 500, 
+      result: "error", 
+      message: e.message 
+    });
+  }
 }
 
 exports.deleteReply = async (req, res, next) => {
-  let {id, rpyId, name, pwd}=req.params;
+  let {poemId, replyId}=req.params;
   try { 
-    const result = await POEM.deleteReply(rpyId, name, pwd);
-    /*댓글 수 업데이트*/
-    const numberOfReply = await POEM.countReply(id);
-    const resultUpdate = await POEM.updateReply(numberOfReply, id);
+    const result = await POEM.deleteReply(replyId);
+
     res.json({ 
       code: 200, 
       result: "success", 
       data : result 
+    });
+  }
+  catch(e) {
+    res.json({ 
+      code: 500, 
+      result: "error", 
+      message: e.message 
+    });
+  }
+  try { 
+    /*댓글 수 업데이트*/
+    const numberOfReply = await POEM.countReply(poemId);
+    const resultUpdate = await POEM.updateReply(numberOfReply, poemId);
+    res.json({ 
+      code: 200, 
+      result: "success", 
+      data : resultUpdate 
     });
   }
   catch(e) {
@@ -115,7 +145,8 @@ exports.report = async (req, res, next) => {
   //들어오는 요청을 가공
   let { replyId, poemId, reason } = req.body;
   try {
-    const result = await POEM.createReply(replyId, poemId, reason);
+    const result = await POEM.createReport(replyId, poemId, reason);
+    console.log(result);
     //응답을 보낸다
     res.json({ 
       code: 200, 

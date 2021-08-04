@@ -36,27 +36,27 @@ function Delete({ row, isReply }) {
     }else{
       if( isReply ) {
         alert( '댓글이 삭제되었습니다!' );
-        axios.post( '/deleteReply' , {
+        axios.delete('http://localhost:4000/poem/'+poemDelete.poemId+'/reply/'+poemDelete.replyId , {
           "id"    : poemDelete.poemId,
           "rpyId" : poemDelete.replyId,
           "name"  : poemDelete.name,
           "pwd"   : poemDelete.password
         }) 
         .then( function ( response ) {
-          console.log( response ); 
+          console.log( '성공 : ', response ); 
         }) 
         .catch( error => {
           console.log( 'error : ', error.response ) 
         });
       } else {
-        alert('3행시가 삭제되었습니다!');
-        axios.post( '/deletePoem' , {
+        axios.delete('http://localhost:4000/poem/'+poemDelete.poemId , {
           "id"    : poemDelete.poemId,
           "name"  : poemDelete.name, 
           "pwd"   : poemDelete.password
         }) 
         .then(function ( response ) { 
           console.log( response ); 
+          alert('3행시가 삭제되었습니다!');
         }) 
         .catch(error => { 
           console.log( 'error : ',error.response ) 

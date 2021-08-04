@@ -25,7 +25,7 @@ export default function Report({ row }) {
       alert( "10글자 이상 입력해주세요" );
     }else{
       alert( "신고가 완료 되었습니다." );
-      axios.post('/Report',{ 
+      axios.post('http://localhost:4000/poem/'+report.poemId+'/report',{ 
         "replyId"   : report.replyId, 
         "poemId"    : report.poemId, 
         "reason"    : report.reason 

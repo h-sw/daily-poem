@@ -1,3 +1,4 @@
+const dayjs = require('dayjs'); 
 const KEYWORD = require("../models/keyword")
 
 exports.read = async (req, res, next) => {
@@ -20,7 +21,6 @@ exports.read = async (req, res, next) => {
 
 exports.readKeyword = async (req, res, next) => {
   const { keyword } = req.params;
-
   try {
     const resultPoem = await KEYWORD.readKeyword(keyword);
     
@@ -36,6 +36,31 @@ exports.readKeyword = async (req, res, next) => {
       code: 200, 
       result: "success", 
       data : poems
+    });
+  }
+  catch(e) {
+    res.json({ 
+      code: 500, 
+      result: "error", 
+      message: e.message 
+    });
+  }
+}
+
+exports.dailyKeyword = async (req, res, next) => {
+  try {
+    const result = await KEYWORD.dailyKeyword();
+    var today= dayjs(new Date()).format("YYYY.MM.DD");
+
+    result.forEach(item => {
+      if(today === dayjs(item.createTime).format("YYYY.MM.DD")){
+        res.json({ 
+          code: 200, 
+          result: "success", 
+          data : item
+        });
+        return;
+      }
     });
   }
   catch(e) {

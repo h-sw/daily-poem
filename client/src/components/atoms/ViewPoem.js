@@ -5,8 +5,11 @@ import BlockIcon from '@material-ui/icons/Block';
 import styled from "styled-components";
 import { RowContext } from './Row';
 import dayjs from 'dayjs';
-import Report from './Report'
+import Report from './Report';
+import DeleteIcon from '@material-ui/icons/Delete';
+import Delete from './Delete'
 import {
+  NoPaddingButton,
   Spacer,
   FlexWrapper,
 } from '../../styles/common'
@@ -59,7 +62,7 @@ const ContentWrapper = styled.div`
 const ViewPoem = ( { submit }) => {
   const [open, setOpen] = React.useState(false);
   const row = React.useContext(RowContext);
-
+  const [openDelete, setOpenDelete] = React.useState(false);
   return (
     <CardContainer>
       <FlexWrapper>
@@ -96,9 +99,15 @@ const ViewPoem = ( { submit }) => {
         <IconWrapper onClick={() => setOpen(!open)}>
           <BlockIcon></BlockIcon>
         </IconWrapper>
-        
         <Collapse in={open} timeout="auto" unmountOnExit>
           <Report row={row}></Report>
+        </Collapse>
+        {/**삭제기능 */}
+        <NoPaddingButton  aria-label="delete" onClick={() => setOpenDelete( !openDelete )}>
+          <DeleteIcon fontSize="small" />
+        </NoPaddingButton>
+        <Collapse in={openDelete} timeout="auto" unmountOnExit>
+          <Delete row={row} isReply={false}/>
         </Collapse>
       </FlexWrapper>
     </CardContainer>

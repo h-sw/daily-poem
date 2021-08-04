@@ -63,7 +63,7 @@ function Row({ row }) {
         alert('모두 입력해주세요!');
       }
     }else{
-      axios.post('/postReply',{
+      axios.post('http://localhost:4000/poem/'+values.poemId+'/reply',{
         "poemId"  : values.poemId, 
         "id"      : values.id, 
         "pwd"     : values.password, 
@@ -97,7 +97,7 @@ function Row({ row }) {
   return (
     <div>
       <RowContext.Provider value={row}>
-        <ViewPoem
+        <ViewPoem 
           submit={likeSubmit}
         >
         </ViewPoem>

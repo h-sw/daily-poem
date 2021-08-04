@@ -4,6 +4,7 @@ import { RootWrapper } from '../styles/common';
 import Keyword from '../components/atoms/Keyword';
 import { Typography,Button } from '@material-ui/core';
 import styled from 'styled-components'
+import axios from 'axios';
 
 const KeywordButton = styled(Button)`
   padding       : 5px 15px;
@@ -29,17 +30,16 @@ const IconText = styled(Typography)`
 
 const Main = () => {
   const [displayData, setDisplayData]=React.useState([]);
-  const [keyword, setKeyword] = React.useState("민직킴");
+  const [keyword, setKeyword] = React.useState([]);
   const callLatestApi = async()=>{
-    const response = await fetch('/MainLatest');
-    const body = await response.json();
-    return body;
+    const response = await axios.get('http://localhost:4000/ranking');
+    return response.data.data;
   }
 
   React.useEffect(()=>{
     callLatestApi()
     .then(res=>{
-      setDisplayData(res.data)
+      setDisplayData(res)
     })
     .catch( err=>console.log(err) );
   }, []);

@@ -46,6 +46,19 @@ class Keyword {
       throw err;
     }
   }
+
+  async dailyKeyword (){
+    try{
+      const sql = `
+        SELECT keyword, createTime
+        FROM keyword
+      `
+      const result = await pool.query(sql);
+      return result[0];
+    }catch(err) {
+      throw err;
+    }
+  }
 };
 
 module.exports = new Keyword();
