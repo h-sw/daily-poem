@@ -5,9 +5,9 @@ const POEM = require("../models/poem")
 //put, post ---> body를 가질 수 있음
 
 exports.create = async (req, res, next) => {
-  const { poem } = req.params;
+  let { id, pwd, word, poem_1, poem_2, poem_3 } = req.body;
   try {
-    const result = await POEM.create( poem );
+    const result = await POEM.create( id, pwd, word, poem_1, poem_2, poem_3 );
     res.json({ 
       code: 200, 
       result: "success", 

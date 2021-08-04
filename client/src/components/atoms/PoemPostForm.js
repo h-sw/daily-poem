@@ -94,7 +94,7 @@ function PoemPostForm({ keyword }) {
       e.preventDefault();
     }else{
       alert('3행시가 등록되었습니다!');
-      axios.post('/postPoem', {
+      axios.post('http://localhost:4000/poem/', {
         "id"      : values.id, 
         "pwd"     : values.password, 
         "word"    : values.word, 

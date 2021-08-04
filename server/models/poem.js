@@ -1,7 +1,7 @@
 const pool = require("../lib/pool");
 
 class Poem {
-  async create ( poem ){
+  async create ( id, pwd, word, poem_1, poem_2, poem_3 ){
     try{
       const sql=`
         INSERT INTO POEM 
@@ -15,14 +15,14 @@ class Poem {
         comment =0;
       `
       const result = await pool.query(sql, [
-        poem.id, 
-        poem.pwd, 
-        poem.word, 
-        poem.poem_1, 
-        poem.poem_2, 
-        poem.poem_3
+        id, 
+        pwd, 
+        word, 
+        poem_1, 
+        poem_2, 
+        poem_3
       ]);
-      return result[0];
+      return result;
     }catch(err) {
       throw err;
     }

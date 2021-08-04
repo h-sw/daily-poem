@@ -11,11 +11,6 @@ export default function Report({ row , isReply}) {
   });
 
   const handleReport = ( e ) => {
-/*     const { name, value } = e.target;
-    setReport({ 
-      ...report,
-      [name]: value 
-    }); */
     let nextState = {
       "poemId"  : row.poemId,
       "replyId" : row.poemId,
