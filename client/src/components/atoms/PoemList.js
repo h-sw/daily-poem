@@ -46,7 +46,7 @@ const ArrowIcon = styled.i`
 
 
 function SampleNextArrow(props) {
-  const { className, style, onClick } = props;
+  const { onClick } = props;
   return (
     <PrevArrowWrapper onClick={onClick}>
       <ArrowIcon className="fi-rr-angle-right" />
@@ -55,16 +55,12 @@ function SampleNextArrow(props) {
 }
 
 function SamplePrevArrow(props) {
-  const { className, style, onClick } = props;
+  const { onClick } = props;
   return (
     <NextArrowWrapper onClick={onClick}>
       <ArrowIcon className="fi-rr-angle-left" />
     </NextArrowWrapper>
   );
-}
-
-function init(){
-
 }
 
 const PoemListContainer = ({ displayData }) => {

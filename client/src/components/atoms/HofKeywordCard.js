@@ -27,11 +27,6 @@ const CardContentWrapper = styled.div`
   left            : 0;
 `
 
-const CardImg = styled.img`
-  width           : 100%;
-  display         : block;
-`
-
 const CardTitle = styled(Typography)`
   font-weight     : 600;
   font-size       : 28px;
