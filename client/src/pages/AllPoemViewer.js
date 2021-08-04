@@ -8,7 +8,7 @@ import {
   FlexWrapper,
 } from '../styles/common';
 import { useParams } from 'react-router-dom';
-
+import axios from 'axios';
 const IconWrapper = styled(FlexWrapper)`
   cursor          : pointer;
 `
@@ -24,7 +24,7 @@ export default function AllPoemViewer(){
   const { keyword } = useParams()
   
   const callWeeklyApi = async()=>{
-    const response = await fetch('http://localhost:4000/keyword/'+ keyword);
+    const response = await axios.get('http://localhost:4000/keyword/'+ keyword);
     const body = await response.json();
     return body;
   }

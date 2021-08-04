@@ -65,51 +65,53 @@ const ViewPoem = ( { submit }) => {
   const [openDelete, setOpenDelete] = React.useState(false);
   return (
     <CardContainer>
-      <FlexWrapper>
-        <PostThemeText>{row.word}</PostThemeText>
-        <Spacer />
-        <PostCreatedDate>{dayjs(row.created).format("M.DD H:mm")}</PostCreatedDate>
-      </FlexWrapper>
-      <ContentWrapper>
-        <PoemText>
-          <PoemWord>{row.word.split('')[0]}</PoemWord>{row.poem_1}
-        </PoemText>
-        <PoemText>
-          <PoemWord>{row.word.split('')[1]}</PoemWord>{row.poem_2}
-        </PoemText>
-        <PoemText>
-          <PoemWord>{row.word.split('')[2]}</PoemWord>{row.poem_3}
-        </PoemText>
-      </ContentWrapper>
-      <FlexWrapper>
-        <IconWrapper>
-          <Icon className="fi-sr-user" />
-          <IconText>{row.name}</IconText>
-        </IconWrapper>
-        <Spacer />
-        <IconWrapper onClick={submit}>
-          <Icon className="fi-sr-thumbs-up" />
-          <IconText>{row.likes}</IconText>
-        </IconWrapper>
-        <IconWrapper>
-          <Icon className="fi-sr-comment" />
-          <IconText>{row.comment}</IconText>
-        </IconWrapper>
-        {/* 신고 기능 */}
-        <IconWrapper onClick={() => setOpen(!open)}>
-          <BlockIcon></BlockIcon>
-        </IconWrapper>
-        <Collapse in={open} timeout="auto" unmountOnExit>
-          <Report row={row} isReply={false}></Report>
-        </Collapse>
-        {/**삭제기능 */}
-        <NoPaddingButton  aria-label="delete" onClick={() => setOpenDelete( !openDelete )}>
-          <DeleteIcon fontSize="small" />
-        </NoPaddingButton>
-        <Collapse in={openDelete} timeout="auto" unmountOnExit>
-          <Delete row={row} isReply={false}/>
-        </Collapse>
-      </FlexWrapper>
+      {row.word && <>
+        <FlexWrapper>
+          <PostThemeText>{row.word}</PostThemeText>
+          <Spacer />
+          <PostCreatedDate>{dayjs(row.created).format("M.DD H:mm")}</PostCreatedDate>
+        </FlexWrapper>
+        <ContentWrapper>
+          <PoemText>
+            <PoemWord>{row.word.split('')[0]}</PoemWord>{row.poem_1}
+          </PoemText>
+          <PoemText>
+            <PoemWord>{row.word.split('')[1]}</PoemWord>{row.poem_2}
+          </PoemText>
+          <PoemText>
+            <PoemWord>{row.word.split('')[2]}</PoemWord>{row.poem_3}
+          </PoemText>
+        </ContentWrapper>
+        <FlexWrapper>
+          <IconWrapper>
+            <Icon className="fi-sr-user" />
+            <IconText>{row.name}</IconText>
+          </IconWrapper>
+          <Spacer />
+          <IconWrapper onClick={submit}>
+            <Icon className="fi-sr-thumbs-up" />
+            <IconText>{row.likes}</IconText>
+          </IconWrapper>
+          <IconWrapper>
+            <Icon className="fi-sr-comment" />
+            <IconText>{row.comment}</IconText>
+          </IconWrapper>
+          {/* 신고 기능 */}
+          <IconWrapper onClick={() => setOpen(!open)}>
+            <BlockIcon></BlockIcon>
+          </IconWrapper>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <Report row={row} isReply={false}></Report>
+          </Collapse>
+          {/**삭제기능 */}
+          <NoPaddingButton  aria-label="delete" onClick={() => setOpenDelete( !openDelete )}>
+            <DeleteIcon fontSize="small" />
+          </NoPaddingButton>
+          <Collapse in={openDelete} timeout="auto" unmountOnExit>
+            <Delete row={row} isReply={false}/>
+          </Collapse>
+        </FlexWrapper>
+      </>}
     </CardContainer>
     )
 }
