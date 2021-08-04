@@ -63,7 +63,7 @@ function Row({ row }) {
         alert('모두 입력해주세요!');
       }
     }else{
-      axios.post('http://localhost:4000/poem/'+values.poemId+'/reply',{
+      axios.post('http://localhost:4000/poem/' + values.poemId + '/reply',{
         "poemId"  : values.poemId, 
         "id"      : values.id, 
         "pwd"     : values.password, 
@@ -81,7 +81,7 @@ function Row({ row }) {
   } 
 
   const likeSubmit = (e) => {
-    axios.post('http://localhost:4000/poem/'+row.poemId+'/like', {
+    axios.post('http://localhost:4000/poem/' + row.poemId + '/like', {
       "likes"   : parseInt(row.likes) + 1, 
       "poemId"  : row.poemId
     }) 

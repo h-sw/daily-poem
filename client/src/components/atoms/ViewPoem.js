@@ -88,6 +88,7 @@ const ViewPoem = ( { submit }) => {
             <IconText>{row.name}</IconText>
           </IconWrapper>
           <Spacer />
+          {/* 좋아요 기능 */}
           <IconWrapper onClick={submit}>
             <Icon className="fi-sr-thumbs-up" />
             <IconText>{row.likes}</IconText>
@@ -103,7 +104,7 @@ const ViewPoem = ( { submit }) => {
           <Collapse in={open} timeout="auto" unmountOnExit>
             <Report row={row} isReply={false}></Report>
           </Collapse>
-          {/**삭제기능 */}
+          {/*삭제 기능 */}
           <NoPaddingButton  aria-label="delete" onClick={() => setOpenDelete( !openDelete )}>
             <DeleteIcon fontSize="small" />
           </NoPaddingButton>

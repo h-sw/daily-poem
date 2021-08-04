@@ -133,10 +133,10 @@ class Poem {
         SET likes=? 
         WHERE poemId = ?;
       `
-      const result = await pool.query(sql, [
+      const post = await pool.query(sql, [
         likes, poemId
       ])
-      return result;
+      return post;
     }catch(err) {
       throw err;
     }
