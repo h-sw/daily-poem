@@ -47,7 +47,7 @@ export default function Report({ row , isReply}) {
       }else{
         alert( "신고가 완료 되었습니다." );
         axios.post('http://localhost:4000/poem/'+report.poemId+'/report',{ 
-          "replyId"   : report.replyId, 
+          "replyId"   : null, 
           "poemId"    : report.poemId, 
           "reason"    : report.reason 
         }) 
