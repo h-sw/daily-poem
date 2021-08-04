@@ -10,6 +10,7 @@ var indexRouter = require('./routes/index');
 var app = express();
 //var pool = require("./lib/pool");
 
+app.engine('ejs', require('pug').renderFile);
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
