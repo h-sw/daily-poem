@@ -28,15 +28,16 @@ exports.deletePoem = async (req, res, next) => {
 
   //삭제 여부를 검증하는 라우터를 추가
   //id랑 name을 query에 넣는 방법 ?id=akk123&pw=123903123312
-
   //url 노출이 안됨
-  let {id, name, pwd}=req.params;
+  let {poemId}=req.params;
   try {
-    const result = await POEM.deletePoem(id, name, pwd);
+    const result2 = await POEM.deleteAllReply(poemId);
+    const result = await POEM.deletePoem(poemId);
     res.json({ 
       code: 200, 
       result: "success", 
-      data : result 
+      data : result ,
+      data2 : result2
     });
   }
   catch(e) {

@@ -28,7 +28,23 @@ class Poem {
     }
   }
 
-  async deletePoem ( id, name, pwd ){
+  async deletePoem (poemId){
+    try{
+
+			//시 삭제
+			const sql=`DELETE FROM POEM 
+				WHERE poemId = ? 
+			`
+			const result = await pool.query(sql, [
+				poemId
+			]);
+			return result[0];
+		}catch(err) {
+      throw err;
+    }
+  }
+
+  async deleteAllReply (poemId){
     try{
       //댓글도 삭제
 		  const sqlReply = `
@@ -36,19 +52,9 @@ class Poem {
         WHERE poemId = ?;
 			`
 			const resultReply = await pool.query(sqlReply, [
-				id
+				poemId
 			]);
-
-			//시 삭제
-			const sql=`DELETE FROM POEM 
-				WHERE poemId = ? 
-        AND name=? 
-        AND password=?;
-			`
-			const result = await pool.query(sql, [
-				id, name, pwd
-			]);
-			return result[0];
+      return resultReply[0];
 		}catch(err) {
       throw err;
     }

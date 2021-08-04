@@ -105,7 +105,7 @@ function Row({ row, onReply = true, onLike = true }) {
   return (
     <div>
       <RowContext.Provider value={row}>
-        <ViewPoem
+        <ViewPoem 
           submit={likeSubmit}
         >
         </ViewPoem>
