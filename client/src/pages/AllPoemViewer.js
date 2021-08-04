@@ -24,9 +24,9 @@ export default function AllPoemViewer(){
   const { keyword } = useParams()
   
   const callWeeklyApi = async()=>{
+    console.log("안녕?");
     const response = await axios.get('http://localhost:4000/keyword/'+ keyword);
-    const body = await response.json();
-    return body;
+    return response.data;
   }
 
   useEffect(()=>{
