@@ -18,5 +18,6 @@ router.post('/:poemId/like', poem.like);
 
 router.post('/:poemId/report', poem.report);
 
+router.post('/:poemId/report/:replyId', poem.reportReply);
 
 module.exports = router;

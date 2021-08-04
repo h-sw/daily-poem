@@ -120,7 +120,6 @@ class Poem {
       const result = await pool.query(sql, [
         replyId
       ]);
-      console.log(result);
       return result[0];
     }catch(err) {
       throw err;

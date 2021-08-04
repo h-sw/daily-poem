@@ -4,6 +4,8 @@ import Collapse from '@material-ui/core/Collapse';
 import dayjs from 'dayjs';
 import DeleteIcon from '@material-ui/icons/Delete';
 import styled from "styled-components";
+import BlockIcon from '@material-ui/icons/Block';
+import Report from './Report';
 import {
   NoPaddingButton,
   FlexWrapper,
@@ -24,7 +26,7 @@ const CreatedDate = styled(Typography)`
 function HistoryComment({ historyComment }) {
 
   const [openDeleteRpy, setOpenDeleteRpy] = React.useState(false);
-
+  const [openReport, setOpenReport] = React.useState(false);
   return (
     <Padding>
       <FlexWrapper>
@@ -33,10 +35,16 @@ function HistoryComment({ historyComment }) {
         <NoPaddingButton  aria-label="delete" onClick={() => setOpenDeleteRpy( !openDeleteRpy )}>
           <DeleteIcon fontSize="small" />
         </NoPaddingButton>
+        <NoPaddingButton onClick={() => setOpenReport(!openReport)}>
+          <BlockIcon/>
+        </NoPaddingButton>
     	</FlexWrapper>
       <WriterText>{historyComment.reply}</WriterText>
       <Collapse in={openDeleteRpy} timeout="auto" unmountOnExit>
         <Delete row={historyComment} isReply={true}/>
+      </Collapse>
+      <Collapse in={openReport} timeout="auto" unmountOnExit>
+        <Report row={historyComment} isReply={true}></Report>
       </Collapse>
     </Padding>
   )

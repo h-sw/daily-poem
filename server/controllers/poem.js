@@ -146,7 +146,6 @@ exports.report = async (req, res, next) => {
   let { replyId, poemId, reason } = req.body;
   try {
     const result = await POEM.createReport(replyId, poemId, reason);
-    console.log(result);
     //응답을 보낸다
     res.json({ 
       code: 200, 
@@ -163,3 +162,23 @@ exports.report = async (req, res, next) => {
   }
 }
 
+exports.reportReply = async (req, res, next) => {
+  //들어오는 요청을 가공
+  let { replyId, poemId, reason } = req.body;
+  try {
+    const result = await POEM.createReport(replyId, poemId, reason);
+    //응답을 보낸다
+    res.json({ 
+      code: 200, 
+      result: "success", 
+      data : result 
+    });
+  }
+  catch(e) {
+    res.json({ 
+      code: 500, 
+      result: "error", 
+      message: e.message 
+    });
+  }
+}
