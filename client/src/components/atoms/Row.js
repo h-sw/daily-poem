@@ -81,7 +81,7 @@ function Row({ row }) {
   } 
 
   const likeSubmit = (e) => {
-    axios.post('/postLike', {
+    axios.post('http://localhost:4000/poem/'+row.poemId+'/like', {
       "likes"   : parseInt(row.likes) + 1, 
       "poemId"  : row.poemId
     }) 

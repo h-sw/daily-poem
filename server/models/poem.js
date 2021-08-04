@@ -136,7 +136,7 @@ class Poem {
       const result = await pool.query(sql, [
         likes, poemId
       ])
-      return result[0];
+      return result;
     }catch(err) {
       throw err;
     }
