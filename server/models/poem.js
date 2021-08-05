@@ -6,13 +6,13 @@ class Poem {
       const sql=`
         INSERT INTO POEM 
         SET name=?, 
-        password=?, 
-        word    =?, 
-        poem_1  =?, 
-        poem_2  =?, 
-        poem_3  =?, 
-        likes   =0, 
-        comment =0;
+            password=?, 
+            word    =?, 
+            poem_1  =?, 
+            poem_2  =?, 
+            poem_3  =?, 
+            likes   =0, 
+            comment =0;
       `
       const result = await pool.query(sql, [
         id, 
@@ -32,7 +32,8 @@ class Poem {
     try{
 
 			//시 삭제
-			const sql=`DELETE FROM POEM 
+			const sql=`
+        DELETE FROM POEM 
 				WHERE poemId = ? 
 			`
 			const result = await pool.query(sql, [
@@ -63,11 +64,13 @@ class Poem {
 	async createReply( poemId, id, pwd, reply ){
 		try{
 			/* 댓글 업로드 부분 */
-			const sql=`INSERT INTO REPLY 
+			const sql=`
+        INSERT INTO REPLY 
 				SET poemId=?, 
-				name=?, 
-				password=?, 
-				reply=?;
+            name=?, 
+            password=?, 
+            reply=?,
+            likes=0;
 			`
 			const result = await pool.query(sql, [
 				poemId, id, pwd, reply
@@ -145,8 +148,11 @@ class Poem {
   async createReport( replyId, poemId, reason ){
     try{
       //요청을 쿼리로 보내고
-      const sql=`INSERT INTO manage 
-        SET replyId=?, poemId=?, reason=?;
+      const sql=`
+        INSERT INTO manage 
+        SET replyId=?, 
+            poemId=?, 
+            reason=?;
       `
       //DB에서 데이터를 받아와서
       const post = await pool.query(sql, [
