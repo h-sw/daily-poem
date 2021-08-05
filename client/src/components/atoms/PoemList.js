@@ -18,7 +18,7 @@ const PrevArrowWrapper = styled(IconButton)`
   border-radius: 100%;
   transform : translate(-50%, 0);
   &:hover {
-    background-color: #EEE;
+    background-color: #f3f7f3;
     cursor: pointer;
   }
 `
@@ -31,7 +31,7 @@ const NextArrowWrapper = styled(IconButton)`
   border-radius: 100%;
   transform : translate(-50%, 0);
   &:hover {
-    background-color: #EEE;
+    background-color: #f3f7f3;
     cursor: pointer;
   }
 `
@@ -64,7 +64,7 @@ function SamplePrevArrow(props) {
 const PoemListContainer = ({ displayData }) => {
   var settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,

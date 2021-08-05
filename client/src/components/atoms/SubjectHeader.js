@@ -25,8 +25,9 @@ const Subtitle = styled(Typography)`
 `
 
 const KeywordButton = styled(Button)`
-  padding       : 5px 30px;
-  border-radius : 15px;
+  padding          : 5px 30px;
+  border-radius    : 15px;
+  background-color : #f3f7f3;
 `
 
 const SubjectHeader = ({ keyword, setKeyword }) => {

@@ -5,11 +5,11 @@ import styled from "styled-components";
 import { Grid, InputBase, Typography } from '@material-ui/core';
 
 const FormWrapper = styled.div`
-  background-color: #cfe8fc;
+  background-color: #e6eccc;
   max-width 	    : 600px;
-	margin	  	    : 0px auto;
+	margin	  	    : 10px auto;
 	height			    : 100%;
-	padding			    : 5px 20px;
+	padding			    : 0px 20px;
 `
 
 const ButtonWrapper = styled.div`
@@ -18,7 +18,7 @@ const ButtonWrapper = styled.div`
 `
 
 const PostWrapper = styled.div`
-  margin          : 10px;
+  margin          : 5px;
   display         : flex;
   flex-direction  : column;
 `
@@ -28,7 +28,7 @@ const PoemInputWrapper = styled.div`
   margin          : 5px 0px;
   border-radius   : 5px;
   padding         : 0px 10px;
-  border          : 1px solid #8FB896;
+  border          : 1.8px solid #b6c37b;
 `
 
 const PoemInput = styled(InputBase)`
@@ -44,7 +44,7 @@ const PoemKeyword = styled(Typography)`
 `
 
 const InfoInput = styled(InputBase)`
-  border          : 1px solid #8FB896;
+  border          : 1.8px solid #b6c37b;
   font-size       : 14px;
   padding         : 3px 10px;
   margin          : 10px 0px 5px 0px;
@@ -58,7 +58,7 @@ const SubmitButton = styled(Button)`
   font-wieght     : 600;
   font-size       : 14px;
   &:hover {
-    background-color : #8F8F8F;
+    background-color : #7EA785;
   }
 `
 
