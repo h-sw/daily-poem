@@ -44,7 +44,7 @@ function HistoryComment({ historyComment }) {
         <Delete row={historyComment} isReply={true}/>
       </Collapse>
       <Collapse in={openReport} timeout="auto" unmountOnExit>
-        <Report row={historyComment} isReply={true}></Report>
+        <Report row={historyComment} isReply={true} setOpen={setOpenReport}></Report>
       </Collapse>
     </Padding>
   )

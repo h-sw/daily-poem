@@ -79,7 +79,7 @@ const ViewPoem = ( { submit }) => {
             <BlockIcon></BlockIcon>
           </IconWrapper>
           <Collapse in={open} timeout="auto" unmountOnExit>
-            <Report row={row} isReply={false}></Report>
+            <Report row={row} isReply={false} setOpen={setOpen}></Report>
           </Collapse>
           {/*삭제 기능 */}
           <NoPaddingButton  aria-label="delete" onClick={() => setOpenDelete( !openDelete )}>

@@ -2,7 +2,7 @@ import React from 'react';
 import TextField from '@material-ui/core/TextField'
 import axios from 'axios';
 
-export default function Report({ row , isReply}) {
+export default function Report({ row , isReply , setOpen}) {
 
   const [report, setReport] = React.useState({ 
     "replyId"   : row.replyId, 
@@ -57,7 +57,7 @@ export default function Report({ row , isReply}) {
         .catch( error => {
           console.log('error : ',error.response) 
         });
-        window.location.reload();
+        setOpen(false);
       }
     }
   }
