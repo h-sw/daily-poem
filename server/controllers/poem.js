@@ -202,6 +202,25 @@ exports.reportReply = async (req, res, next) => {
   }
 }
 
+exports.read =async (req, res, next) => {
+  let {poemId}=req.params;
+  try { 
+    const result = await POEM.read(poemId);
+    res.json({ 
+      code: 200, 
+      result: "success", 
+      data : result[0]
+    });
+  }
+  catch(e) {
+    res.json({ 
+      code: 500, 
+      result: "error", 
+      message: e.message 
+    });
+  }
+}
+
 exports.readReply =async (req, res, next) => {
   let {replyId}=req.params;
   try { 
@@ -219,5 +238,4 @@ exports.readReply =async (req, res, next) => {
       message: e.message 
     });
   }
-
 }

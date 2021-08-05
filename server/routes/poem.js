@@ -22,6 +22,8 @@ router.post('/:poemId/report', poem.report);
 
 router.post('/:poemId/report/:replyId', poem.reportReply);
 
-router.get('/:replyId/read',poem.readReply);
+router.get('/:poemId/read',poem.read);
+
+router.get('/:replyId/readReply',poem.readReply);
 
 module.exports = router;

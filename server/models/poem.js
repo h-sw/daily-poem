@@ -180,6 +180,25 @@ class Poem {
     }
   }
 
+  
+  async read( poemId ){
+    try{
+      //요청을 쿼리로 보내고
+      const sql=`
+      SELECT * 
+      FROM POEM
+      WHERE POEM.poemId = ?
+      `
+      //DB에서 데이터를 받아와서
+      const post = await pool.query(sql, [
+        poemId
+      ])
+      return post;
+    }catch(err) {
+      throw err;
+    }
+  }
+
   async readReply( replyId ){
     try{
       //요청을 쿼리로 보내고

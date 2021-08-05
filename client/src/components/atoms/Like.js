@@ -15,9 +15,13 @@ function Like({ id, likes, isReply}) {
       "id"      : id
     }) 
     .then((response) => { 
-      console.log(response); 
-      alert("좋아요를 눌렀어요!")
-      window.location.reload();
+      axios.get('http://localhost:4000/poem/' + id + '/read') 
+      .then((res) => { 
+        setLike(res.data.data[0].likes);
+      }) 
+      .catch(error => { 
+        console.log('error : ', error.response) 
+      }); 
     }) 
     .catch(error => { 
       console.log('error : ', error.response) 
@@ -29,7 +33,7 @@ function Like({ id, likes, isReply}) {
       "id"      : id
     }) 
     .then((response) => { 
-      axios.get('http://localhost:4000/poem/' + id + '/read') 
+      axios.get('http://localhost:4000/poem/' + id + '/readReply') 
       .then((res) => { 
         setLike(res.data.data[0].likes);
       }) 
