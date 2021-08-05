@@ -24,7 +24,7 @@ function Like({ id, likes, isReply}) {
     }); 
   }
   const replyLikeSubmit = (e) => {
-    axios.post('http://localhost:4000/poem/' + id + '/replyLike', {
+    axios.post('http://localhost:4000/poem/' + id + '/likeReply', {
       "likes"   : parseInt(like) + 1, 
       "id"      : id
     }) 

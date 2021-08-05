@@ -145,7 +145,7 @@ class Poem {
     }
   }
 
-  async createReplyLike( likes, replyId ){
+  async createlikeReply( likes, replyId ){
     try{
       const sql=`
         UPDATE REPLY

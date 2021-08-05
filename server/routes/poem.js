@@ -16,7 +16,7 @@ router.delete('/:poemId/reply/:replyId', poem.deleteReply);
 
 router.post('/:poemId/like', poem.like);
 
-router.post('/:poemId/replyLike', poem.replyLike);
+router.post('/:poemId/likeReply', poem.likeReply);
 
 router.post('/:poemId/report', poem.report);
 
