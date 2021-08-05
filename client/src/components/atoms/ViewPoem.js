@@ -68,7 +68,7 @@ const ViewPoem = ( { submit }) => {
           </IconWrapper>
           <Spacer />
           {/* 좋아요 기능 */}
-          <Like submit = {submit} likes = {row.likes}></Like>
+          <Like id = {row.poemId} likes = {row.likes} isReply = {false}></Like>
           {/* 댓글 수 표시 */}
           <IconWrapper>
             <Icon className="fi-sr-comment" />

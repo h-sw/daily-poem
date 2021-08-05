@@ -11,7 +11,8 @@ import {
   FlexWrapper,
   Padding
 } from '../../styles/common';
-import Delete from './Delete'
+import Delete from './Delete';
+import Like from './Like';
 
 const WriterText = styled(Typography)`
   font-size    : 12px;
@@ -27,11 +28,18 @@ function HistoryComment({ historyComment }) {
 
   const [openDeleteRpy, setOpenDeleteRpy] = React.useState(false);
   const [openReport, setOpenReport] = React.useState(false);
+
+  
   return (
     <Padding>
       <FlexWrapper>
         <WriterText>{historyComment.name}</WriterText>
         <CreatedDate>{dayjs(historyComment.created).format("MM.DD HH:mm")}</CreatedDate>
+        {/* 좋아요 기능 */}
+        {/* 일단 임시로 style 해놨음 */}
+        <div style = {{marginLeft: 10}}>
+        <Like id = {historyComment.replyId} likes = {historyComment.likes} isReply = {true}></Like>
+        </div>
         <NoPaddingButton  aria-label="delete" onClick={() => setOpenDeleteRpy( !openDeleteRpy )}>
           <DeleteIcon fontSize="small" />
         </NoPaddingButton>

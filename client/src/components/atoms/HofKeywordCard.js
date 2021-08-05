@@ -72,12 +72,12 @@ const HofKeywordCard = ({ data }) => {
     <Card 
       ref={cardRef} 
       height={cardWidth}
-      onClick={() => window.location.href="/keyword/"+data.word}
+      onClick={() => window.location.href="/keyword/"+data.keyword}
     >
       {/*<CardImg src={data.img_url} alt=""/>*/}
       <CardContentWrapper>
         <CardTitle>
-          {data.word}
+          {data.keyword}
         </CardTitle>
       </CardContentWrapper>
       <CardSubContentWrapper>

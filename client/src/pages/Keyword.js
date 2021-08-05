@@ -60,8 +60,8 @@ const Keyword = () => {
         let tempClassify = [];
         let idx = 0;
         for(const d of res.data){
-          if(!tempClassify.includes(dayjs(d.date).format('YYYY.MM'))){
-            tempClassify[idx] = dayjs(d.date).format('YYYY.MM');
+          if(!tempClassify.includes(dayjs(d.createTime).format('YYYY.MM'))){
+            tempClassify[idx] = dayjs(d.createTime).format('YYYY.MM');
             idx += 1;
           }
         }
@@ -78,7 +78,7 @@ const Keyword = () => {
       if(values.length > 0){
         var searcher = new Hangul.Searcher(values);
         allKeyword.forEach((item) => {
-          if(searcher.search(item.word)===0){
+          if(searcher.search(item.keyword)===0){
             temp.push(item);
           }
       })
@@ -155,7 +155,7 @@ const Keyword = () => {
               {display.map((data, idx) => (
                 sorting === SORT_BY_WORD ?
                 //item은 ㄱ,ㄴ,ㄷ,ㄹ, 분류 , data는 현재 displaydata
-                (Hangul.search(data.word,item)===0 ?
+                (Hangul.search(data.keyword,item)===0 ?
                 <Grid
                   key={idx} 
                   item 
@@ -166,7 +166,7 @@ const Keyword = () => {
                 <AllKeywordCard data={data} />
                 </Grid> : <></>)
                 :
-                (dayjs(data.date).format('YYYY.MM')===item ?
+                (dayjs(data.createTime).format('YYYY.MM')===item ?
                 <Grid
                     key={idx} 
                     item 

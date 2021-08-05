@@ -49,12 +49,12 @@ const AllKeywordCard = ({ data }) => {
     <Card 
       ref={cardRef} 
       height={cardWidth}
-      onClick={() => window.location.href="/keyword/"+data.word}
+      onClick={() => window.location.href="/keyword/"+data.keyword}
     >
       <CardImg />
       <CardContentWrapper>
         <CardTitle>
-          {data.word}
+          {data.keyword}
         </CardTitle>
       </CardContentWrapper>
     </Card>

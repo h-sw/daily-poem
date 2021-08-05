@@ -34,12 +34,14 @@ const Keyword = ({ keyword, setKeyword }) => {
 
   const callKeywordApi = async()=>{
     const response = await axios.get('http://localhost:4000/keyword/dailyKeyword');
-    return response.data.data;
+    console.log(response.data.data);
+    return response.data.data[0];
   }
 
   React.useEffect(()=>{
     callKeywordApi()
     .then( res=>{
+      console.log(res.keyword);
       setKeyword(res.keyword);
     })
     .catch( err=>console.log(err) );

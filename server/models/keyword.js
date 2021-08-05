@@ -4,8 +4,10 @@ class Keyword {
   async read (){
     try{
       const sql = `
-        SELECT word, date
-        FROM dailyKeword
+        SELECT keyword, createTime
+        FROM keyword
+        WHERE DATE_FORMAT(createTime, '%Y-%m-%d')
+          <= DATE_FORMAT(now(), '%Y-%m-%d')
       `
       const result = await pool.query(sql);
       return result[0];
@@ -52,6 +54,8 @@ class Keyword {
       const sql = `
         SELECT keyword, createTime
         FROM keyword
+        WHERE DATE_FORMAT(createTime, '%Y-%m-%d')
+          = DATE_FORMAT(now(), '%Y-%m-%d')
       `
       const result = await pool.query(sql);
       return result[0];
