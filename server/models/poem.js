@@ -179,6 +179,24 @@ class Poem {
       throw err;
     }
   }
+
+  async readReply( replyId ){
+    try{
+      //요청을 쿼리로 보내고
+      const sql=`
+      SELECT * 
+      FROM REPLY
+      WHERE REPLY.replyId = ?
+      `
+      //DB에서 데이터를 받아와서
+      const post = await pool.query(sql, [
+        replyId
+      ])
+      return post;
+    }catch(err) {
+      throw err;
+    }
+  }
 };
 
 module.exports = new Poem();

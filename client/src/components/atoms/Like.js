@@ -8,9 +8,10 @@ import axios from 'axios';
 
 function Like({ id, likes, isReply}) {
 
+  const [like, setLike] = React.useState(likes);
   const likeSubmit = (e) => {
     axios.post('http://localhost:4000/poem/' + id + '/like', {
-      "likes"   : parseInt(likes) + 1, 
+      "likes"   : parseInt(like) + 1, 
       "id"      : id
     }) 
     .then((response) => { 
@@ -24,13 +25,17 @@ function Like({ id, likes, isReply}) {
   }
   const replyLikeSubmit = (e) => {
     axios.post('http://localhost:4000/poem/' + id + '/replyLike', {
-      "likes"   : parseInt(likes) + 1, 
+      "likes"   : parseInt(like) + 1, 
       "id"      : id
     }) 
     .then((response) => { 
-      console.log(response); 
-      alert("좋아요를 눌렀어요!")
-      window.location.reload();
+      axios.get('http://localhost:4000/poem/' + id + '/read') 
+      .then((res) => { 
+        setLike(res.data.data[0].likes);
+      }) 
+      .catch(error => { 
+        console.log('error : ', error.response) 
+      }); 
     }) 
     .catch(error => { 
       console.log('error : ', error.response) 
@@ -42,14 +47,14 @@ function Like({ id, likes, isReply}) {
       <>
       <IconWrapper onClick={replyLikeSubmit}>
         <Icon className="fi-sr-thumbs-up" />
-        <IconText>{likes}</IconText>
+        <IconText>{like}</IconText>
       </IconWrapper>
       </>
     :
       <>
       <IconWrapper onClick={likeSubmit}>
         <Icon className="fi-sr-thumbs-up" />
-        <IconText>{likes}</IconText>
+        <IconText>{like}</IconText>
       </IconWrapper>
       </>
     }
