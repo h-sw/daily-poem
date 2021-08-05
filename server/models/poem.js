@@ -145,6 +145,22 @@ class Poem {
     }
   }
 
+  async createReplyLike( likes, replyId ){
+    try{
+      const sql=`
+        UPDATE REPLY
+        SET likes=?
+        WHERE replyId = ?;
+      `
+      const post = await pool.query(sql, [
+        likes, replyId
+      ])
+      return post;
+    }catch(err) {
+      throw err;
+    }
+  }
+
   async createReport( replyId, poemId, reason ){
     try{
       //요청을 쿼리로 보내고

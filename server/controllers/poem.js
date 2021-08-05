@@ -144,7 +144,7 @@ exports.like = async (req, res, next) => {
 exports.replyLike = async (req, res, next) => {
   let {likes, id} = req.body;
   try {
-    const result = await POEM.createLike(likes, id);
+    const result = await POEM.createReplyLike(likes, id);
     res.json({ 
       code: 200, 
       result: "success", 
