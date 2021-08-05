@@ -7,52 +7,31 @@ import { RowContext } from './Row';
 import dayjs from 'dayjs';
 import Report from './Report';
 import DeleteIcon from '@material-ui/icons/Delete';
-import Delete from './Delete'
+import Delete from './Delete';
+import Like from './Like';
 import {
-  NoPaddingButton,
   Spacer,
   FlexWrapper,
+  NoPaddingButton,
 } from '../../styles/common'
+import {
+  Icon,
+  IconText,
+  IconWrapper,
+} from '../../styles/icon'
+import {
+  PoemText,
+  PoemWord,
+  PostThemeText,
+  PostCreatedDate,
+} from '../../styles/poem'
+
 
 const CardContainer = styled.div`
   margin          : 15px;
   padding         : 15px;
   border-radius   : 15px;
   background-color: #8EB695;
-`
-const PostThemeText = styled(Typography)`
-  color           : #676A59;
-  font-size       : 20px;
-  font-weight     : 600;
-`
-const PostCreatedDate = styled(Typography)`
-  font-size       : 12px;
-  color           : #333333;
-`
-const PoemText = styled(Typography)`
-  font-size       : 16px;
-  font-weight     : 500;
-  color           : #676A59;
-`
-const PoemWord = styled.span`
-  font-size       : 16px;
-  font-weight     : 700;
-  border-radius   : 100%;
-  color           : #676A59;
-`
-const Icon = styled.i`
-  font-size       : 14px;
-  height          : 14px;
-  color           : #333333;
-  margin-right    : 5px;
-`
-const IconText = styled(Typography)`
-  font-size       : 14px;
-  color           : #333333;
-`
-const IconWrapper = styled(FlexWrapper)`
-  margin-right    : 10px;
-  cursor          : pointer;
 `
 const ContentWrapper = styled.div`
   margin-top      : 10px;
@@ -89,10 +68,8 @@ const ViewPoem = ( { submit }) => {
           </IconWrapper>
           <Spacer />
           {/* 좋아요 기능 */}
-          <IconWrapper onClick={submit}>
-            <Icon className="fi-sr-thumbs-up" />
-            <IconText>{row.likes}</IconText>
-          </IconWrapper>
+          <Like submit = {submit} likes = {row.likes}></Like>
+          {/* 댓글 수 표시 */}
           <IconWrapper>
             <Icon className="fi-sr-comment" />
             <IconText>{row.comment}</IconText>
