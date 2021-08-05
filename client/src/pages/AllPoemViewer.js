@@ -3,6 +3,7 @@ import Row from '../components/atoms/Row';
 import Button from '@material-ui/core/Button';
 import Header from '../components/atoms/Header';
 import styled from 'styled-components';
+
 import {
   RootWrapper,
   FlexWrapper,
@@ -19,7 +20,7 @@ const Icon = styled.i`
   margin-top      : 10px;
 `
 
-export default function AllPoemViewer(){
+export default function AllPoemViewer({history}){
   const [rankData, setRankData] = React.useState([]);
   const { keyword } = useParams()
   
@@ -29,6 +30,7 @@ export default function AllPoemViewer(){
   }
 
   useEffect(()=>{
+    console.log(history);
     callWeeklyApi()
     .then(res=>{
       setRankData(res.data)
@@ -36,11 +38,14 @@ export default function AllPoemViewer(){
     .catch(err=>console.log(err));
   }, []);
 
+  const back =()=>{
+    history.goBack();
+  }
   return (
     <RootWrapper>
       {/* 뒤로가기 버튼 */}
       <IconWrapper>
-        <Button onClick={() => window.location.href="/keyword"}>
+        <Button onClick={back}>
           <Icon className="fi-rr-angle-double-left" />
         </Button>
       </IconWrapper>
