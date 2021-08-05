@@ -74,19 +74,19 @@ const ViewPoem = ( { submit }) => {
             <Icon className="fi-sr-comment" />
             <IconText>{row.comment}</IconText>
           </IconWrapper>
-          {/* 신고 기능 */}
-          <IconWrapper onClick={() => setOpen(!open)}>
-            <BlockIcon></BlockIcon>
-          </IconWrapper>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <Report row={row} isReply={false} setOpen={setOpen}></Report>
-          </Collapse>
           {/*삭제 기능 */}
-          <NoPaddingButton  aria-label="delete" onClick={() => setOpenDelete( !openDelete )}>
+          <IconWrapper  aria-label="delete" onClick={() => setOpenDelete( !openDelete )}>
             <DeleteIcon fontSize="small" />
-          </NoPaddingButton>
+          </IconWrapper>
           <Collapse in={openDelete} timeout="auto" unmountOnExit>
             <Delete row={row} isReply={false}/>
+          </Collapse>
+          {/* 신고 기능 */}
+          <NoPaddingButton onClick={() => setOpen(!open)}>
+            <BlockIcon fontSize="small" />
+          </NoPaddingButton>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <Report row={row} isReply={false} setOpen={setOpen}></Report>
           </Collapse>
         </FlexWrapper>
       </>}

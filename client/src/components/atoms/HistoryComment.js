@@ -11,6 +11,9 @@ import {
   FlexWrapper,
   Padding
 } from '../../styles/common';
+import {
+  IconWrapper,
+} from '../../styles/icon'
 import Delete from './Delete';
 import Like from './Like';
 
@@ -40,11 +43,11 @@ function HistoryComment({ historyComment }) {
         <div style = {{marginLeft: 10}}>
         <Like id = {historyComment.replyId} likes = {historyComment.likes} isReply = {true}></Like>
         </div>
-        <NoPaddingButton  aria-label="delete" onClick={() => setOpenDeleteRpy( !openDeleteRpy )}>
+        <IconWrapper  aria-label="delete" onClick={() => setOpenDeleteRpy( !openDeleteRpy )}>
           <DeleteIcon fontSize="small" />
-        </NoPaddingButton>
+        </IconWrapper>
         <NoPaddingButton onClick={() => setOpenReport(!openReport)}>
-          <BlockIcon/>
+          <BlockIcon fontSize="small" />
         </NoPaddingButton>
     	</FlexWrapper>
       <WriterText>{historyComment.reply}</WriterText>
