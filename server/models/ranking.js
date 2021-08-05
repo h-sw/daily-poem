@@ -23,7 +23,7 @@ class Ranking {
     try {
       const sql = `
         SELECT * 
-        FROM POEM 
+        FROM POEM
         WHERE YEARWEEK(created) 
         = YEARWEEK(now())
         ORDER BY likes desc
@@ -72,7 +72,9 @@ class Ranking {
     try {
       const sql = `
         SELECT * 
-        FROM dailyKeword 
+        FROM keyword
+        WHERE DATE_FORMAT(createTime, "%Y-%m-%d")
+          <= current_date()
         ORDER BY likes DESC
         LIMIT 10
       `
