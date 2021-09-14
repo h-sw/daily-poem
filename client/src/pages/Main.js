@@ -1,7 +1,7 @@
 import React from 'react';
 import PoemList from '../components/atoms/PoemList';
 import { RootWrapper } from '../styles/common';
-import Keyword from '../components/atoms/Keyword';
+import SubjectHeader from '../components/atoms/SubjectHeader';
 import { Typography,Button } from '@material-ui/core';
 import styled from 'styled-components'
 import axios from 'axios';
@@ -46,7 +46,7 @@ const Main = () => {
 
   return (
     <RootWrapper>
-      <Keyword keyword={keyword} setKeyword={setKeyword}/>
+      <SubjectHeader keyword={keyword} setKeyword={setKeyword}/>
       <KeywordButton onClick={() => window.location.href="/keyword/"+keyword}>
         <Icon className="fi-rr-add"/>
         <IconText>3행시 더보기</IconText>

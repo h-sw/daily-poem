@@ -16,11 +16,16 @@ const CommentContainer = styled.div`
 
 const CommentSubmitButton = styled(Button)`
   position        : absolute;
-  bottom          : 0px;
-  right           : 0px;
+  bottom          : 1px;
+  right           : 1px;
+  font-wieght     : 600;
   font-size       : 14px;
-  color           : #333333;
-  border          : 1px solid #EEE
+  color           : #EEEEEE;
+  background-color: #8FB896;
+  border          : 1px solid #DDD;
+  &:hover {
+    background-color : #7EA785;
+  }
 `
 
 const CommentFormWrapper = styled.div`

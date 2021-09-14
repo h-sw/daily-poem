@@ -13,12 +13,12 @@ const TextHint = styled(Typography)`
 const PrevArrowWrapper = styled(IconButton)`
   display: block;
   position: absolute;
-  top: 50%;
-  right: -100px;
+  top: 12.5%;
+  right: -135px;
   border-radius: 100%;
   transform : translate(-50%, 0);
   &:hover {
-    background-color: #EEE;
+    background-color: #f3f7f3;
     cursor: pointer;
   }
 `
@@ -26,14 +26,12 @@ const PrevArrowWrapper = styled(IconButton)`
 const NextArrowWrapper = styled(IconButton)`
   display: block;
   position: absolute;
-  top: 50%;
-  left: -40px;
-
+  top: 12.5%;
+  left: -50px;
   border-radius: 100%;
-
   transform : translate(-50%, 0);
   &:hover {
-    background-color: #EEE;
+    background-color: #f3f7f3;
     cursor: pointer;
   }
 `
@@ -66,7 +64,7 @@ function SamplePrevArrow(props) {
 const PoemListContainer = ({ displayData }) => {
   var settings = {
     dots: false,
-    infinite: false,
+    infinite: true,
     slidesToShow: 1,
     slidesToScroll: 1,
     nextArrow: <SampleNextArrow />,
