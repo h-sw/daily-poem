@@ -7,7 +7,7 @@ import {
   Padding,
 } from '../../styles/common';
 
-const PoemInputWrapper = styled.div`
+const InputWrapper = styled.div`
   display       	: flex;
   margin        	: 0px;
   border-radius 	: 5px;
@@ -15,7 +15,7 @@ const PoemInputWrapper = styled.div`
   border        	: 1px solid #8FB896;
 `
 
-const PoemInput = styled(InputBase)`
+const Input = styled(InputBase)`
   font-size      	: 14px;
   color          	: #565656;
   font-weight    	: 600;
@@ -41,15 +41,15 @@ const AllSearch = ({ setValues }) => {
 
   return (
 		<form onSubmit={handleSubmit} noValidate autoComplete="off">
-			<PoemInputWrapper>
-				<PoemInput
+			<InputWrapper>
+				<Input
 					name="search"
 					fullWidth
 					placeholder="이 곳에 입력해주세요."
 					onChange={handleChange}
 				/>
 				<Icon className="fi-rr-search"/>
-			</PoemInputWrapper>
+			</InputWrapper>
 			<Padding/>
 		</form>
   )
